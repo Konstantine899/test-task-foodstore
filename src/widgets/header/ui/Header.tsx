@@ -5,8 +5,18 @@ import { ActionButton, Icon } from '@/shared/ui';
 import CartIcon from '@/shared/assets/icons/cart.svg';
 import MenuIcon from '@/shared/assets/icons/menu.svg';
 import SearchIcon from '@/shared/assets/icons/search.svg';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { cartActions } from '@/entities/cart';
 
 export const Header: React.FC = () => {
+
+    const dispatch = useAppDispatch();
+    const total = useAppSelector((state) => state.cart.total);
+    const isCartOpen = useAppSelector((state) => state.cart.isOpen);
+
+    console.log(isCartOpen);
+    console.log(total);
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -36,7 +46,7 @@ export const Header: React.FC = () => {
           <ActionButton
             icon= {<Icon Svg={CartIcon}/>} 
             text="14500 ₸"
-            onClick={() => console.log('Cart clicked')}
+            onClick={() => dispatch(cartActions.toggleCart())}
             ariaLabel="Корзина"
           />
         </div>
