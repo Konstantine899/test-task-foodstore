@@ -4,7 +4,7 @@ import * as styles from './ActionButton.module.scss';
 import { Icon } from '../Icon';
 
 interface ActionButtonProps {
-  icon?: 'search' | 'cart' | 'menu';
+  icon?: React.ReactNode;
   text?: string;
   badge?: number;
   onClick?: () => void;
@@ -26,7 +26,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       onClick={onClick}
       aria-label={ariaLabel}
     >
-      {icon && <Icon name={icon} />}
+      {icon}
       {text && <span className={styles.buttonText}>{text}</span>}
       {badge !== undefined && badge > 0 && (
         <span className={styles.badge}>{badge}</span>

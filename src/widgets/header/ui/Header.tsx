@@ -1,7 +1,10 @@
 // src/widgets/header/ui/Header.tsx
 import React from 'react';
 import * as styles from './Header.module.scss';
-import { ActionButton } from '@/shared/ui';
+import { ActionButton, Icon } from '@/shared/ui';
+import CartIcon from '@/shared/assets/icons/cart.svg';
+import MenuIcon from '@/shared/assets/icons/menu.svg';
+import SearchIcon from '@/shared/assets/icons/search.svg';
 
 export const Header: React.FC = () => {
   return (
@@ -10,7 +13,7 @@ export const Header: React.FC = () => {
         {/* Иконки слева: меню, язык, поиск */}
         <div className={styles.leftActions}>
           <ActionButton
-            icon="menu"
+            icon= {<Icon Svg={MenuIcon}/>} 
             onClick={() => console.log('Menu clicked')}
             ariaLabel="Меню"
           />
@@ -22,7 +25,7 @@ export const Header: React.FC = () => {
           />
           
           <ActionButton
-            icon="search"
+            icon={<Icon Svg={SearchIcon}/>}
             onClick={() => console.log('Search clicked')}
             ariaLabel="Поиск"
           />
@@ -31,7 +34,7 @@ export const Header: React.FC = () => {
         {/* Корзина справа с ценой */}
         <div className={styles.rightActions}>
           <ActionButton
-            icon="cart"
+            icon= {<Icon Svg={CartIcon}/>} 
             text="14500 ₸"
             onClick={() => console.log('Cart clicked')}
             ariaLabel="Корзина"
