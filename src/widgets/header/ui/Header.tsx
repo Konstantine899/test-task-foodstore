@@ -1,10 +1,11 @@
 // src/widgets/header/ui/Header.tsx
 import React from 'react';
 import * as styles from './Header.module.scss';
-import { Logo, Navigation, ActionButton } from '@/shared/ui';
+import { Logo, Navigation, ActionButton, Icon } from '@/shared/ui';
+import MenuIcon from '@/shared/assets/icons/menu.svg';
 
 const navigationItems = [
-  { label: 'Меню', href: '#' },
+  { label: <Icon Svg={MenuIcon}/>, href: '#' },
   { label: 'Акции', href: '#' },
   { label: 'Контакты', href: '#' },
 ];

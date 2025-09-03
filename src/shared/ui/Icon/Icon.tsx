@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { memo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
-interface IconProps {
-    name: string
+interface IconProps extends React.SVGProps<SVGElement> {
+  className?: string;
+  Svg?: React.FC<React.SVGProps<SVGElement>>;
 }
 
-export const Icon :React.FC<IconProps> = ({name}) => {
+export const Icon = memo((props: IconProps) => {
+  const { className, Svg, ...otherProps } = props;
+
+  if (!Svg) {
+    return null;
+  }
+
   return (
-    <div>Icon</div>
-  )
-}
+    <Svg className={classNames('', {}, [className])} {...otherProps} />
+  );
+});
+
+Icon.displayName = `Icon`;
