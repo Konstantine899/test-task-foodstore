@@ -1,5 +1,5 @@
 // src/widgets/header/ui/Header.tsx
-import React from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './Header.module.scss';
 import { ActionButton, Icon } from '@/shared/ui';
 import CartIcon from '@/shared/assets/icons/cart.svg';
@@ -8,14 +8,34 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
 
-export const Header: React.FC = () => {
+export const Header = memo(() => {
+  const dispatch = useAppDispatch();
+  const total = useAppSelector((state) => state.cart.total);
 
-    const dispatch = useAppDispatch();
-    const total = useAppSelector((state) => state.cart.total);
-    const isCartOpen = useAppSelector((state) => state.cart.isOpen);
+  // Мемоизированные обработчики
+  const handleMenuClick = useCallback(() => {
+    console.log('Menu clicked');
+  }, []);
 
-    console.log(isCartOpen);
-    console.log(total);
+  const handleLanguageClick = useCallback(() => {
+    console.log('Language clicked');
+  }, []);
+
+  const handleSearchClick = useCallback(() => {
+    console.log('Search clicked');
+  }, []);
+
+  const handleCartClick = useCallback(() => {
+    dispatch(cartActions.toggleCart());
+  }, [dispatch]);
+
+  // Мемоизированное значение цены
+  const formattedTotal = useMemo(() => `${total} ₸`, [total]);
+
+  // Мемоизированные иконки
+  const menuIcon = useMemo(() => <Icon Svg={MenuIcon} />, []);
+  const searchIcon = useMemo(() => <Icon Svg={SearchIcon} />, []);
+  const cartIcon = useMemo(() => <Icon Svg={CartIcon} />, []);
 
   return (
     <header className={styles.header}>
@@ -23,20 +43,20 @@ export const Header: React.FC = () => {
         {/* Иконки слева: меню, язык, поиск */}
         <div className={styles.leftActions}>
           <ActionButton
-            icon= {<Icon Svg={MenuIcon}/>} 
-            onClick={() => console.log('Menu clicked')}
+            icon={menuIcon}
+            onClick={handleMenuClick}
             ariaLabel="Меню"
           />
           
           <ActionButton
             text="RU"
-            onClick={() => console.log('Language clicked')}
+            onClick={handleLanguageClick}
             ariaLabel="Выбор языка"
           />
           
           <ActionButton
-            icon={<Icon Svg={SearchIcon}/>}
-            onClick={() => console.log('Search clicked')}
+            icon={searchIcon}
+            onClick={handleSearchClick}
             ariaLabel="Поиск"
           />
         </div>
@@ -44,13 +64,15 @@ export const Header: React.FC = () => {
         {/* Корзина справа с ценой */}
         <div className={styles.rightActions}>
           <ActionButton
-            icon= {<Icon Svg={CartIcon}/>} 
-            text="14500 ₸"
-            onClick={() => dispatch(cartActions.toggleCart())}
+            icon={cartIcon}
+            text={formattedTotal}
+            onClick={handleCartClick}
             ariaLabel="Корзина"
           />
         </div>
       </div>
     </header>
   );
-};
+});
+
+Header.displayName = 'Header';
