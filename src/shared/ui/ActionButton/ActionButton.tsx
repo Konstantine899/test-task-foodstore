@@ -4,7 +4,7 @@ import * as styles from './ActionButton.module.scss';
 import { Icon } from '../Icon';
 
 interface ActionButtonProps {
-  icon?: 'search' | 'cart';
+  icon?: 'search' | 'cart' | 'menu';
   text?: string;
   badge?: number;
   onClick?: () => void;

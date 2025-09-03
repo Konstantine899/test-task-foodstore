@@ -27,16 +27,27 @@
     }
   }
   
-  .actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-shrink: 0;
-    
-    @media (max-width: 768px) {
-      gap: 16px;
-    }
+  .leftActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  
+  @media (max-width: 768px) {
+    gap: 16px;
   }
+}
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+}
   
   // Анимация при скролле (разъезжается)
   .header.scrolled {

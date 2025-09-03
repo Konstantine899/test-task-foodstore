@@ -1,34 +1,18 @@
 // src/widgets/header/ui/Header.tsx
 import React from 'react';
 import * as styles from './Header.module.scss';
-import { Logo, Navigation, ActionButton, Icon } from '@/shared/ui';
-import MenuIcon from '@/shared/assets/icons/menu.svg';
-
-const navigationItems = [
-  { label: <Icon Svg={MenuIcon}/>, href: '#' },
-  { label: 'Акции', href: '#' },
-  { label: 'Контакты', href: '#' },
-];
+import { ActionButton } from '@/shared/ui';
 
 export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Логотип слева */}
-        <Logo 
-          src="/logo.svg" 
-          alt="Food Store" 
-        />
-
-        {/* Навигационное меню по центру */}
-        <Navigation items={navigationItems} />
-
-        {/* Иконки справа */}
-        <div className={styles.actions}>
+        {/* Иконки слева: меню, язык, поиск */}
+        <div className={styles.leftActions}>
           <ActionButton
-            icon="search"
-            onClick={() => console.log('Search clicked')}
-            ariaLabel="Поиск"
+            icon="menu"
+            onClick={() => console.log('Menu clicked')}
+            ariaLabel="Меню"
           />
           
           <ActionButton
@@ -38,8 +22,17 @@ export const Header: React.FC = () => {
           />
           
           <ActionButton
+            icon="search"
+            onClick={() => console.log('Search clicked')}
+            ariaLabel="Поиск"
+          />
+        </div>
+
+        {/* Корзина справа с ценой */}
+        <div className={styles.rightActions}>
+          <ActionButton
             icon="cart"
-            badge={0}
+            text="14500 ₸"
             onClick={() => console.log('Cart clicked')}
             ariaLabel="Корзина"
           />
