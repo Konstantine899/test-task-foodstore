@@ -1,0 +1,45 @@
+.actionButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+    position: relative;
+    
+    &:hover {
+      background-color: #f3f4f6;
+    }
+    
+    &:active {
+      background-color: #e5e7eb;
+    }
+  }
+  
+  .buttonText {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    min-width: 24px;
+    text-align: center;
+  }
+  
+  .badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ef4444;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }

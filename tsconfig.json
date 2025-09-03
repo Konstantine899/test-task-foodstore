@@ -17,12 +17,18 @@
       "@/features/*":["src/features/*"],
       "@/widgets/*":["src/widgets/*"],
       "@/app/*":["src/app/*"],
-      "@/pages/*":["src/pages/*"],
+      "@/pages/*":["src/pages/*"]
     }
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "config"
+  ]
 }
