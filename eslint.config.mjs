@@ -4,12 +4,13 @@ import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import react from "eslint-plugin-react";
 import hooksPlugin from "eslint-plugin-react-hooks";
+import importPlugin from "eslint-plugin-import";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    plugins: { react, "react-hooks": hooksPlugin },
+    plugins: { react, "react-hooks": hooksPlugin, import: importPlugin },
     languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
     rules: {
       "react/jsx-uses-react": "error",

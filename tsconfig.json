@@ -8,7 +8,17 @@
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*":["src/*"],
+      "@/shared/*":["src/shared/*"],
+      "@/entities/*":["src/entities/*"],
+      "@/features/*":["src/features/*"],
+      "@/widgets/*":["src/widgets/*"],
+      "@/app/*":["src/app/*"],
+      "@/pages/*":["src/pages/*"],
+    }
   },
   "ts-node": {
     "compilerOptions": {
