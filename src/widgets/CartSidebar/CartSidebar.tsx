@@ -12,13 +12,6 @@ export const CartSidebar = memo(() => {
     dispatch(cartActions.closeCart());
   }, [dispatch]);
 
-  // Мемоизированный обработчик клика по overlay
-  const handleOverlayClick = useCallback((e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
-  }, [handleClose]);
-
   // Мемоизированное значение цены
   const formattedTotal = useMemo(() => `${total} ₸`, [total]);
 
@@ -29,26 +22,15 @@ export const CartSidebar = memo(() => {
   );
 
   return (
-    <>
-      {/* Overlay */}
-      {isOpen && (
-        <div 
-          className={styles.overlay} 
-          onClick={handleOverlayClick}
-          aria-hidden="true"
-        />
-      )}
-      
-      {/* Sidebar */}
-      <aside 
-        className={sidebarClasses}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="cart-title"
-      >
+    <aside 
+      className={sidebarClasses}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cart-title"
+    >
         <header className={styles.header}>
           <h2 id="cart-title" className={styles.title}>
-            Корзина
+            Мой заказ
           </h2>
           <button 
             className={styles.closeButton}
@@ -61,19 +43,57 @@ export const CartSidebar = memo(() => {
         </header>
         
         <main className={styles.content}>
-          <div className={styles.emptyState}>
-            <p>Корзина пуста</p>
+          {/* Вкладки доставки */}
+          <div className={styles.deliveryTabs}>
+            <button className={`${styles.tab} ${styles.active}`}>Доставка</button>
+            <button className={styles.tab}>Самовывоз</button>
+          </div>
+          
+          {/* Адрес доставки */}
+          <div className={styles.address}>
+            <span className={styles.locationIcon}>📍</span>
+            <span>улица Владимира Радостовц...</span>
+          </div>
+          
+          {/* Товары в корзине */}
+          <div className={styles.items}>
+            <div className={styles.item}>
+              <div className={styles.itemInfo}>
+                <h4>Сет «Алматы» - 40 шт</h4>
+                <div className={styles.itemPrice}>13500 ₸</div>
+              </div>
+              <div className={styles.quantityControls}>
+                <button className={styles.quantityBtn}>-</button>
+                <span className={styles.quantity}>1</span>
+                <button className={styles.quantityBtn}>+</button>
+              </div>
+            </div>
+          </div>
+          
+          {/* Промокод */}
+          <div className={styles.promoCode}>
+            <label>Промокод</label>
+            <input type="text" placeholder="Введите промокод" />
           </div>
         </main>
         
         <footer className={styles.footer}>
+          <div className={styles.orderDetails}>
+            <div className={styles.detailRow}>
+              <span>Товары в заказе 1 шт.</span>
+              <span>13500 ₸</span>
+            </div>
+            <div className={styles.detailRow}>
+              <span>Доставка</span>
+              <span>1000 ₸</span>
+            </div>
+          </div>
           <div className={styles.total}>
             <span className={styles.totalLabel}>Итого:</span>
             <span className={styles.totalPrice}>{formattedTotal}</span>
           </div>
         </footer>
-      </aside>
-    </>
+    </aside>
   );
 });
 

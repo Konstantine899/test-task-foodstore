@@ -1,0 +1,39 @@
+// src/widgets/category-navigation/ui/CategoryNavigation.tsx
+import React, { memo, useCallback } from 'react';
+import * as styles from './CategoryNavigation.module.scss';
+import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
+import { categoryActions } from '@/entities/category';
+
+interface CategoryNavigationProps {
+  isCartOpen: boolean;
+}
+
+export const CategoryNavigation = memo<CategoryNavigationProps>(({ isCartOpen }) => {
+  const dispatch = useAppDispatch();
+  const { categories } = useAppSelector((state) => state.category);
+
+  const handleCategoryClick = useCallback((categoryId: string) => {
+    dispatch(categoryActions.setActiveCategory(categoryId));
+  }, [dispatch]);
+
+  const listClasses = `${styles.list} ${isCartOpen ? styles.cartOpen : ''}`;
+
+  return (
+    <nav className={styles.navigation}>
+      <ul className={listClasses}>
+        {categories.map((category) => (
+          <li key={category.id} className={styles.item}>
+            <button
+              className={`${styles.button} ${category.isActive ? styles.active : ''}`}
+              onClick={() => handleCategoryClick(category.id)}
+            >
+              {category.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+});
+
+CategoryNavigation.displayName = 'CategoryNavigation';

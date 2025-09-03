@@ -1,0 +1,55 @@
+.navigation {
+    margin-top: 20px;
+  }
+  
+  .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    justify-content: start;
+    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 100%;
+    
+    @media (max-width: 768px) {
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
+    }
+  }
+  
+  .list.cartOpen {
+    max-width: calc(100% - 375px);
+    
+    @media (max-width: 480px) {
+      max-width: 0;
+    }
+  }
+  
+  .item {
+    /* Убираем flex-shrink, так как используем grid */
+  }
+  
+  .button {
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    
+    &:hover {
+      background: #e5e5e5;
+      color: #0f0f0f;
+    }
+    
+    &.active {
+      background: #0f0f0f;
+      color: #ffffff;
+    }
+  }
