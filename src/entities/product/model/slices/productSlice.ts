@@ -11,7 +11,10 @@ const initialState: ProductSchema = {
           description: 'Лосось, рис, лава соус, огурец, зеленый лук',
           price: 1200,
           image: '/images/geisha-kiss.jpg',
-          badges: [{ type: 'NEW', label: 'НОВИНКА' }],
+          badges: [
+            { type: 'NEW', label: 'НОВИНКА' },
+            { type: 'TOP', label: 'ТОП' }
+          ],
           category: 'baked-rolls'
         },
         {
@@ -20,7 +23,7 @@ const initialState: ProductSchema = {
           description: 'Запечённый лосось, сыр Филадельфия, жареный лук',
           price: 1100,
           image: '/images/philadelphia-baked.jpg',
-          badges: [{ type: 'HIT', label: 'ХИТ' }],
+          badges: [{ type: 'NEW', label: 'НОВИНКА' }],
           category: 'baked-rolls'
         },
         {
@@ -29,7 +32,7 @@ const initialState: ProductSchema = {
           description: 'Угорь, огурец, сыр Филадельфия, соус лава',
           price: 1300,
           image: '/images/canada-baked.jpg',
-          badges: [{ type: 'TOP', label: 'ТОП' }],
+          badges: [{ type: 'NEW', label: 'НОВИНКА' }],
           category: 'baked-rolls'
         },
         {
@@ -38,7 +41,10 @@ const initialState: ProductSchema = {
           description: 'Курица, огурец, соус лава, унаги соус, кунжут',
           price: 1000,
           image: '/images/alaska-chicken.jpg',
-          badges: [{ type: 'HIT', label: 'ХИТ' }],
+          badges: [
+            { type: 'HIT', label: 'ХИТ' },
+            { type: 'TOP', label: 'ТОП' }
+          ],
           category: 'baked-rolls'
         },
 
@@ -49,7 +55,10 @@ const initialState: ProductSchema = {
           description: 'Лосось, сыр Филадельфия, огурец, нори',
           price: 950,
           image: '/images/philadelphia-classic.jpg',
-          badges: [{ type: 'HIT', label: 'ХИТ' }],
+          badges: [
+            { type: 'HIT', label: 'ХИТ' },
+            { type: 'TOP', label: 'ТОП' }
+          ],
           category: 'philadelphia'
         },
         {
@@ -67,7 +76,7 @@ const initialState: ProductSchema = {
           description: 'Креветка, сыр Филадельфия, авокадо, огурец',
           price: 1050,
           image: '/images/philadelphia-shrimp.jpg',
-          badges: [],
+          badges: [{ type: 'HIT', label: 'ХИТ' }],
           category: 'philadelphia'
         },
         {
@@ -87,7 +96,10 @@ const initialState: ProductSchema = {
           description: 'Краб, авокадо, огурец, икра тобико, кунжут',
           price: 800,
           image: '/images/california.jpg',
-          badges: [{ type: 'HIT', label: 'ХИТ' }],
+          badges: [
+            { type: 'HIT', label: 'ХИТ' },
+            { type: 'NEW', label: 'НОВИНКА' }
+          ],
           category: 'cold-rolls'
         },
         {
@@ -105,7 +117,7 @@ const initialState: ProductSchema = {
           description: 'Лосось, огурец, авокадо, икра тобико',
           price: 900,
           image: '/images/alaska.jpg',
-          badges: [],
+          badges: [{ type: 'HIT', label: 'ХИТ' }],
           category: 'cold-rolls'
         },
         {
@@ -114,7 +126,10 @@ const initialState: ProductSchema = {
           description: 'Лосось, огурец, авокадо, икра тобико, кунжут',
           price: 850,
           image: '/images/boston.jpg',
-          badges: [{ type: 'NEW', label: 'НОВИНКА' }],
+          badges: [
+            { type: 'NEW', label: 'НОВИНКА' },
+            { type: 'TOP', label: 'ТОП' }
+          ],
           category: 'cold-rolls'
         },
 
@@ -125,7 +140,10 @@ const initialState: ProductSchema = {
           description: 'Лосось, огурец, авокадо в темпуре, соус спайси',
           price: 1100,
           image: '/images/tempura-roll.jpg',
-          badges: [{ type: 'NEW', label: 'НОВИНКА' }],
+          badges: [
+            { type: 'NEW', label: 'НОВИНКА' },
+            { type: 'HIT', label: 'ХИТ' }
+          ],
           category: 'fried-rolls'
         },
         {
@@ -134,7 +152,7 @@ const initialState: ProductSchema = {
           description: 'Креветка, огурец, авокадо в хрустящей панировке',
           price: 1000,
           image: '/images/crispy-roll.jpg',
-          badges: [],
+          badges: [{ type: 'TOP', label: 'ТОП' }],
           category: 'fried-rolls'
         },
         {
@@ -154,7 +172,10 @@ const initialState: ProductSchema = {
           description: 'Свежий лосось, рис, нори, васаби',
           price: 150,
           image: '/images/salmon-sushi.jpg',
-          badges: [{ type: 'HIT', label: 'ХИТ' }],
+          badges: [
+            { type: 'HIT', label: 'ХИТ' },
+            { type: 'NEW', label: 'НОВИНКА' }
+          ],
           category: 'sushi-gunkans'
         },
         {
@@ -163,7 +184,7 @@ const initialState: ProductSchema = {
           description: 'Угорь, рис, нори, унаги соус, кунжут',
           price: 200,
           image: '/images/eel-gunkan.jpg',
-          badges: [],
+          badges: [{ type: 'TOP', label: 'ТОП' }],
           category: 'sushi-gunkans'
         },
         {
@@ -181,7 +202,7 @@ const initialState: ProductSchema = {
           description: 'Креветка, рис, нори, спайси соус, кунжут',
           price: 170,
           image: '/images/shrimp-gunkan.jpg',
-          badges: [],
+          badges: [{ type: 'HIT', label: 'ХИТ' }],
           category: 'sushi-gunkans'
         },
         {
@@ -190,7 +211,10 @@ const initialState: ProductSchema = {
           description: 'Угорь, рис, нори, унаги соус',
           price: 190,
           image: '/images/eel-sushi.jpg',
-          badges: [{ type: 'TOP', label: 'ТОП' }],
+          badges: [
+            { type: 'TOP', label: 'ТОП' },
+            { type: 'HIT', label: 'ХИТ' }
+          ],
           category: 'sushi-gunkans'
         }
       ],
