@@ -33,6 +33,19 @@
     gap: 16px;
     align-items: center;
   }
+
+  .searchContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 400px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
   
   .container {
     max-width: 1300px;

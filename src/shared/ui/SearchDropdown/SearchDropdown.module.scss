@@ -1,0 +1,183 @@
+// src/shared/ui/SearchDropdown/SearchDropdown.module.scss
+.searchContainer {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .comboboxContainer {
+    position: relative;
+  }
+  
+  .inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 12px 48px 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+  
+  .button {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: #3b82f6;
+    }
+  }
+  
+  .searchIcon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .options {
+    position: absolute;
+    z-index: 50;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    max-height: 300px;
+    overflow-y: auto;
+    
+    &[data-headlessui-state="open"] {
+      display: block;
+    }
+    
+    &[data-headlessui-state="closed"] {
+      display: none;
+    }
+  }
+  
+  // ✅ Направления выпадения через React state
+  .down {
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+  }
+  
+  .up {
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin-bottom: 4px;
+  }
+  
+  .left {
+    top: 0;
+    right: 100%;
+    margin-right: 4px;
+    min-width: 200px;
+  }
+  
+  .right {
+    top: 0;
+    left: 100%;
+    margin-left: 4px;
+    min-width: 200px;
+  }
+  
+  .option {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s ease;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    &.active {
+      background-color: #f3f4f6;
+    }
+  }
+  
+  .optionContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  
+  .optionMain {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .optionName {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .optionCategory {
+    font-size: 12px;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .optionPrice {
+    font-size: 14px;
+    font-weight: 600;
+    color: #059669;
+    white-space: nowrap;
+  }
+  
+  .checkIcon {
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .noResults {
+    padding: 24px 16px;
+    text-align: center;
+  }
+  
+  .noResultsText {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 4px;
+  }
+  
+  .noResultsSubtext {
+    font-size: 12px;
+    color: #9ca3af;
+  }

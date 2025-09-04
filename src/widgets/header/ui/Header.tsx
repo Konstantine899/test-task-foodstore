@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState, useEffect } from 'react';
 import * as styles from './Header.module.scss';
-import { ActionButton, Icon } from '@/shared/ui';
+import { ActionButton, Icon, SearchDropdown, SearchDirection } from '@/shared/ui';
 import CartIcon from '@/shared/assets/icons/cart.svg';
 import MenuIcon from '@/shared/assets/icons/menu.svg';
 import SearchIcon from '@/shared/assets/icons/search.svg';
@@ -11,8 +11,10 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 export const Header = memo(() => {
   const dispatch = useAppDispatch();
   const {isOpen,total} = useAppSelector((state) => state.cart);
+  const {products} = useAppSelector((state) => state.product);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPriceAnimating, setIsPriceAnimating] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,12 +35,27 @@ export const Header = memo(() => {
   }, []);
 
   const handleSearchClick = useCallback(() => {
-    console.log('Search clicked');
-  }, []);
+    setShowSearch(!showSearch);
+  }, [showSearch]);
 
   const handleCartClick = useCallback(() => {
     dispatch(cartActions.toggleCart());
   }, [dispatch]);
+
+  const searchItems = useMemo(() => 
+    products.map(product => ({
+      id: product.id,
+      name: product.name,
+      category: product.category,
+      price: product.price
+    })),
+    [products]
+  );
+
+  const handleSearchSelect = useCallback((item: any) => {
+    console.log('Selected:', item);
+    setShowSearch(false);
+  }, []);
 
   const formattedTotal = useMemo(() => `${total} ₸`, [total]);
 
@@ -60,8 +77,25 @@ export const Header = memo(() => {
         <div className={styles.leftActions}>
           <ActionButton icon={menuIcon} onClick={handleMenuClick} ariaLabel="Меню" />
           <ActionButton text="RU" onClick={handleLanguageClick} ariaLabel="Выбор языка" />
-          <ActionButton icon={searchIcon} onClick={handleSearchClick} ariaLabel="Поиск" />
+          <ActionButton 
+            icon={searchIcon} 
+            onClick={handleSearchClick} 
+            ariaLabel="Поиск"
+            className={showSearch ? 'active' : ''}
+          />
         </div>
+        
+        {showSearch && (
+          <div className={styles.searchContainer}>
+            <SearchDropdown 
+              items={searchItems}
+              onSelect={handleSearchSelect}
+              direction={SearchDirection.DOWN}
+              placeholder="Поиск блюд..."
+            />
+          </div>
+        )}
+        
         <div className={styles.rightActions}>
           <ActionButton 
             icon={cartIcon} 
