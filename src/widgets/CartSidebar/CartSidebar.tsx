@@ -2,11 +2,12 @@ import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './CartSidebar.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames, useTranslation } from '@/shared/lib';
 
 export const CartSidebar = memo(() => {
   const dispatch = useAppDispatch();
   const { total, isOpen } = useAppSelector((state) => state.cart);
+  const { t } = useTranslation();
 
   const handleClose = useCallback(() => {
     dispatch(cartActions.closeCart());
@@ -33,7 +34,7 @@ export const CartSidebar = memo(() => {
           <button 
             className={styles.closeButton}
             onClick={handleClose}
-            aria-label="Закрыть корзину"
+            aria-label={t('common.close')}
             type="button"
           >
             <span aria-hidden="true">×</span>
@@ -67,7 +68,7 @@ export const CartSidebar = memo(() => {
           
           <div className={styles.promoCode}>
             <label>Промокод</label>
-            <input type="text" placeholder="Введите промокод" />
+            <input type="text" placeholder={t('cart.promoCode')} />
           </div>
         </main>
         

@@ -184,6 +184,26 @@ const getRandomBadges = () => {
   return shuffled.slice(0, numBadges);
 };
 
+// Функция для получения переведенных названий категорий
+const getCategoryLabel = (category: string, t: (key: string) => string) => {
+  const categoryMap: Record<string, string> = {
+    'baked-rolls': t('navigation.bakedRolls'),
+    'philadelphia': t('navigation.philadelphia'),
+    'cold-rolls': t('navigation.coldRolls'),
+    'fried-rolls': t('navigation.friedRolls'),
+    'sushi-gunkans': t('navigation.sushiGunkans')
+  };
+  return categoryMap[category] || category;
+};
+
+// Функция для получения переведенных бейджей
+const getTranslatedBadges = (badges: any[], t: (key: string) => string) => {
+  return badges.map(badge => ({
+    ...badge,
+    label: t(`badges.${badge.type.toLowerCase()}`)
+  }));
+};
+
 // Создаем 100 товаров с группировкой по названиям и описаниям
 const generatedProducts = Array.from({ length: 100 }, (_, index) => {
   // Определяем группу (0-9) для одинакового названия и описания
@@ -203,4 +223,16 @@ const generatedProducts = Array.from({ length: 100 }, (_, index) => {
 });
 
 // Перемешиваем товары рандомно
-export const products: Product[] = generatedProducts.sort(() => Math.random() - 0.5);
+const shuffledProducts = generatedProducts.sort(() => Math.random() - 0.5);
+
+// Экспортируем функцию для создания продуктов с переводами
+export const createProducts = (t: (key: string) => string): Product[] => {
+  return shuffledProducts.map(product => ({
+    ...product,
+    category: getCategoryLabel(product.category, t),
+    badges: getTranslatedBadges(product.badges, t)
+  }));
+};
+
+// Экспортируем базовые продукты без переводов (для совместимости)
+export const products: Product[] = shuffledProducts;

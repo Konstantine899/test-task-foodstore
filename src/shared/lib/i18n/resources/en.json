@@ -1,0 +1,42 @@
+{
+  "common": {
+    "search": "Search",
+    "cart": "Cart",
+    "menu": "Menu",
+    "language": "Language",
+    "clear": "Clear",
+    "close": "Close",
+    "addToCart": "Add to cart",
+    "total": "Total",
+    "delivery": "Delivery",
+    "pickup": "Pickup"
+  },
+  "navigation": {
+    "allProducts": "All Products",
+    "bakedRolls": "Baked Rolls",
+    "philadelphia": "Philadelphia",
+    "coldRolls": "Cold Rolls",
+    "friedRolls": "Fried Rolls",
+    "sushiGunkans": "Sushi & Gunkans"
+  },
+  "products": {
+    "title": "Sushi & Rolls",
+    "searchResults": "Search Results",
+    "searchPlaceholder": "Search dishes...",
+    "noResults": "Product not found",
+    "tryAgain": "Try changing your query"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Cart is empty",
+    "deliveryAddress": "Delivery address",
+    "deliveryCost": "Delivery cost",
+    "pickupAddress": "Pickup address",
+    "promoCode": "Enter promo code"
+  },
+  "badges": {
+    "new": "NEW",
+    "hit": "HIT",
+    "top": "TOP"
+  }
+}

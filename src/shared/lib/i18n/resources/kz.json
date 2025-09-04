@@ -1,0 +1,42 @@
+{
+  "common": {
+    "search": "Іздеу",
+    "cart": "Себет",
+    "menu": "Мәзір",
+    "language": "Тіл",
+    "clear": "Тазалау",
+    "close": "Жабу",
+    "addToCart": "Себетке қосу",
+    "total": "Барлығы",
+    "delivery": "Жеткізу",
+    "pickup": "Алу"
+  },
+  "navigation": {
+    "allProducts": "Барлық тауарлар",
+    "bakedRolls": "Пісірілген роллдар",
+    "philadelphia": "Филадельфия",
+    "coldRolls": "Суық роллдар",
+    "friedRolls": "Қуырылған роллдар",
+    "sushiGunkans": "Суши және гункандар"
+  },
+  "products": {
+    "title": "Суши және роллдар",
+    "searchResults": "Іздеу нәтижелері",
+    "searchPlaceholder": "Тағамдарды іздеу...",
+    "noResults": "Тауар табылмады",
+    "tryAgain": "Сұрауды өзгертіп көріңіз"
+  },
+  "cart": {
+    "title": "Себет",
+    "empty": "Себет бос",
+    "deliveryAddress": "Жеткізу мекенжайы",
+    "deliveryCost": "Жеткізу құны",
+    "pickupAddress": "Алу мекенжайы",
+    "promoCode": "Промокод енгізіңіз"
+  },
+  "badges": {
+    "new": "ЖАҢА",
+    "hit": "ХИТ",
+    "top": "ТОП"
+  }
+}

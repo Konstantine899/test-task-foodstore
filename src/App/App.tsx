@@ -1,5 +1,5 @@
 // src/app/App.tsx
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, Suspense } from "react";
 import * as slc from "./App.module.scss";
 import { Header } from "@/widgets/header";
 import { CartSidebar } from "@/widgets/CartSidebar";
@@ -9,6 +9,7 @@ import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
 import { ProductSection } from "@/widgets/ProductSection";
 import { cartActions } from "@/entities/cart";
 import { useAnimatedCounter } from "@/shared/lib";
+import '@/shared/lib/i18n';
 
 
 const AppContent = memo(() => {
@@ -40,7 +41,9 @@ const AppContent = memo(() => {
 const App = memo(() => {
   return (
     <Provider store={store}>
-      <AppContent />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AppContent />
+      </Suspense>
     </Provider>
   );
 });

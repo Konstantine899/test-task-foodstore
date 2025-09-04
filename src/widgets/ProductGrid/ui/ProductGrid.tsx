@@ -1,6 +1,6 @@
 // src/widgets/product-grid/ui/ProductGrid.tsx
 import React, { memo, useCallback, useMemo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib';
 import * as styles from './ProductGrid.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';

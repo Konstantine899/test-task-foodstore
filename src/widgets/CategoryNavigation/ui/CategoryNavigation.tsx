@@ -1,6 +1,6 @@
 // src/widgets/category-navigation/ui/CategoryNavigation.tsx
 import React, { memo, useCallback } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames, useTranslation } from '@/shared/lib';
 import * as styles from './CategoryNavigation.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { categoryActions } from '@/entities/category';
@@ -13,6 +13,18 @@ interface CategoryNavigationProps {
 export const CategoryNavigation = memo<CategoryNavigationProps>(({ isCartOpen }) => {
   const dispatch = useAppDispatch();
   const { categories } = useAppSelector((state) => state.category);
+  const { t } = useTranslation();
+
+  const getCategoryLabel = useCallback((categoryId: string) => {
+    const categoryMap: Record<string, string> = {
+      'baked-rolls': t('navigation.bakedRolls'),
+      'philadelphia': t('navigation.philadelphia'),
+      'cold-rolls': t('navigation.coldRolls'),
+      'fried-rolls': t('navigation.friedRolls'),
+      'sushi-gunkans': t('navigation.sushiGunkans')
+    };
+    return categoryMap[categoryId] || categoryId;
+  }, [t]);
 
   const handleCategoryClick = useCallback((categoryId: string) => {
     dispatch(categoryActions.setActiveCategory(categoryId));
@@ -32,7 +44,7 @@ export const CategoryNavigation = memo<CategoryNavigationProps>(({ isCartOpen })
               className={classNames(styles.button, { [styles.active]: category.isActive })}
               onClick={() => handleCategoryClick(category.id)}
             >
-              {category.label}
+              {getCategoryLabel(category.id)}
             </button>
           </li>
         ))}

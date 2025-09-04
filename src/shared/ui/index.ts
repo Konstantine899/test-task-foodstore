@@ -7,3 +7,4 @@ export { SearchDropdown } from './SearchDropdown';
 export type { SearchItem } from './SearchDropdown';
 export { SearchDirection } from './SearchDropdown';
 export { Navigation } from './Navigation';
+export { LanguageToggle } from './LanguageToggle';

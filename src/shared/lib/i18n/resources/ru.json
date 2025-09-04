@@ -1,0 +1,42 @@
+{
+  "common": {
+    "search": "Поиск",
+    "cart": "Корзина",
+    "menu": "Меню",
+    "language": "Язык",
+    "clear": "Очистить",
+    "close": "Закрыть",
+    "addToCart": "Добавить в корзину",
+    "total": "Итого",
+    "delivery": "Доставка",
+    "pickup": "Самовывоз"
+  },
+  "navigation": {
+    "allProducts": "Все товары",
+    "bakedRolls": "Запечённые роллы",
+    "philadelphia": "Филадельфия",
+    "coldRolls": "Холодные роллы",
+    "friedRolls": "Жареные роллы",
+    "sushiGunkans": "Суши и гунканы"
+  },
+  "products": {
+    "title": "Суши и роллы",
+    "searchResults": "Результаты поиска",
+    "searchPlaceholder": "Поиск блюд...",
+    "noResults": "Товар не найден",
+    "tryAgain": "Попробуйте изменить запрос"
+  },
+  "cart": {
+    "title": "Корзина",
+    "empty": "Корзина пуста",
+    "deliveryAddress": "Адрес доставки",
+    "deliveryCost": "Стоимость доставки",
+    "pickupAddress": "Адрес самовывоза",
+    "promoCode": "Введите промокод"
+  },
+  "badges": {
+    "new": "НОВИНКА",
+    "hit": "ХИТ",
+    "top": "ТОП"
+  }
+}
