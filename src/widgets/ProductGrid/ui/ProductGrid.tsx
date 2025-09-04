@@ -12,18 +12,28 @@ interface ProductGridProps {
 
 export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
   const dispatch = useAppDispatch();
-  const { products } = useAppSelector((state) => state.product);
+  const { products, filteredProducts ,searchQuery} = useAppSelector((state) => state.product);
   const { activeCategory } = useAppSelector((state) => state.category);
 
-  const filteredProducts = useMemo(() => {
-    // Если активная категория - показываем все товары
+  const productsToShow = useMemo(() => {
+    // Если есть поисковый запрос и отфильтрованные продукты - показываем их
+    if (searchQuery && filteredProducts.length > 0) {
+      return filteredProducts;
+    }
+    
+    // Если есть поисковый запрос, но нет результатов - показываем пустой массив
+    if (searchQuery && filteredProducts.length === 0) {
+      return [];
+    }
+    
+    // Если активная категория 'all' - показываем все товары
     if (activeCategory === 'all') {
       return products;
     }
     
     // Иначе показываем продукты по активной категории
     return products.filter(product => product.category === activeCategory);
-  }, [products, activeCategory]);
+  }, [products, filteredProducts, searchQuery, activeCategory]);
 
   const handleAddToCart = useCallback((productId: string) => {
     const product = products.find(p => p.id === productId);
@@ -42,7 +52,7 @@ export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
 
   return (
     <div className={classNames(styles.grid, mods)}>
-      {filteredProducts.map((product) => (
+      {productsToShow.map((product) => (
         <ProductCard
           key={product.id}
           product={product}

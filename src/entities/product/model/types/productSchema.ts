@@ -18,4 +18,7 @@ export interface Product {
     products: Product[];
     isLoading: boolean;
     error?: string;
-  }
+    filteredProducts: Product[];
+    searchQuery: string;
+    selectedCategory: string;
+}

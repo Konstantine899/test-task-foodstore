@@ -41,3 +41,19 @@
       max-width: 0;
     }
   }
+
+  .clearSearch {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 16px;
+    transition: background-color 0.2s;
+  
+    &:hover {
+      background: #ff5252;
+    }
+  }

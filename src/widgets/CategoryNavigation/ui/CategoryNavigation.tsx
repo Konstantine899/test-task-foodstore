@@ -4,6 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import * as styles from './CategoryNavigation.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { categoryActions } from '@/entities/category';
+import { productActions } from '@/entities/product';
 
 interface CategoryNavigationProps {
   isCartOpen: boolean;
@@ -15,6 +16,8 @@ export const CategoryNavigation = memo<CategoryNavigationProps>(({ isCartOpen })
 
   const handleCategoryClick = useCallback((categoryId: string) => {
     dispatch(categoryActions.setActiveCategory(categoryId));
+    // Очищаем поиск при смене категории
+    dispatch(productActions.clearSearch());
   }, [dispatch]);
 
   const mods = { [styles.cartOpen]: isCartOpen }

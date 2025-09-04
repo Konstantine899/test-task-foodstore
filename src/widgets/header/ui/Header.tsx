@@ -7,6 +7,8 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
 import { classNames } from '@/shared/lib/classNames/classNames';
+import { productActions } from '@/entities/product';
+
 
 export const Header = memo(() => {
   const dispatch = useAppDispatch();
@@ -26,13 +28,7 @@ export const Header = memo(() => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleMenuClick = useCallback(() => {
-    console.log('Menu clicked');
-  }, []);
 
-  const handleLanguageClick = useCallback(() => {
-    console.log('Language clicked');
-  }, []);
 
   const handleSearchClick = useCallback(() => {
     setShowSearch(!showSearch);
@@ -53,9 +49,12 @@ export const Header = memo(() => {
   );
 
   const handleSearchSelect = useCallback((item: any) => {
-    console.log('Selected:', item);
-    setShowSearch(false);
-  }, []);
+    if (item) {
+      // Используем новый редьюсер для поиска по тексту
+      dispatch(productActions.searchByText({ query: item.name }));
+      setShowSearch(false);
+    }
+  }, [dispatch]);
 
   const formattedTotal = useMemo(() => `${total} ₸`, [total]);
 
@@ -75,8 +74,8 @@ export const Header = memo(() => {
     <header className={ classNames(styles.header, { [styles.scrolled]: isExpanded })}>
       <div className={styles.container}>
         <div className={styles.leftActions}>
-          <ActionButton icon={menuIcon} onClick={handleMenuClick} ariaLabel="Меню" />
-          <ActionButton text="RU" onClick={handleLanguageClick} ariaLabel="Выбор языка" />
+          <ActionButton icon={menuIcon}  ariaLabel="Меню" />
+          <ActionButton text="RU"  ariaLabel="Выбор языка" />
           <ActionButton 
             icon={searchIcon} 
             onClick={handleSearchClick} 

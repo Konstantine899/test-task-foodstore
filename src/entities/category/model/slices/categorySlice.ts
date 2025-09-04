@@ -16,13 +16,20 @@ export const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
-        setActiveCategory: (state, action: PayloadAction<string>) => {
-          state.activeCategory = action.payload;
-          state.categories = state.categories.map(cat => ({
-            ...cat,
-            isActive: cat.id === action.payload
-          }));
+      setActiveCategory: (state, action: PayloadAction<string>) => {
+        // Сбрасываем активность всех категорий
+        state.categories.forEach(category => {
+            category.isActive = false;
+        });
+        
+        // Устанавливаем активную категорию
+        const category = state.categories.find(cat => cat.id === action.payload);
+        if (category) {
+            category.isActive = true;
         }
+        
+        state.activeCategory = action.payload;
+    }
       }
 });
 
