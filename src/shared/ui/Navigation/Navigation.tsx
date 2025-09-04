@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from './Navigation.module.scss';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface NavigationItem {
   label: string | React.ReactNode;
@@ -13,7 +14,7 @@ interface NavigationProps {
 
 export const Navigation: React.FC<NavigationProps> = ({ items, className = '' }) => {
   return (
-    <nav className={`${styles.navigation} ${className}`}>
+    <nav className={classNames(styles.navigation, {}, [className])}>
       <ul className={styles.navList}>
         {items.map((item, index) => (
           <li key={index} className={styles.navItem}>

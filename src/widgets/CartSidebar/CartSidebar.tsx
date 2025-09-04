@@ -2,6 +2,7 @@ import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './CartSidebar.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 export const CartSidebar = memo(() => {
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ export const CartSidebar = memo(() => {
 
   // Мемоизированные классы
   const sidebarClasses = useMemo(() => 
-    `${styles.sidebar} ${isOpen ? styles.open : ''}`, 
+    classNames(styles.sidebar, { [styles.open]: isOpen }), 
     [isOpen]
   );
 
@@ -45,7 +46,7 @@ export const CartSidebar = memo(() => {
         <main className={styles.content}>
           {/* Вкладки доставки */}
           <div className={styles.deliveryTabs}>
-            <button className={`${styles.tab} ${styles.active}`}>Доставка</button>
+            <button className={classNames(styles.tab, { [styles.active]: true })}>Доставка</button>
             <button className={styles.tab}>Самовывоз</button>
           </div>
           

@@ -1,5 +1,6 @@
 // src/widgets/product-section/ui/ProductSection.tsx
 import React, { memo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import * as styles from './ProductSection.module.scss';
 import { CategoryNavigation } from '@/widgets/CategoryNavigation';
 import { ProductGrid } from '@/widgets/ProductGrid';
@@ -9,6 +10,8 @@ interface ProductSectionProps {
 }
 
 export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
+
+  const mods = { [styles.cartOpen]: isCartOpen }
   return (
     <section className={styles.section}>
       <header className={styles.header}>
@@ -16,7 +19,7 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
         <CategoryNavigation isCartOpen={isCartOpen} />
       </header>
       
-      <main className={`${styles.content} ${isCartOpen ? styles.cartOpen : ''}`}>
+      <main className={classNames(styles.content, mods )}>
         <ProductGrid isCartOpen={isCartOpen} />
       </main>
     </section>

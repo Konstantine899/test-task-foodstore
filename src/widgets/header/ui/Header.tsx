@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 export const Header = memo(() => {
   const dispatch = useAppDispatch();
@@ -53,11 +54,10 @@ export const Header = memo(() => {
   const searchIcon = useMemo(() => <Icon Svg={SearchIcon} />, []);
   const cartIcon = useMemo(() => <Icon Svg={CartIcon} />, []);
 
-// Изменить строку 56:
-const headerClasses = `${styles.header} ${isExpanded ? styles.scrolled : ''}`;
+// Классы для header через utility
 
   return (
-    <header className={headerClasses}>
+    <header className={ classNames(styles.header, { [styles.scrolled]: isExpanded })}>
       <div className={styles.container}>
         <div className={styles.leftActions}>
           <ActionButton icon={menuIcon} onClick={handleMenuClick} ariaLabel="Меню" />

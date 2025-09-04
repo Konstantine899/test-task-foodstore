@@ -1,6 +1,7 @@
 // src/shared/ui/ActionButton/ActionButton.tsx
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './ActionButton.module.scss';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface ActionButtonProps {
   icon?: React.ReactNode;
@@ -25,15 +26,15 @@ export const ActionButton = memo<ActionButtonProps>(({
   }, [onClick]);
 
   // Мемоизированные классы
-  const buttonClasses = useCallback(() => {
-    const baseClass = styles.actionButton;
-    const cartOpenClass = className === 'cartOpen' ? styles.cartOpen : '';
-    return `${baseClass} ${cartOpenClass}`.trim();
+  const buttonClasses = useMemo(() => {
+    const mods = { [styles.cartOpen]: className === 'cartOpen' };
+    const extra = className && className !== 'cartOpen' ? [className] : [];
+    return classNames(styles.actionButton, mods, extra);
   }, [className]);
 
   return (
     <button
-      className={buttonClasses()}
+      className={buttonClasses}
       onClick={handleClick}
       aria-label={ariaLabel}
     >

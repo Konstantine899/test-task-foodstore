@@ -1,5 +1,6 @@
 // src/widgets/product-grid/ui/ProductGrid.tsx
 import React, { memo, useCallback, useMemo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import * as styles from './ProductGrid.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
@@ -31,10 +32,11 @@ export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
     }
   }, [dispatch, products]);
 
-  const gridClasses = `${styles.grid} ${isCartOpen ? styles.cartOpen : ''}`;
+  const mods = { [styles.cartOpen]: isCartOpen }
+
 
   return (
-    <div className={gridClasses}>
+    <div className={classNames(styles.grid, mods)}>
       {filteredProducts.map((product) => (
         <ProductCard
           key={product.id}

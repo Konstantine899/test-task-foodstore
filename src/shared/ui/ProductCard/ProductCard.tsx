@@ -3,6 +3,7 @@ import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './ProductCard.module.scss';
 import { Badge } from '../Badge';
 import type { Product, ProductBadge } from '@/entities/product';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface ProductCardProps {
   product: Product;
@@ -21,10 +22,7 @@ export const ProductCard = memo<ProductCardProps>(({
 
   const formattedPrice = useMemo(() => `${product.price} ₸`, [product.price]);
 
-  const cardClasses = useMemo(() => 
-    `${styles.card} ${className}`, 
-    [className]
-  );
+  const cardClasses = useMemo(() => classNames(styles.card, {}, [className]), [className]);
 
   return (
     <article className={cardClasses}>
