@@ -1,4 +1,3 @@
-// src/shared/ui/ActionButton/ActionButton.tsx
 import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './ActionButton.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -10,6 +9,7 @@ interface ActionButtonProps {
   onClick?: () => void;
   ariaLabel: string;
   className?: string;
+  isAnimating?: boolean;
 }
 
 export const ActionButton = memo<ActionButtonProps>(({
@@ -19,13 +19,12 @@ export const ActionButton = memo<ActionButtonProps>(({
   onClick,
   ariaLabel,
   className = '',
+  isAnimating = false,
 }) => {
-  // Мемоизированный обработчик клика
   const handleClick = useCallback(() => {
     onClick?.();
   }, [onClick]);
 
-  // Мемоизированные классы
   const buttonClasses = useMemo(() => {
     const mods = { [styles.cartOpen]: className === 'cartOpen' };
     const extra = className && className !== 'cartOpen' ? [className] : [];
@@ -39,7 +38,11 @@ export const ActionButton = memo<ActionButtonProps>(({
       aria-label={ariaLabel}
     >
       {icon}
-      {text && <span className={styles.buttonText}>{text}</span>}
+      {text && (
+        <span className={classNames(styles.buttonText, { [styles.animating]: isAnimating })}>
+          {text}
+        </span>
+      )}
       {badge !== undefined && badge > 0 && (
         <span className={styles.badge}>{badge}</span>
       )}

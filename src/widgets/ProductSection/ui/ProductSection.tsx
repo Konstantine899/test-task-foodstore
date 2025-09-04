@@ -1,4 +1,3 @@
-// src/widgets/product-section/ui/ProductSection.tsx
 import React, { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import * as styles from './ProductSection.module.scss';

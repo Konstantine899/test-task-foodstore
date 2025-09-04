@@ -58,7 +58,23 @@
     color: #0f0f0f;
     text-align: center;
     white-space: nowrap;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, transform 0.3s ease;
+    
+    &.animating {
+      animation: priceCountUp 0.1s ease-out;
+    }
+  }
+  
+  @keyframes priceCountUp {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   
   .actionButton.cartOpen .buttonText {

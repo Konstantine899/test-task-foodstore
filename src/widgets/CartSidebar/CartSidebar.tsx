@@ -8,15 +8,12 @@ export const CartSidebar = memo(() => {
   const dispatch = useAppDispatch();
   const { total, isOpen } = useAppSelector((state) => state.cart);
 
-  // Мемоизированный обработчик закрытия
   const handleClose = useCallback(() => {
     dispatch(cartActions.closeCart());
   }, [dispatch]);
 
-  // Мемоизированное значение цены
   const formattedTotal = useMemo(() => `${total} ₸`, [total]);
 
-  // Мемоизированные классы
   const sidebarClasses = useMemo(() => 
     classNames(styles.sidebar, { [styles.open]: isOpen }), 
     [isOpen]
@@ -44,19 +41,16 @@ export const CartSidebar = memo(() => {
         </header>
         
         <main className={styles.content}>
-          {/* Вкладки доставки */}
           <div className={styles.deliveryTabs}>
             <button className={classNames(styles.tab, { [styles.active]: true })}>Доставка</button>
             <button className={styles.tab}>Самовывоз</button>
           </div>
           
-          {/* Адрес доставки */}
           <div className={styles.address}>
             <span className={styles.locationIcon}>📍</span>
             <span>улица Владимира Радостовц...</span>
           </div>
           
-          {/* Товары в корзине */}
           <div className={styles.items}>
             <div className={styles.item}>
               <div className={styles.itemInfo}>
@@ -71,7 +65,6 @@ export const CartSidebar = memo(() => {
             </div>
           </div>
           
-          {/* Промокод */}
           <div className={styles.promoCode}>
             <label>Промокод</label>
             <input type="text" placeholder="Введите промокод" />

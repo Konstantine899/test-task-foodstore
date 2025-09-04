@@ -1,4 +1,3 @@
-// src/shared/ui/ProductCard/ProductCard.tsx
 import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './ProductCard.module.scss';
 import { Badge } from '../Badge';

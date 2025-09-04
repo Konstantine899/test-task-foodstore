@@ -8,20 +8,23 @@ import { store } from "@/app/store";
 import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
 import { ProductSection } from "@/widgets/ProductSection";
 import { cartActions } from "@/entities/cart";
+import { useAnimatedCounter } from "@/shared/lib";
 
 
 const AppContent = memo(() => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cart.isOpen);
 
-  // Анимация цены: 0 тенге -> 14500 тенге через 300ms
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(cartActions.setTotal(14500));
-    }, 300);
+  // Анимированный счетчик для цены корзины
+  const { currentValue: animatedTotal } = useAnimatedCounter(14500, {
+    duration: 2000, // 2 секунды анимации
+    easing: (t) => t * t * (3 - 2 * t), // smoothstep easing
+  });
 
-    return () => clearTimeout(timer);
-  }, [dispatch]);
+  // Обновляем Redux store с анимированным значением
+  useEffect(() => {
+    dispatch(cartActions.setTotal(animatedTotal));
+  }, [dispatch, animatedTotal]);
 
   return (
     <div className={slc.app}>
