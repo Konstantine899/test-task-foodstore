@@ -6,23 +6,52 @@
     z-index: 100;
     transition: all 0.3s ease;
   }
+
+  .header.scrolled .container {
+    padding: 24px 20px; 
+    max-width: 100%;
+    justify-content: space-between;
+    
+    @media (max-width: 1200px) {
+      padding: 24px 16px;
+    }
+    
+    @media (max-width: 768px) {
+      padding: 24px 12px;
+    }
+  }
+  
+  
+  .leftActions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  .rightActions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
   
   .container {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 85px;
+    transition: padding 0.3s ease; 
+
     
     @media (max-width: 1200px) {
       max-width: 1140px;
-      padding: 0 16px;
+      padding: 16px 16px;
     }
     
     @media (max-width: 768px) {
-      padding: 0 12px;
+      padding: 16px 12px;
       height: 70px;
     }
   }
@@ -48,15 +77,3 @@
     gap: 16px;
   }
 }
-  
-  // Анимация при скролле (разъезжается)
-  .header.scrolled {
-    .container {
-      max-width: 100%;
-      padding: 0 40px;
-      
-      @media (max-width: 768px) {
-        padding: 0 20px;
-      }
-    }
-  }

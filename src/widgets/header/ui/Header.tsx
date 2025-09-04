@@ -7,10 +7,26 @@ import MenuIcon from '@/shared/assets/icons/menu.svg';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export const Header = memo(() => {
   const dispatch = useAppDispatch();
-  const total = useAppSelector((state) => state.cart.total);
+  const {isOpen,total} = useAppSelector((state) => state.cart);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+   // Отслеживание скролла
+   useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      console.log(scrollY);
+      setIsExpanded(scrollY > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   // Мемоизированные обработчики
   const handleMenuClick = useCallback(() => {
@@ -37,38 +53,19 @@ export const Header = memo(() => {
   const searchIcon = useMemo(() => <Icon Svg={SearchIcon} />, []);
   const cartIcon = useMemo(() => <Icon Svg={CartIcon} />, []);
 
-  return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        {/* Иконки слева: меню, язык, поиск */}
-        <div className={styles.leftActions}>
-          <ActionButton
-            icon={menuIcon}
-            onClick={handleMenuClick}
-            ariaLabel="Меню"
-          />
-          
-          <ActionButton
-            text="RU"
-            onClick={handleLanguageClick}
-            ariaLabel="Выбор языка"
-          />
-          
-          <ActionButton
-            icon={searchIcon}
-            onClick={handleSearchClick}
-            ariaLabel="Поиск"
-          />
-        </div>
+// Изменить строку 56:
+const headerClasses = `${styles.header} ${isExpanded ? styles.scrolled : ''}`;
 
-        {/* Корзина справа с ценой */}
+  return (
+    <header className={headerClasses}>
+      <div className={styles.container}>
+        <div className={styles.leftActions}>
+          <ActionButton icon={menuIcon} onClick={handleMenuClick} ariaLabel="Меню" />
+          <ActionButton text="RU" onClick={handleLanguageClick} ariaLabel="Выбор языка" />
+          <ActionButton icon={searchIcon} onClick={handleSearchClick} ariaLabel="Поиск" />
+        </div>
         <div className={styles.rightActions}>
-          <ActionButton
-            icon={cartIcon}
-            text={formattedTotal}
-            onClick={handleCartClick}
-            ariaLabel="Корзина"
-          />
+          <ActionButton icon={cartIcon} text={formattedTotal} onClick={handleCartClick} ariaLabel="Корзина" />
         </div>
       </div>
     </header>

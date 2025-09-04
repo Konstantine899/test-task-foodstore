@@ -45,7 +45,104 @@ const initialState: ProductSchema = {
             { type: 'TOP', label: 'Топ' }
           ],
           category: 'baked-rolls'
-        }
+        },
+        {
+          id: '5',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        },
+        {
+          id: '6',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        },
+        {
+          id: '7',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        },
+        {
+          id: '8',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        },
+        {
+          id: '9',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        }, 
+        {
+          id: '10',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        },  
+        {
+          id: '11',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        },
+        {
+          id: '11',
+          name: 'Аляска запечённая с курицей',
+          description: 'Курица, огурец, соус лава, унаги соус, кунжут',
+          price: 1000,
+          image: '/images/alaska-chicken.jpg',
+          badges: [
+            { type: 'HIT', label: 'Хит' },
+            { type: 'TOP', label: 'Топ' }
+          ],
+          category: 'baked-rolls'
+        },
+        
       ],
       isLoading: false,
       error: undefined
