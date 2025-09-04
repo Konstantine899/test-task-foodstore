@@ -25,10 +25,11 @@ export const ActionButton = memo<ActionButtonProps>(({
   }, [onClick]);
 
   // Мемоизированные классы
-  const buttonClasses = useCallback(() => 
-    `${styles.actionButton} ${className}`, 
-    [className]
-  );
+  const buttonClasses = useCallback(() => {
+    const baseClass = styles.actionButton;
+    const cartOpenClass = className === 'cartOpen' ? styles.cartOpen : '';
+    return `${baseClass} ${cartOpenClass}`.trim();
+  }, [className]);
 
   return (
     <button

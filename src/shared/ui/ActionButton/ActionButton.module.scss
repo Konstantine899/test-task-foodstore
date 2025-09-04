@@ -1,4 +1,4 @@
-.actionButton {
+  .actionButton {
     background: #f5f5f5;
     border: none;
     cursor: pointer;
@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
     position: relative;
     min-height: 44px;
     min-width: 44px;
@@ -20,6 +20,36 @@
     &:active {
       background-color: #d4d4d4;
     }
+    
+    &.cartOpen {
+      background: #374151;
+      color: white;
+      
+      &:hover {
+        background-color: #4b5563;
+      }
+      
+      &:active {
+        background-color: #1f2937;
+      }
+    }
+  }
+  
+  .cartOpen {
+    background: #374151;
+    color: white;
+    
+    &:hover {
+      background-color: #4b5563;
+    }
+    
+    &:active {
+      background-color: #1f2937;
+    }
+    
+    .buttonText {
+      color: white;
+    }
   }
   
   .buttonText {
@@ -28,6 +58,11 @@
     color: #0f0f0f;
     text-align: center;
     white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+  
+  .actionButton.cartOpen .buttonText {
+    color: white;
   }
   
   .badge {

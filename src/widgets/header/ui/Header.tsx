@@ -65,7 +65,13 @@ const headerClasses = `${styles.header} ${isExpanded ? styles.scrolled : ''}`;
           <ActionButton icon={searchIcon} onClick={handleSearchClick} ariaLabel="Поиск" />
         </div>
         <div className={styles.rightActions}>
-          <ActionButton icon={cartIcon} text={formattedTotal} onClick={handleCartClick} ariaLabel="Корзина" />
+          <ActionButton 
+            icon={cartIcon} 
+            text={formattedTotal} 
+            onClick={handleCartClick} 
+            ariaLabel="Корзина"
+            className={isOpen ? 'cartOpen' : ''}
+          />
         </div>
       </div>
     </header>
