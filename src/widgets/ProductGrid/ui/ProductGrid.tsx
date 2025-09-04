@@ -15,10 +15,15 @@ export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
   const { products } = useAppSelector((state) => state.product);
   const { activeCategory } = useAppSelector((state) => state.category);
 
-  const filteredProducts = useMemo(() => 
-    products.filter(product => product.category === activeCategory),
-    [products, activeCategory]
-  );
+  const filteredProducts = useMemo(() => {
+    // Если активная категория - показываем все товары
+    if (activeCategory === 'all') {
+      return products;
+    }
+    
+    // Иначе показываем продукты по активной категории
+    return products.filter(product => product.category === activeCategory);
+  }, [products, activeCategory]);
 
   const handleAddToCart = useCallback((productId: string) => {
     const product = products.find(p => p.id === productId);

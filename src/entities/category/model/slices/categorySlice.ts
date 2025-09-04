@@ -3,13 +3,13 @@ import { CategorySchema } from '../types/categorySchema';
 
 const initialState: CategorySchema = {
     categories: [
-        { id: 'baked-rolls', name: 'baked-rolls', label: 'Запечённые роллы', isActive: true },
+        { id: 'baked-rolls', name: 'baked-rolls', label: 'Запечённые роллы', isActive: false },
         { id: 'philadelphia', name: 'philadelphia', label: 'Филадельфия', isActive: false },
         { id: 'cold-rolls', name: 'cold-rolls', label: 'Холодные роллы', isActive: false },
         { id: 'fried-rolls', name: 'fried-rolls', label: 'Жареные роллы', isActive: false },
         { id: 'sushi-gunkans', name: 'sushi-gunkans', label: 'Суши и гунканы', isActive: false }
       ],
-      activeCategory: 'baked-rolls'
+      activeCategory: 'all'
 };
 
 export const categorySlice = createSlice({
