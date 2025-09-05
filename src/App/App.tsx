@@ -2,7 +2,7 @@
 import React, { memo, useEffect, Suspense } from "react";
 import * as slc from "./App.module.scss";
 import { Header } from "@/widgets/header";
-import { CartSidebar } from "@/widgets/CartSidebar";
+import { CartSidebarAsync } from "@/widgets/CartSidebar";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
@@ -30,7 +30,9 @@ const AppContent = memo(() => {
       <main className={slc.main}>
         <ProductSection isCartOpen={isCartOpen} />
       </main>
-      <CartSidebar />
+      <Suspense fallback={<div>Загрузка корзины...</div>}>
+        <CartSidebarAsync />
+      </Suspense>
     </div>
   );
 });
