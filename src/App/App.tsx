@@ -5,11 +5,12 @@ import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { MainPage } from "@/pages";
 import '@/shared/lib/i18n';
+import { PageLoader } from "@/pages";
 
 const App = memo(() => {
   return (
     <Provider store={store}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<PageLoader />}>
         <div className={slc.app}>
           <MainPage />
         </div>
