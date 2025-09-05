@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/Konstantine899/test-task-foodstore/issues"
   },
-  "homepage": "https://github.com/Konstantine899/test-task-foodstore#readme",
+  "homepage": "https://konstantine899.github.io/test-task-foodstore",
   "devDependencies": {
     "@babel/core": "^7.26.9",
     "@babel/plugin-transform-runtime": "^7.26.9",

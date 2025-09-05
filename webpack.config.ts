@@ -23,5 +23,13 @@ export default (env: BuildEnv) => {
     port: PORT,
   });
 
+    // Добавляем publicPath для GitHub Pages в production
+    if (mode === "production") {
+      config.output = {
+        ...config.output,
+        publicPath: "/test-task-foodstore/",
+      };
+    }
+
   return config;
 };
