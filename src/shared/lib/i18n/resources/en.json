@@ -24,7 +24,8 @@
     "searchResults": "Search Results",
     "searchPlaceholder": "Search dishes...",
     "noResults": "Product not found",
-    "tryAgain": "Try changing your query"
+    "tryAgain": "Try changing your query",
+    "clearSearch": "Clear search"
   },
   "cart": {
     "title": "Cart",

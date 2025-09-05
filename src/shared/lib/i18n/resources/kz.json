@@ -24,7 +24,8 @@
     "searchResults": "Іздеу нәтижелері",
     "searchPlaceholder": "Тағамдарды іздеу...",
     "noResults": "Тауар табылмады",
-    "tryAgain": "Сұрауды өзгертіп көріңіз"
+    "tryAgain": "Сұрауды өзгертіп көріңіз",
+    "clearSearch": "Іздеуді тазалау"
   },
   "cart": {
     "title": "Себет",

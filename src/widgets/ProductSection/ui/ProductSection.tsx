@@ -31,10 +31,13 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
       return t('products.title');
     }
     
-    // Иначе название категории
+    // Иначе переводим название категории
     const category = categories.find(cat => cat.id === activeCategory);
-    return category?.label || t('products.title');
-  }, [categories, activeCategory, searchQuery]);
+    if (category) {
+      return t(`navigation.${category.label}`);
+    }
+    return t('products.title');
+  }, [categories, activeCategory, searchQuery, t]);
 
   const handleClearSearch = useCallback(() => {
     dispatch(productActions.clearSearch());
@@ -51,7 +54,7 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
             className={styles.clearSearch}
             onClick={handleClearSearch}
           >
-            Очистить поиск
+            {t('products.clearSearch')}
           </button>
         )}
         <CategoryNavigation isCartOpen={isCartOpen} />

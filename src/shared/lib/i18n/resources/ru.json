@@ -24,7 +24,8 @@
     "searchResults": "Результаты поиска",
     "searchPlaceholder": "Поиск блюд...",
     "noResults": "Товар не найден",
-    "tryAgain": "Попробуйте изменить запрос"
+    "tryAgain": "Попробуйте изменить запрос",
+    "clearSearch": "Очистить поиск"
   },
   "cart": {
     "title": "Корзина",
