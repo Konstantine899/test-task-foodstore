@@ -1,5 +1,5 @@
 // src/entities/product/data/products.ts
-import { Product } from '../model/types/productSchema';
+import { Product, ProductBadge } from '../model/types/productSchema';
 
 // Массив описаний для рандомного выбора
 const descriptions = [
@@ -167,9 +167,9 @@ const categories = ['baked-rolls', 'philadelphia', 'cold-rolls', 'fried-rolls', 
 
 // Массив бейджей
 const badges = [
-  { type: 'NEW' as const, label: 'НОВИНКА' },
-  { type: 'HIT' as const, label: 'ХИТ' },
-  { type: 'TOP' as const, label: 'ТОП' }
+  { type: 'NEW' as const },
+  { type: 'HIT' as const },
+  { type: 'TOP' as const }
 ];
 
 // Функция для получения рандомного элемента из массива
@@ -197,10 +197,9 @@ const getCategoryLabel = (category: string, t: (key: string) => string) => {
 };
 
 // Функция для получения переведенных бейджей
-const getTranslatedBadges = (badges: any[], t: (key: string) => string) => {
+const getTranslatedBadges = (badges: ProductBadge[], t: (key: string) => string): ProductBadge[] => {
   return badges.map(badge => ({
     ...badge,
-    label: t(`badges.${badge.type.toLowerCase()}`)
   }));
 };
 

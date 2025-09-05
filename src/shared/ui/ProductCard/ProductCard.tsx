@@ -37,7 +37,7 @@ export const ProductCard = memo<ProductCardProps>(({
               <Badge 
                 key={index}
                 type={badge.type}
-                label={badge.label}
+                translateLabel={true}
               />
             ))}
           </div>

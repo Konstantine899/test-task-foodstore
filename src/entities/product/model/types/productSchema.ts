@@ -11,7 +11,6 @@ export interface Product {
   
   export interface ProductBadge {
     type: 'NEW' | 'TOP' | 'HIT';
-    label: string;
   }
   
   export interface ProductSchema {
