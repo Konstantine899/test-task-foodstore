@@ -6,9 +6,10 @@ import * as styles from './LanguageToggle.module.scss';
 
 interface LanguageToggleProps {
   className?: string;
+  disabled?: boolean;
 }
 
-export const LanguageToggle = memo<LanguageToggleProps>(({ className }) => {
+export const LanguageToggle = memo<LanguageToggleProps>(({ className, disabled = false }) => {
   const { changeLanguage, currentLanguage, ready } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -35,9 +36,11 @@ export const LanguageToggle = memo<LanguageToggleProps>(({ className }) => {
   }, [isOpen]);
 
   const handleLanguageChange = useCallback((lng: string) => {
-    changeLanguage(lng);
-    setIsOpen(false);
-  }, [changeLanguage]);
+    if (!disabled) {
+      changeLanguage(lng);
+      setIsOpen(false);
+    }
+  }, [changeLanguage, disabled]);
 
   const languages = [
     { code: 'ru', label: 'RU', flag: '🇷🇺' },
@@ -50,14 +53,15 @@ export const LanguageToggle = memo<LanguageToggleProps>(({ className }) => {
   return (
     <div ref={dropdownRef} className={classNames(styles.languageToggle, {}, [className])}>
       <button
-        className={styles.currentButton}
-        onClick={() => setIsOpen(!isOpen)}
+        className={classNames(styles.currentButton, { [styles.disabled]: disabled })}
+        onClick={() => !disabled && setIsOpen(!isOpen)}
+        disabled={disabled}
       >
         <span className={styles.label}>{currentLang.label}</span>
         <span className={classNames(styles.arrow, { [styles.open]: isOpen })}>▼</span>
       </button>
       
-      {isOpen && (
+      {isOpen && !disabled && (
         <div className={styles.dropdown}>
           {languages.map((lang) => (
             <button

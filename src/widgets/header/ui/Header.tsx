@@ -80,7 +80,7 @@ export const Header = memo(() => {
             ariaLabel={t('common.menu')} 
             disabled={isLoading}
           />
-          <LanguageToggle />
+          <LanguageToggle disabled={isLoading} />
           <ActionButton 
             icon={searchIcon} 
             onClick={handleSearchClick} 

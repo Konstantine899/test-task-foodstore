@@ -1,5 +1,5 @@
 // src/app/App.tsx
-import React, { memo, useEffect, Suspense } from "react";
+import React, { memo, useEffect, Suspense, useState } from "react";
 import * as slc from "./App.module.scss";
 import { Header } from "@/widgets/header";
 import { CartSidebarAsync } from "@/widgets/CartSidebar";
@@ -16,20 +16,34 @@ import '@/shared/lib/i18n';
 const AppContent = memo(() => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cart.isOpen);
+  const isLoading = useAppSelector((state) => state.product.isLoading);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  const { currentValue: animatedTotal } = useAnimatedCounter(14500, {
+  const { currentValue: animatedTotal } = useAnimatedCounter(shouldAnimate ? 14500 : 0, {
     duration: 2000,
     easing: (t) => t * t * (3 - 2 * t),
   });
-  useEffect(() => {
-    dispatch(cartActions.setTotal(animatedTotal));
-  }, [dispatch, animatedTotal]);
 
-  // Симуляция загрузки товаров
+  useEffect(() => {
+    dispatch(cartActions.setTotal(0));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setShouldAnimate(true);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (shouldAnimate) {
+      dispatch(cartActions.setTotal(animatedTotal));
+    }
+  }, [dispatch, animatedTotal, shouldAnimate]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch(productActions.setLoading(false));
-    }, 5000); // 2 секунды загрузки
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [dispatch]);
