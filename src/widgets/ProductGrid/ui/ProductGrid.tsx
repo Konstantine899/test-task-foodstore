@@ -44,14 +44,12 @@ export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
 
   const mods = { [styles.cartOpen]: isCartOpen }
 
-  // Создаем массив скелетонов для отображения во время загрузки
   const skeletonItems = useMemo(() => 
     Array.from({ length: 8 }, (_, index) => (
       <ProductCardSkeleton key={`skeleton-${index}`} />
     )), []
   );
 
-  // Если идет загрузка, показываем скелетоны
   if (isLoading) {
     return (
       <div className={classNames(styles.grid, mods)}>

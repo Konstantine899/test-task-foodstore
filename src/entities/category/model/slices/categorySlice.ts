@@ -12,15 +12,12 @@ const getInitialState = (): CategorySchema => {
 
   try {
     const savedCategory = localStorage.getItem('activeCategory');
-    console.log('Loading from localStorage:', savedCategory);
     
     if (savedCategory) {
       const categories = defaultCategories.map(category => ({
         ...category,
         isActive: category.id === savedCategory
       }));
-
-      console.log('Restored categories with active state:', categories);
       
       return {
         categories,
@@ -56,7 +53,6 @@ export const categorySlice = createSlice({
         
         try {
           localStorage.setItem('activeCategory', action.payload);
-          console.log('Saved to localStorage:', action.payload);
         } catch (error) {
           console.error('Error saving activeCategory to localStorage:', error);
         }

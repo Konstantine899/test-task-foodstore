@@ -5,6 +5,7 @@ import { CategoryNavigation } from '@/widgets/CategoryNavigation';
 import { ProductGrid } from '@/widgets/ProductGrid';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { productActions } from '@/entities/product';
+import { TitleSkeleton, ActionButtonSkeleton, CategoryNavigationSkeleton } from '@/shared/ui';
 
 
 
@@ -15,7 +16,7 @@ interface ProductSectionProps {
 export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
   const dispatch = useAppDispatch();
   const { activeCategory, categories } = useAppSelector((state) => state.category);
-  const { searchQuery } = useAppSelector((state) => state.product);
+  const { searchQuery, isLoading } = useAppSelector((state) => state.product);
   const { t } = useTranslation();
 
 
@@ -43,8 +44,13 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
   return (
     <section className={styles.section}>
       <header className={styles.header}>
-        <h2 className={styles.title}>{sectionTitle}</h2>
-        {searchQuery && (
+        {isLoading ? (
+          <TitleSkeleton width="40%" />
+        ) : (
+          <h2 className={styles.title}>{sectionTitle}</h2>
+        )}
+        
+        {searchQuery && !isLoading && (
           <button 
             className={styles.clearSearch}
             onClick={handleClearSearch}
@@ -52,7 +58,19 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
             {t('products.clearSearch')}
           </button>
         )}
-        <CategoryNavigation isCartOpen={isCartOpen} />
+        
+        {searchQuery && isLoading && (
+          <ActionButtonSkeleton 
+            className={styles.clearSearchSkeleton}
+            hasText
+          />
+        )}
+        
+        {isLoading ? (
+          <CategoryNavigationSkeleton isCartOpen={isCartOpen} />
+        ) : (
+          <CategoryNavigation isCartOpen={isCartOpen} />
+        )}
       </header>
       
       <main className={classNames(styles.content, mods)}>

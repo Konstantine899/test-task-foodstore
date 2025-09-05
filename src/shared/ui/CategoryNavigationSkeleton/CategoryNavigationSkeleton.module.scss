@@ -1,0 +1,38 @@
+.navigation {
+  margin-top: 16px;
+}
+
+.list {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+
+  &.cartOpen {
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+.item {
+  flex-shrink: 0;
+}
+
+.buttonSkeleton {
+  border-radius: 8px;
+  min-width: 80px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .list {
+    gap: 8px;
+  }
+
+  .buttonSkeleton {
+    height: 36px;
+    min-width: 70px;
+  }
+}
