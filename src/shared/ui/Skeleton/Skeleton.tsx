@@ -1,24 +1,20 @@
+//
 import { CSSProperties, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Skeleton.module.scss';
 
 interface SkeletonProps {
   className?: string;
-  height?: string | number;
+  height?: string | number; // может быть задана в px или в %
   width?: string | number;
-  border?: string;
-  animation?: 'wave' | 'pulse' | 'none';
-  variant?: 'text' | 'circular' | 'rectangular';
+  border?: string /* borderRadius. В одном случае мы хотим сделать скелетон круглый,
+   в другом квадратный, прямоугольный.
+    И вот этими параметрами мы можем управлять на уровне props */;
 }
 
 export const Skeleton = memo((props: SkeletonProps) => {
   const {
-    className, 
-    height, 
-    width, 
-    border,
-    animation = 'wave',
-    variant = 'rectangular'
+    className, height, width, border
   } = props;
 
   const styles: CSSProperties = {
@@ -27,17 +23,7 @@ export const Skeleton = memo((props: SkeletonProps) => {
     borderRadius: border,
   };
 
-  const mods = {
-    [cls[animation]]: animation !== 'none',
-    [cls[variant]]: true,
-  };
-
   return (
-    <div 
-      className={classNames(cls.Skeleton, mods, [className])} 
-      style={styles} 
-    />
+    <div className={classNames(cls.Skeleton, {}, [className])} style={styles} />
   );
 });
-
-Skeleton.displayName = 'Skeleton';
