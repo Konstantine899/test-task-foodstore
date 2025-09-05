@@ -10,6 +10,7 @@ interface ActionButtonProps {
   ariaLabel: string;
   className?: string;
   isAnimating?: boolean;
+  disabled?: boolean;
 }
 
 export const ActionButton = memo<ActionButtonProps>(({
@@ -20,22 +21,29 @@ export const ActionButton = memo<ActionButtonProps>(({
   ariaLabel,
   className = '',
   isAnimating = false,
+  disabled = false,
 }) => {
   const handleClick = useCallback(() => {
-    onClick?.();
-  }, [onClick]);
+    if (!disabled) {
+      onClick?.();
+    }
+  }, [onClick, disabled]);
 
   const buttonClasses = useMemo(() => {
-    const mods = { [styles.cartOpen]: className === 'cartOpen' };
+    const mods = { 
+      [styles.cartOpen]: className === 'cartOpen',
+      [styles.disabled]: disabled
+    };
     const extra = className && className !== 'cartOpen' ? [className] : [];
     return classNames(styles.actionButton, mods, extra);
-  }, [className]);
+  }, [className, disabled]);
 
   return (
     <button
       className={buttonClasses}
       onClick={handleClick}
       aria-label={ariaLabel}
+      disabled={disabled}
     >
       {icon}
       {text && (

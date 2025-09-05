@@ -14,7 +14,7 @@ import { productActions } from '@/entities/product';
 export const Header = memo(() => {
   const dispatch = useAppDispatch();
   const {isOpen,total} = useAppSelector((state) => state.cart);
-  const {products} = useAppSelector((state) => state.product);
+  const {products, isLoading} = useAppSelector((state) => state.product);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPriceAnimating, setIsPriceAnimating] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -75,13 +75,18 @@ export const Header = memo(() => {
     <header className={classNames(styles.header, { [styles.scrolled]: isExpanded })}>
       <div className={styles.container}>
         <div className={styles.leftActions}>
-          <ActionButton icon={menuIcon} ariaLabel={t('common.menu')} />
+          <ActionButton 
+            icon={menuIcon} 
+            ariaLabel={t('common.menu')} 
+            disabled={isLoading}
+          />
           <LanguageToggle />
           <ActionButton 
             icon={searchIcon} 
             onClick={handleSearchClick} 
             ariaLabel={t('common.search')}
             className={showSearch ? 'active' : ''}
+            disabled={isLoading}
           />
         </div>
         
@@ -104,6 +109,7 @@ export const Header = memo(() => {
             ariaLabel={t('common.cart')}
             className={isOpen ? 'cartOpen' : ''}
             isAnimating={isPriceAnimating}
+            disabled={isLoading}
           />
         </div>
       </div>
