@@ -10,7 +10,7 @@ interface ImageErrorFallbackProps {
 export const ImageErrorFallback = memo<ImageErrorFallbackProps>(({ 
   className = '', 
   text = 'Нет фото',
-  imageSrc = '/images/error.png'
+  imageSrc = '/images/no-image.jpg'
 }) => {
   return (
     <div className={`${styles.errorFallback} ${className}`}>
