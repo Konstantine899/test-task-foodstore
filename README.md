@@ -1,6 +1,6 @@
-# Test Task Nilsen
+# 🍣 Food Store - React приложение
 
-Современное React приложение с кастомной конфигурацией Webpack, TypeScript и полным набором инструментов для разработки. Проект использует архитектуру Feature-Sliced Design и включает мощные скрипты автоматизации.
+Современное React приложение для интернет-магазина еды с кастомной конфигурацией Webpack, TypeScript и полным набором инструментов для разработки. Проект использует архитектуру Feature-Sliced Design и включает мощные скрипты автоматизации.
 
 ## 🚀 Технологический стек
 
@@ -9,6 +9,8 @@
 - **TypeScript 5.7.3** - строгая типизация
 - **Webpack 5.98.0** - кастомная конфигурация сборки
 - **SCSS** - препроцессор CSS с модулями
+- **Redux Toolkit** - управление состоянием
+- **i18next** - интернационализация
 
 ### Инструменты разработки
 - **Babel** - транспиляция с поддержкой React 19
@@ -17,28 +19,157 @@
 - **Webpack Dev Server** - сервер разработки с HMR
 - **Fork TS Checker** - проверка типов в отдельном процессе
 
-## 📁 Архитектура проекта
+---
 
-Проект следует принципам **Feature-Sliced Design**:
+## 1. 🚀 Запуск проекта
 
+### Установка зависимостей
+```bash
+npm install
+```
+
+### Запуск в режиме разработки
+```bash
+npm start
+```
+Приложение будет доступно по адресу: `http://localhost:3000`
+
+### Сборка для продакшена
+```bash
+npm run build:prod
+```
+
+### Сборка в режиме разработки
+```bash
+npm run build:dev
+```
+
+---
+
+## 2. 📜 Скрипты
+
+### Основные команды
+```bash
+# Запуск в режиме разработки
+npm start
+
+# Сборка для продакшена
+npm run build:prod
+
+# Сборка в режиме разработки
+npm run build:dev
+
+# Проверка SCSS
+npm run lint:scss
+
+# Исправление SCSS
+npm run lint:scss:fix
+
+# Генерация нового слайса
+npm run generate:slice <layer> <sliceName>
+```
+
+### Вспомогательные скрипты
+
+#### Очистка кеша
+```bash
+node scripts/clear-cache.js
+```
+
+#### Рефакторинг импортов
+```bash
+npx ts-node scripts/refactoring/updateImports.ts
+```
+
+#### Создание public API для shared/ui
+```bash
+npx ts-node scripts/refactoring/createPublicApiForSharedUi.ts
+```
+
+---
+
+## 3. 🏗️ Архитектура проекта
+
+Проект следует принципам **Feature-Sliced Design**.
+
+📖 **Подробная документация**: [Feature-Sliced Design](https://feature-sliced.design/)
+
+### Структура проекта
 ```
 src/
 ├── app/                    # Инициализация приложения
 │   ├── App.tsx            # Корневой компонент
-│   └── App.module.scss    # Глобальные стили
+│   ├── App.module.scss    # Глобальные стили
+│   └── store/             # Redux store
 ├── pages/                 # Страницы приложения
+│   ├── MainPage/          # Главная страница
+│   └── PageLoader/        # Лоадер страниц
 ├── widgets/               # Крупные UI блоки
-├── features/              # Бизнес-функциональность
+│   ├── header/            # Хедер приложения
+│   ├── ProductSection/    # Секция продуктов
+│   ├── ProductGrid/       # Сетка продуктов
+│   ├── CartSidebar/       # Боковая панель корзины
+│   └── CategoryNavigation/ # Навигация по категориям
 ├── entities/              # Бизнес-сущности
+│   ├── product/           # Продукты
+│   ├── cart/              # Корзина
+│   └── category/          # Категории
 ├── shared/                # Переиспользуемые ресурсы
 │   ├── ui/               # UI компоненты
-│   ├── lib/              # Утилиты
-│   └── api/              # API слой
-├── global.d.ts           # Глобальные типы
-└── index.tsx             # Точка входа
+│   ├── lib/              # Утилиты и хуки
+│   ├── assets/           # Статические ресурсы
+│   └── lib/i18n/         # Переводы
+└── global.d.ts           # Глобальные типы
 ```
 
-## ⚙️ Конфигурация
+---
+
+## 4. 🌍 Работа с переводами
+
+Проект поддерживает многоязычность через **i18next**.
+
+### Поддерживаемые языки
+- 🇷🇺 Русский (ru)
+- 🇺🇸 Английский (en)  
+- 🇰🇿 Казахский (kz)
+
+### Файлы переводов
+```
+src/shared/lib/i18n/resources/
+├── ru.json    # Русские переводы
+├── en.json    # Английские переводы
+└── kz.json    # Казахские переводы
+```
+
+### Использование в компонентах
+```tsx
+import { useTranslation } from '@/shared/lib';
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+  
+  return (
+    <h1>{t('common.title')}</h1>
+  );
+};
+```
+
+### Добавление новых переводов
+1. Откройте файл `src/shared/lib/i18n/resources/ru.json`
+2. Добавьте новый ключ:
+```json
+{
+  "common": {
+    "newKey": "Новый перевод"
+  }
+}
+```
+3. Добавьте переводы в остальные языки
+4. Используйте в компоненте: `t('common.newKey')`
+
+---
+
+## 5. ⚙️ Конфигурация проекта
 
 ### TypeScript
 - **Target**: ES5 для совместимости
@@ -64,203 +195,112 @@ src/
 - **Плагины**: React, React Hooks, TypeScript, Import
 - **Правила**: рекомендуемые для React и TypeScript
 
-## 🛠️ Установка и запуск
+---
 
-```bash
-# Установка зависимостей
-npm install
+## 6. 📊 Работа с данными
 
-# Запуск в режиме разработки
-npm start
+### Redux Store
+Приложение использует **Redux Toolkit** для управления состоянием.
 
-# Сборка для продакшена
-npm run build:prod
-
-# Сборка в режиме разработки
-npm run start:dev
-
-# Проверка SCSS
-npm run lint:scss
-
-# Исправление SCSS
-npm run lint:scss:fix
-
-# Генерация нового слайса
-npm run generate:slice <layer> <sliceName>
+#### Структура store
+```typescript
+interface RootState {
+  product: ProductState;    // Состояние продуктов
+  cart: CartState;         // Состояние корзины
+  category: CategoryState; // Состояние категорий
+}
 ```
 
-## 🔧 Вспомогательные скрипты
+#### Основные слайсы
+- **productSlice** - управление продуктами, поиск, фильтрация
+- **cartSlice** - управление корзиной, добавление/удаление товаров
+- **categorySlice** - управление категориями, активная категория
 
-### Утилиты разработки
-
-#### `clear-cache.js`
-Очищает кеш Webpack из `node_modules/.cache`. Использует Node.js API для рекурсивного удаления.
-
-```bash
-node scripts/clear-cache.js
+### Данные продуктов
+Продукты хранятся в `src/entities/product/data/products.ts`:
+```typescript
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image: string;
+  badges: ProductBadge[];
+}
 ```
 
-#### `generate-visual-json-report.js`
-Генерирует JSON отчет для визуального тестирования Loki. Анализирует `.loki/difference` и создает структурированный отчет.
+### Локальное хранилище
+- Категории сохраняются в `localStorage`
+- Корзина может быть сохранена в `localStorage` (опционально)
 
-### Генератор слайсов (`createSlice/`)
+---
 
-Мощный инструмент для автоматизации создания новых слайсов в архитектуре Feature-Sliced Design.
+## 7. 🔮 Рекомендации по улучшению проекта
 
-#### Использование
-```bash
-node scripts/createSlice/index.js <layer> <sliceName>
-```
+### 🧪 Тестирование
+- [ ] Добавить **Jest** и **React Testing Library**
+- [ ] Написать unit тесты для компонентов
+- [ ] Добавить интеграционные тесты
+- [ ] Настроить **Storybook** для визуального тестирования
 
-**Параметры:**
-- `layer` - слой архитектуры: `features`, `entities`, `pages`
-- `sliceName` - название слайса в camelCase (например: `article`, `userProfile`)
+### 🚀 Производительность
+- [ ] Добавить **React.lazy()** для ленивой загрузки страниц
+- [ ] Настроить **Code Splitting** по маршрутам
+- [ ] Оптимизировать изображения (WebP, lazy loading)
+- [ ] Добавить **Service Worker** для кеширования
 
-**Пример:**
-```bash
-node scripts/createSlice/index.js features article
-```
+### 🔧 Разработка
+- [ ] Настроить **Prettier** для форматирования кода
+- [ ] Добавить **Husky** для pre-commit хуков
+- [ ] Настроить **GitHub Actions** для CI/CD
+- [ ] Добавить **Docker** конфигурацию
 
-#### Генерируемая структура
-```
-src/<layer>/<sliceName>/
-├── model/
-│   ├── types/
-│   │   └── <sliceName>Schema.ts      # TypeScript интерфейс состояния
-│   ├── slices/
-│   │   └── <sliceName>Slice.ts       # Redux Toolkit slice
-│   ├── selectors/                    # Селекторы (пустая директория)
-│   └── services/                     # API сервисы (пустая директория)
-├── ui/
-│   └── <ComponentName>/              # Компонент с заглавной буквы
-│       ├── <ComponentName>.tsx       # React компонент
-│       ├── <ComponentName>.stories.tsx # Storybook story
-│       └── <ComponentName>.module.scss # SCSS модуль
-└── index.ts                          # Public API экспорты
-```
+### 📱 UX/UI
+- [ ] Добавить **PWA** функциональность
+- [ ] Улучшить адаптивность для мобильных устройств
+- [ ] Добавить **анимации** и **переходы**
+- [ ] Реализовать **темную тему**
 
-#### Особенности шаблонов
+### 🔌 API и данные
+- [ ] Интегрировать с **реальным API**
+- [ ] Добавить **Redux Toolkit Query** для кеширования
+- [ ] Реализовать **офлайн режим**
+- [ ] Добавить **пагинацию** для продуктов
 
-**React компонент:**
-- TypeScript интерфейс с `className?: string`
-- Использует `memo` для оптимизации
-- Интегрирован с `classNames` утилитой
-- Поддержка i18n через `useTranslation`
-- SCSS модули для стилизации
+### 🛡️ Безопасность
+- [ ] Добавить **валидацию** форм
+- [ ] Настроить **CSP** заголовки
+- [ ] Добавить **rate limiting**
+- [ ] Реализовать **аутентификацию**
 
-**Redux slice:**
-- Redux Toolkit с типизированным состоянием
-- Готовый шаблон reducer с PayloadAction
-- Закомментированные extraReducers для async actions
-- Экспорт actions и reducer
+### 📈 Мониторинг
+- [ ] Добавить **Sentry** для отслеживания ошибок
+- [ ] Настроить **Google Analytics**
+- [ ] Добавить **метрики производительности**
+- [ ] Реализовать **логирование**
 
-**Storybook story:**
-- Настроенный для текущего слоя архитектуры
-- TypeScript типизация
-- Готовый шаблон с контролами
-
-### Скрипты рефакторинга (`refactoring/`)
-
-#### `updateImports.ts`
-Автоматически обновляет импорты, добавляя алиас `@/` для абсолютных путей. Использует `ts-morph` для безопасного рефакторинга.
-
-```bash
-npx ts-node scripts/refactoring/updateImports.ts
-```
-
-#### `createPublicApiForSharedUi.ts`
-Создает файлы `index.ts` для всех компонентов в `shared/ui` и обновляет импорты для использования public API.
-
-```bash
-npx ts-node scripts/refactoring/createPublicApiForSharedUi.ts
-```
-
-## 🎯 Workflow разработки
-
-### Создание нового функционала
-1. **Создание слайса**: `npm run generate:slice features newFeature`
-2. **Разработка компонентов** в сгенерированной структуре
-3. **Рефакторинг импортов**: `npx ts-node scripts/refactoring/updateImports.ts`
-
-### Поддержка проекта
-1. **Очистка кеша** при проблемах: `node scripts/clear-cache.js`
-2. **Создание public API** для shared компонентов: `npx ts-node scripts/refactoring/createPublicApiForSharedUi.ts`
-3. **Генерация отчетов** для визуального тестирования: `node scripts/generate-visual-json-report.js`
+---
 
 ## 📦 Зависимости
 
 ### Production
 - **react**: ^19.0.0
 - **react-dom**: ^19.0.0
+- **react-redux**: ^9.1.2
+- **@reduxjs/toolkit**: ^2.2.7
+- **i18next**: ^23.15.1
 
 ### Development
-- **@babel/core**: ^7.26.9 - транспиляция
-- **@types/react**: ^19.0.9 - типы React
-- **@types/react-dom**: ^19.0.3 - типы React DOM
-- **eslint**: ^9.20.1 - линтер
-- **sass**: ^1.85.0 - препроцессор CSS
-- **typescript**: ^5.7.3 - компилятор TypeScript
-- **webpack**: ^5.98.0 - сборщик модулей
-- **ts-morph**: используется в скриптах рефакторинга
+- **@babel/core**: ^7.26.9
+- **@types/react**: ^19.0.9
+- **@types/react-dom**: ^19.0.3
+- **eslint**: ^9.20.1
+- **sass**: ^1.85.0
+- **typescript**: ^5.7.3
+- **webpack**: ^5.98.0
 
-## 🔍 Особенности конфигурации
-
-### Webpack Loaders
-- **ts-loader** - компиляция TypeScript
-- **babel-loader** - транспиляция с Babel
-- **sass-loader** - обработка SCSS
-- **css-loader** - обработка CSS
-- **file-loader** - обработка файлов
-- **@svgr/webpack** - SVG как React компоненты
-
-### Webpack Plugins
-- **HtmlWebpackPlugin** - генерация HTML
-- **MiniCssExtractPlugin** - извлечение CSS
-- **HotModuleReplacementPlugin** - HMR
-- **ForkTsCheckerWebpackPlugin** - проверка типов
-- **ProgressPlugin** - прогресс сборки
-
-### Типизация
-- **Глобальные типы**: SCSS модули, SVG, изображения
-- **Строгая типизация**: noImplicitAny
-- **Path mapping**: алиасы для всех слоев архитектуры
-- **Модульная система**: ESNext с CommonJS для ts-node
-
-## 🚀 Режимы сборки
-
-### Development
-- **Source maps**: inline-source-map
-- **HMR**: включен
-- **Dev Server**: порт 3000
-- **Оптимизация**: отключена
-
-### Production
-- **Source maps**: отключены
-- **Минификация**: включена
-- **Хеширование**: contenthash для кеширования
-- **Очистка**: clean: true
-
-## 📋 Рекомендации по разработке
-
-1. **Архитектура**: следуйте принципам Feature-Sliced Design
-2. **Структура компонентов**: используйте SCSS модули
-3. **Типизация**: строгая типизация TypeScript
-4. **Линтинг**: регулярно проверяйте код ESLint и Stylelint
-5. **SVG**: используйте как React компоненты через @svgr
-6. **Генерация кода**: используйте `generate:slice` для создания новых слайсов
-7. **Рефакторинг**: применяйте скрипты рефакторинга для поддержания чистоты кода
-8. **Импорты**: используйте алиасы `@/` для абсолютных путей
-
-## 🔮 Возможные улучшения
-
-- Добавление тестов (Jest, React Testing Library)
-- Настройка Storybook для компонентов
-- Добавление PWA функциональности
-- Интеграция с API
-- Настройка CI/CD
-- Добавление Docker конфигурации
-- Интеграция с Redux Toolkit Query
-- Добавление интернационализации (i18n)
+---
 
 ## 📄 Лицензия
 
