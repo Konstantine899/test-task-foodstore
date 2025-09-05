@@ -12,8 +12,11 @@ interface CategoryNavigationProps {
 
 export const CategoryNavigation = memo<CategoryNavigationProps>(({ isCartOpen }) => {
   const dispatch = useAppDispatch();
-  const { categories } = useAppSelector((state) => state.category);
+  const { categories, activeCategory } = useAppSelector((state) => state.category);
   const { t } = useTranslation();
+
+  console.log('CategoryNavigation - categories:', categories);
+  console.log('CategoryNavigation - activeCategory:', activeCategory);
 
   const getCategoryLabel = useCallback((categoryId: string) => {
     const categoryMap: Record<string, string> = {

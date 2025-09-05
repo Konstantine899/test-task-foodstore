@@ -1,16 +1,43 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CategorySchema } from '../types/categorySchema';
 
-const initialState: CategorySchema = {
-    categories: [
-        { id: 'baked-rolls', name: 'baked-rolls', label: 'bakedRolls', isActive: false },
-        { id: 'philadelphia', name: 'philadelphia', label: 'philadelphia', isActive: false },
-        { id: 'cold-rolls', name: 'cold-rolls', label: 'coldRolls', isActive: false },
-        { id: 'fried-rolls', name: 'fried-rolls', label: 'friedRolls', isActive: false },
-        { id: 'sushi-gunkans', name: 'sushi-gunkans', label: 'sushiGunkans', isActive: false }
-      ],
-      activeCategory: 'all'
+const getInitialState = (): CategorySchema => {
+  const defaultCategories = [
+    { id: 'baked-rolls', name: 'baked-rolls', label: 'bakedRolls', isActive: false },
+    { id: 'philadelphia', name: 'philadelphia', label: 'philadelphia', isActive: false },
+    { id: 'cold-rolls', name: 'cold-rolls', label: 'coldRolls', isActive: false },
+    { id: 'fried-rolls', name: 'fried-rolls', label: 'friedRolls', isActive: false },
+    { id: 'sushi-gunkans', name: 'sushi-gunkans', label: 'sushiGunkans', isActive: false }
+  ];
+
+  try {
+    const savedCategory = localStorage.getItem('activeCategory');
+    console.log('Loading from localStorage:', savedCategory);
+    
+    if (savedCategory) {
+      const categories = defaultCategories.map(category => ({
+        ...category,
+        isActive: category.id === savedCategory
+      }));
+
+      console.log('Restored categories with active state:', categories);
+      
+      return {
+        categories,
+        activeCategory: savedCategory
+      };
+    }
+  } catch (error) {
+    console.error('Error loading activeCategory from localStorage:', error);
+  }
+
+  return {
+    categories: defaultCategories,
+    activeCategory: 'all'
+  };
 };
+
+const initialState: CategorySchema = getInitialState();
 
 export const categorySlice = createSlice({
     name: 'category',
@@ -26,6 +53,13 @@ export const categorySlice = createSlice({
         }
         
         state.activeCategory = action.payload;
+        
+        try {
+          localStorage.setItem('activeCategory', action.payload);
+          console.log('Saved to localStorage:', action.payload);
+        } catch (error) {
+          console.error('Error saving activeCategory to localStorage:', error);
+        }
     }
       }
 });
