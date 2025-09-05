@@ -1,1 +1,1 @@
-export { CategoryNavigation } from './ui/CategoryNavigation';
+export { CategoryNavigationAsync as CategoryNavigation } from './ui/CategoryNavigation.async';
