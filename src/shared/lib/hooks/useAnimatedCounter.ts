@@ -1,11 +1,36 @@
 import { useState, useEffect, useCallback } from 'react';
 
+/**
+ * Опции для хука анимированного счетчика
+ */
 interface UseAnimatedCounterOptions {
+  /** Длительность анимации в миллисекундах (по умолчанию 1000) */
   duration?: number;
+  /** Функция easing для плавности анимации (по умолчанию линейная) */
   easing?: (t: number) => number;
+  /** Callback, вызываемый по завершении анимации */
   onComplete?: () => void;
 }
 
+/**
+ * Хук для создания анимированного счетчика
+ * 
+ * Плавно анимирует значение от 0 до targetValue с настраиваемой длительностью и easing функцией.
+ * Предотвращает повторный запуск анимации до завершения текущей.
+ * 
+ * @param targetValue - Целевое значение для анимации
+ * @param options - Опции анимации
+ * @returns Объект с текущим значением, состоянием анимации и функцией запуска
+ * 
+ * @example
+ * ```tsx
+ * const { currentValue, isAnimating } = useAnimatedCounter(100, {
+ *   duration: 2000,
+ *   easing: (t) => t * t * (3 - 2 * t), // easeInOutQuad
+ *   onComplete: () => console.log('Animation finished')
+ * });
+ * ```
+ */
 export function useAnimatedCounter(
   targetValue: number,
   options: UseAnimatedCounterOptions = {}

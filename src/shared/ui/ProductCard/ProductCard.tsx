@@ -6,12 +6,40 @@ import { ImageErrorFallback } from '../ImageErrorFallback';
 import type { Product, ProductBadge } from '@/entities/product';
 import { classNames, useTranslation, useTranslatedProducts } from '@/shared/lib';
 
+/**
+ * Пропсы для компонента ProductCard
+ */
 interface ProductCardProps {
+  /** Объект продукта для отображения */
   product: Product;
+  /** Обработчик добавления продукта в корзину */
   onAddToCart?: (productId: string) => void;
+  /** CSS класс для стилизации */
   className?: string;
 }
 
+/**
+ * Карточка продукта с изображением, информацией и кнопкой добавления в корзину
+ * 
+ * Отображает:
+ * - Изображение продукта с fallback состояниями
+ * - Название и описание продукта
+ * - Бейджи (новинка, популярное, etc.)
+ * - Цену и кнопку добавления в корзину
+ * 
+ * @component
+ * @param props - Пропсы компонента
+ * @returns JSX элемент карточки продукта
+ * 
+ * @example
+ * ```tsx
+ * <ProductCard
+ *   product={product}
+ *   onAddToCart={handleAddToCart}
+ *   className="custom-card"
+ * />
+ * ```
+ */
 export const ProductCard = memo<ProductCardProps>(({ 
   product, 
   onAddToCart, 

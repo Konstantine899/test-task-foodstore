@@ -2,17 +2,50 @@ import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './ActionButton.module.scss';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
+/**
+ * Пропсы для компонента ActionButton
+ */
 interface ActionButtonProps {
+  /** Иконка для отображения в кнопке */
   icon?: React.ReactNode;
+  /** Текст для отображения в кнопке */
   text?: string;
+  /** Число для отображения в бейдже */
   badge?: number;
+  /** Обработчик клика по кнопке */
   onClick?: () => void;
+  /** Aria-label для доступности */
   ariaLabel: string;
+  /** CSS класс для стилизации */
   className?: string;
+  /** Флаг анимации (для визуальных эффектов) */
   isAnimating?: boolean;
+  /** Флаг отключения кнопки */
   disabled?: boolean;
 }
 
+/**
+ * Универсальная кнопка действия с поддержкой иконок, текста и бейджей
+ * 
+ * Используется в хедере для различных действий (меню, поиск, корзина).
+ * Поддерживает состояния загрузки, анимации и отключения.
+ * 
+ * @component
+ * @param props - Пропсы компонента
+ * @returns JSX элемент кнопки
+ * 
+ * @example
+ * ```tsx
+ * <ActionButton
+ *   icon={<SearchIcon />}
+ *   text="Поиск"
+ *   badge={5}
+ *   onClick={handleSearch}
+ *   ariaLabel="Открыть поиск"
+ *   isAnimating={isSearching}
+ * />
+ * ```
+ */
 export const ActionButton = memo<ActionButtonProps>(({
   icon,
   text,

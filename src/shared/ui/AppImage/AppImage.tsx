@@ -6,15 +6,48 @@ import {
     useState,
   } from 'react';
   
-  interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-    className?: string;
-    fallback?: ReactElement;
-    errorFallback?: ReactElement;
-    lazy?: boolean;
-    size?: 'thumbnail' | 'medium' | 'large';
-  }
-  
-  export const AppImage = memo((props: AppImageProps) => {
+  /**
+ * Пропсы для компонента AppImage
+ */
+interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+  /** CSS класс для стилизации */
+  className?: string;
+  /** Компонент, отображаемый во время загрузки */
+  fallback?: ReactElement;
+  /** Компонент, отображаемый при ошибке загрузки */
+  errorFallback?: ReactElement;
+  /** Включить ленивую загрузку изображения */
+  lazy?: boolean;
+  /** Размер изображения для генерации URL с суффиксом */
+  size?: 'thumbnail' | 'medium' | 'large';
+}
+
+/**
+ * Улучшенный компонент изображения с поддержкой состояний загрузки и ошибок
+ * 
+ * Предоставляет:
+ * - Автоматическое управление состояниями загрузки/ошибки
+ * - Поддержку fallback компонентов
+ * - Ленивую загрузку
+ * - Генерацию URL для разных размеров изображений
+ * 
+ * @component
+ * @param props - Пропсы компонента
+ * @returns JSX элемент изображения или fallback компонент
+ * 
+ * @example
+ * ```tsx
+ * <AppImage
+ *   src="/images/product.jpg"
+ *   alt="Product image"
+ *   size="medium"
+ *   lazy
+ *   fallback={<Skeleton />}
+ *   errorFallback={<ImageErrorFallback />}
+ * />
+ * ```
+ */
+export const AppImage = memo((props: AppImageProps) => {
     const {
       className,
       src,

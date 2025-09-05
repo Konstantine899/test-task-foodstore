@@ -9,6 +9,17 @@ import { cartActions } from "@/entities/cart";
 import { productActions } from "@/entities/product/model/slices/productSlice";
 import { useAnimatedCounter } from "@/shared/lib";
 
+/**
+ * Главная страница приложения
+ * 
+ * Содержит основную логику приложения:
+ * - Управление состоянием загрузки продуктов
+ * - Анимацию счетчика корзины
+ * - Инициализацию данных корзины
+ * 
+ * @component
+ * @returns {JSX.Element} Главная страница с хедером, секцией продуктов и корзиной
+ */
 const MainPage = memo(() => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cart.isOpen);
