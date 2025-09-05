@@ -28,12 +28,19 @@
     "clearSearch": "Clear search"
   },
   "cart": {
-    "title": "Cart",
+    "title": "My Order",
     "empty": "Cart is empty",
     "deliveryAddress": "Delivery address",
     "deliveryCost": "Delivery cost",
     "pickupAddress": "Pickup address",
-    "promoCode": "Enter promo code"
+    "promoCode": "Enter promo code",
+    "delivery": "Delivery",
+    "pickup": "Pickup",
+    "itemsInOrder": "Items in order {{count}} pcs.",
+    "deliveryCostValue": "1000 ₸",
+    "sampleItem": "Set «Almaty» - 40 pcs",
+    "sampleItemPrice": "13500 ₸",
+    "sampleAddress": "Vladimir Radostov street..."
   },
   "badges": {
     "new": "NEW",

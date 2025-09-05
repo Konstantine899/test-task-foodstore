@@ -28,12 +28,19 @@
     "clearSearch": "Очистить поиск"
   },
   "cart": {
-    "title": "Корзина",
+    "title": "Мой заказ",
     "empty": "Корзина пуста",
     "deliveryAddress": "Адрес доставки",
     "deliveryCost": "Стоимость доставки",
     "pickupAddress": "Адрес самовывоза",
-    "promoCode": "Введите промокод"
+    "promoCode": "Введите промокод",
+    "delivery": "Доставка",
+    "pickup": "Самовывоз",
+    "itemsInOrder": "Товары в заказе {{count}} шт.",
+    "deliveryCostValue": "1000 ₸",
+    "sampleItem": "Сет «Алматы» - 40 шт",
+    "sampleItemPrice": "13500 ₸",
+    "sampleAddress": "улица Владимира Радостовц..."
   },
   "badges": {
     "new": "НОВИНКА",

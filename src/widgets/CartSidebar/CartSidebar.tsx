@@ -1,3 +1,4 @@
+// src/widgets/CartSidebar/CartSidebar.tsx
 import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './CartSidebar.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
@@ -29,7 +30,7 @@ export const CartSidebar = memo(() => {
     >
         <header className={styles.header}>
           <h2 id="cart-title" className={styles.title}>
-            Мой заказ
+            {t('cart.title')}
           </h2>
           <button 
             className={styles.closeButton}
@@ -43,20 +44,24 @@ export const CartSidebar = memo(() => {
         
         <main className={styles.content}>
           <div className={styles.deliveryTabs}>
-            <button className={classNames(styles.tab, { [styles.active]: true })}>Доставка</button>
-            <button className={styles.tab}>Самовывоз</button>
+            <button className={classNames(styles.tab, { [styles.active]: true })}>
+              {t('cart.delivery')}
+            </button>
+            <button className={styles.tab}>
+              {t('cart.pickup')}
+            </button>
           </div>
           
           <div className={styles.address}>
-            <span className={styles.locationIcon}>📍</span>
-            <span>улица Владимира Радостовц...</span>
+            <span className={styles.locationIcon}>��</span>
+            <span>{t('cart.sampleAddress')}</span>
           </div>
           
           <div className={styles.items}>
             <div className={styles.item}>
               <div className={styles.itemInfo}>
-                <h4>Сет «Алматы» - 40 шт</h4>
-                <div className={styles.itemPrice}>13500 ₸</div>
+                <h4>{t('cart.sampleItem')}</h4>
+                <div className={styles.itemPrice}>{t('cart.sampleItemPrice')}</div>
               </div>
               <div className={styles.quantityControls}>
                 <button className={styles.quantityBtn}>-</button>
@@ -67,7 +72,7 @@ export const CartSidebar = memo(() => {
           </div>
           
           <div className={styles.promoCode}>
-            <label>Промокод</label>
+            <label>{t('cart.promoCode')}</label>
             <input type="text" placeholder={t('cart.promoCode')} />
           </div>
         </main>
@@ -75,16 +80,16 @@ export const CartSidebar = memo(() => {
         <footer className={styles.footer}>
           <div className={styles.orderDetails}>
             <div className={styles.detailRow}>
-              <span>Товары в заказе 1 шт.</span>
-              <span>13500 ₸</span>
+              <span>{t('cart.itemsInOrder', { count: 1 })}</span>
+              <span>{t('cart.sampleItemPrice')}</span>
             </div>
             <div className={styles.detailRow}>
-              <span>Доставка</span>
-              <span>1000 ₸</span>
+              <span>{t('cart.delivery')}</span>
+              <span>{t('cart.deliveryCostValue')}</span>
             </div>
           </div>
           <div className={styles.total}>
-            <span className={styles.totalLabel}>Итого:</span>
+            <span className={styles.totalLabel}>{t('common.total')}:</span>
             <span className={styles.totalPrice}>{formattedTotal}</span>
           </div>
         </footer>

@@ -28,12 +28,19 @@
     "clearSearch": "Іздеуді тазалау"
   },
   "cart": {
-    "title": "Себет",
+    "title": "Менің тапсырысым",
     "empty": "Себет бос",
     "deliveryAddress": "Жеткізу мекенжайы",
     "deliveryCost": "Жеткізу құны",
     "pickupAddress": "Алу мекенжайы",
-    "promoCode": "Промокод енгізіңіз"
+    "promoCode": "Промокод енгізіңіз",
+    "delivery": "Жеткізу",
+    "pickup": "Алу",
+    "itemsInOrder": "Тапсырыстағы тауарлар {{count}} дана",
+    "deliveryCostValue": "1000 ₸",
+    "sampleItem": "Сет «Алматы» - 40 дана",
+    "sampleItemPrice": "13500 ₸",
+    "sampleAddress": "Владимир Радостовц көшесі..."
   },
   "badges": {
     "new": "ЖАҢА",
