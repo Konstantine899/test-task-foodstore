@@ -57,7 +57,7 @@ export const ProductCard = memo<ProductCardProps>(({
   const ImageError = useMemo(() => (
     <ImageErrorFallback 
       className={styles.imageError}
-      text="Нет фото"
+      text=""
       imageSrc="/images/error.png"
     />
   ), []);
