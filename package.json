@@ -1,5 +1,5 @@
 {
-  "name": "test-task-nilsen",
+  "name": "test-task-foodstore",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,16 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Konstantine899/test-task-nilsen.git"
+    "url": "git+https://github.com/Konstantine899/test-task-foodstore.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Konstantine899/test-task-nilsen/issues"
+    "url": "https://github.com/Konstantine899/test-task-foodstore/issues"
   },
-  "homepage": "https://github.com/Konstantine899/test-task-nilsen#readme",
+  "homepage": "https://github.com/Konstantine899/test-task-foodstore#readme",
   "devDependencies": {
     "@babel/core": "^7.26.9",
     "@babel/plugin-transform-runtime": "^7.26.9",
