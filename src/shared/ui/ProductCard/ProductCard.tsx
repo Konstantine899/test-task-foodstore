@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './ProductCard.module.scss';
 import { Badge } from '../Badge';
+import { AppImage } from '../AppImage';
+import { ImageErrorFallback } from '../ImageErrorFallback';
 import type { Product, ProductBadge } from '@/entities/product';
 import { classNames, useTranslation, useTranslatedProducts } from '@/shared/lib';
 
@@ -17,6 +19,20 @@ export const ProductCard = memo<ProductCardProps>(({
 }) => {
   const { t } = useTranslation();
   const translatedProducts = useTranslatedProducts();
+
+  const ImageLoader = useMemo(() => (
+    <div className={styles.imageLoader}>
+      <div className={styles.spinner} />
+    </div>
+  ), []);
+
+  const ImageError = useMemo(() => (
+    <ImageErrorFallback 
+      className={styles.imageError}
+      text="Нет фото"
+      imageSrc="/images/error.png"
+    />
+  ), []);
   
   const translatedProduct = useMemo(() => {
     return translatedProducts.find((p: Product) => p.id === product.id) || product;
@@ -33,10 +49,13 @@ export const ProductCard = memo<ProductCardProps>(({
   return (
     <article className={cardClasses}>
       <div className={styles.imageContainer}>
-        <img 
-          src={product.image} 
+        <AppImage
+          src={product.image}
           alt={translatedProduct.name}
           className={styles.image}
+          lazy={true}
+          fallback={ImageLoader}
+          errorFallback={ImageError}
         />
         {product.badges && (
           <div className={styles.badges}>

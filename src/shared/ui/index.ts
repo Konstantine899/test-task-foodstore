@@ -9,3 +9,4 @@ export { SearchDirection } from './SearchDropdown';
 export { Navigation } from './Navigation';
 export { LanguageToggle } from './LanguageToggle';
 export { AppImage } from './AppImage';
+export { ImageErrorFallback } from './ImageErrorFallback';

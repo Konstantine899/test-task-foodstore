@@ -1,4 +1,3 @@
-// src/entities/product/data/products.ts
 import { Product, ProductBadge } from '../model/types/productSchema';
 
 const descriptions = [
@@ -52,7 +51,6 @@ const descriptions = [
   'Лосось, огурец, авокадо, спайси соус'
 ];
 
-// Массив названий товаров
 const productNames = [
   'Поцелуй Гейши',
   'Филадельфия запечённая',
@@ -158,13 +156,10 @@ const productNames = [
   'Криспи с унаги'
 ];
 
-// Массив цен
 const prices = [150, 170, 180, 190, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 980, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500];
 
-// Массив категорий
 const categories = ['baked-rolls', 'philadelphia', 'cold-rolls', 'fried-rolls', 'sushi-gunkans'];
 
-// Массив бейджей
 const badges = [
   { type: 'NEW' as const },
   { type: 'HIT' as const },
@@ -198,6 +193,24 @@ const getTranslatedBadges = (badges: ProductBadge[], t: (key: string) => string)
   }));
 };
 
+const availableImages = [
+  '10d3f6d94e70edfbc666a07e987907dc.jpg',
+  '35168-ed4_small.jpg',
+  '4cd7f9b1c2919df3fde31706082cae9d.jpg',
+  '70cb6264f8127bcfcb7b2174cc43a187.jpg',
+  'a1d72825c1a57780653268f2171c4695.jpg',
+  'biznes-plan-sushi-bara.jpg',
+  'd58d9219b83798cfe8bd8b2080adec70.jpg',
+  'ec8c0bb9d64bfbb592226d6ffdb09ed70c7deb3547e6718fa624835fc7e31d5e.jpg',
+  'set4-300x200.jpg',
+  'sushi-study-demian-willette-450x266.jpg'
+];
+
+const getRandomImage = () => {
+  const imageName = Math.random() < 0.7 ? getRandomElement(availableImages) : '';
+  return imageName ? `/images/${imageName}` : '';
+};
+
 const generatedProducts = Array.from({ length: 100 }, (_, index) => {
   const groupIndex = Math.floor(index / 10);
   const name = productNames[groupIndex];
@@ -208,7 +221,7 @@ const generatedProducts = Array.from({ length: 100 }, (_, index) => {
     name: name,
     description: description,
     price: getRandomElement(prices),
-    image: `/images/product-${index + 1}.jpg`,
+    image: getRandomImage(),
     badges: getRandomBadges(),
     category: getRandomElement(categories)
   };

@@ -1,4 +1,3 @@
-// shared/ui/AppImage/AppImage.tsx
 import {
     ImgHTMLAttributes,
     memo,
@@ -9,10 +8,10 @@ import {
   
   interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string;
-    fallback?: ReactElement; // основное изображение
-    errorFallback?: ReactElement; // запасное изображение
-    lazy?: boolean; // ленивая загрузка
-    size?: 'thumbnail' | 'medium' | 'large'; // размер изображения
+    fallback?: ReactElement;
+    errorFallback?: ReactElement;
+    lazy?: boolean;
+    size?: 'thumbnail' | 'medium' | 'large';
   }
   
   export const AppImage = memo((props: AppImageProps) => {
@@ -26,17 +25,12 @@ import {
       size,
       ...otherProps
     } = props;
-    const [isLoading, setIsLoading] = useState(true); // true когда изображение загружается
-    const [hasError, setHasError] = useState(false); // true для отрисовки default image если изображение не подгрузилось
-
-    // Функция для генерации URL изображения с учетом размера
+    const [isLoading, setIsLoading] = useState(true);
+    const [hasError, setHasError] = useState(false);
     const getImageSrc = (originalSrc: string | undefined, imageSize?: string) => {
       if (!originalSrc || !imageSize) return originalSrc;
       
-      // Если это внешний URL, возвращаем как есть
       if (originalSrc.startsWith('http')) return originalSrc;
-      
-      // Для локальных изображений добавляем размер в путь
       const lastDotIndex = originalSrc.lastIndexOf('.');
       if (lastDotIndex === -1) return originalSrc;
       
