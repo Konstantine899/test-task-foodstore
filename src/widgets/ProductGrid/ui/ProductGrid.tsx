@@ -4,8 +4,7 @@ import { classNames } from '@/shared/lib';
 import * as styles from './ProductGrid.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
-import { ProductCard } from '@/shared/ui';  
-import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
+import { ProductCard, ProductCardSkeleton } from '@/shared/ui';
 
 interface ProductGridProps {
   isCartOpen: boolean;
@@ -13,7 +12,7 @@ interface ProductGridProps {
 
 export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
   const dispatch = useAppDispatch();
-  const { products, filteredProducts ,searchQuery} = useAppSelector((state) => state.product);
+  const { products, filteredProducts, searchQuery, isLoading } = useAppSelector((state) => state.product);
   const { activeCategory } = useAppSelector((state) => state.category);
 
   const productsToShow = useMemo(() => {
@@ -45,6 +44,21 @@ export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
 
   const mods = { [styles.cartOpen]: isCartOpen }
 
+  // Создаем массив скелетонов для отображения во время загрузки
+  const skeletonItems = useMemo(() => 
+    Array.from({ length: 8 }, (_, index) => (
+      <ProductCardSkeleton key={`skeleton-${index}`} />
+    )), []
+  );
+
+  // Если идет загрузка, показываем скелетоны
+  if (isLoading) {
+    return (
+      <div className={classNames(styles.grid, mods)}>
+        {skeletonItems}
+      </div>
+    );
+  }
 
   return (
     <div className={classNames(styles.grid, mods)}>

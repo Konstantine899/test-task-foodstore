@@ -1,0 +1,123 @@
+.cardSkeleton {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 285.6px;
+  height: 348px;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.imageSkeleton {
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+  
+  /* Анимация только для картинки */
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -150px;
+    top: 0;
+    height: 100%;
+    width: 80%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+    animation: skeleton-wave 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes skeleton-wave {
+  from {
+    left: -150px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 1;
+}
+
+.badgeSkeleton {
+  border-radius: 12px;
+}
+
+.content {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 148px;
+}
+
+.titleSkeleton {
+  margin-bottom: 4px;
+}
+
+.descriptionSkeleton {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.priceSkeleton {
+  font-weight: 600;
+}
+
+.buttonSkeleton {
+  border-radius: 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .cardSkeleton {
+    width: 100%;
+    max-width: 285.6px;
+    height: 300px;
+  }
+
+  .imageContainer {
+    height: 150px;
+  }
+
+  .content {
+    padding: 12px;
+    gap: 10px;
+    height: 150px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .buttonSkeleton {
+    width: 100%;
+  }
+}

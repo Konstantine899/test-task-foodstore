@@ -5,7 +5,7 @@ import { products } from '@/entities/product/data/products';
 
 const initialState: ProductSchema = {
     products: products,
-      isLoading: false,
+      isLoading: true,
       error: undefined,
       filteredProducts: [],
       searchQuery: '',
@@ -18,6 +18,7 @@ export const productSlice = createSlice({
     reducers: {
         setProducts: (state, action: PayloadAction<Product[]>) => {
           state.products = action.payload;
+          state.isLoading = false;
         },
         setLoading: (state, action: PayloadAction<boolean>) => {
           state.isLoading = action.payload;

@@ -3,6 +3,7 @@ export { Logo } from './Logo';
 export { ActionButton } from './ActionButton';
 export { Badge } from './Badge';
 export { ProductCard } from './ProductCard';
+export { ProductCardSkeleton } from './ProductCardSkeleton';
 export { SearchDropdown } from './SearchDropdown';
 export type { SearchItem } from './SearchDropdown';
 export { SearchDirection } from './SearchDropdown';

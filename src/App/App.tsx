@@ -8,6 +8,7 @@ import { store } from "@/app/store";
 import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
 import { ProductSection } from "@/widgets/ProductSection";
 import { cartActions } from "@/entities/cart";
+import { productActions } from "@/entities/product/model/slices/productSlice";
 import { useAnimatedCounter } from "@/shared/lib";
 import '@/shared/lib/i18n';
 
@@ -23,6 +24,15 @@ const AppContent = memo(() => {
   useEffect(() => {
     dispatch(cartActions.setTotal(animatedTotal));
   }, [dispatch, animatedTotal]);
+
+  // Симуляция загрузки товаров
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(productActions.setLoading(false));
+    }, 5000); // 2 секунды загрузки
+
+    return () => clearTimeout(timer);
+  }, [dispatch]);
 
   return (
     <div className={slc.app}>
