@@ -4,7 +4,8 @@ import { classNames } from '@/shared/lib';
 import * as styles from './ProductGrid.module.scss';
 import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
-import { ProductCard } from '@/shared/ui';
+import { ProductCard } from '@/shared/ui';  
+import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
 interface ProductGridProps {
   isCartOpen: boolean;
