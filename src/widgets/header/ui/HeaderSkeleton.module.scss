@@ -1,0 +1,83 @@
+.headerSkeleton {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 85px;
+  
+  @media (max-width: 1200px) {
+    max-width: 1140px;
+    padding: 16px 16px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 16px 12px;
+    height: 70px;
+  }
+}
+
+.leftActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+  
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.cartSkeleton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menuButton {
+  animation-delay: 0.1s;
+}
+
+.languageToggle {
+  animation-delay: 0.2s;
+}
+
+.searchButton {
+  animation-delay: 0.3s;
+}
+
+.cartIcon {
+  animation-delay: 0.4s;
+}
+
+.cartTotal {
+  animation-delay: 0.5s;
+}
