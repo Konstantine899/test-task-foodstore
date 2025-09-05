@@ -16,22 +16,17 @@ export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
   const { activeCategory } = useAppSelector((state) => state.category);
 
   const productsToShow = useMemo(() => {
-    // Если есть поисковый запрос и отфильтрованные продукты - показываем их
     if (searchQuery && filteredProducts.length > 0) {
       return filteredProducts;
     }
     
-    // Если есть поисковый запрос, но нет результатов - показываем пустой массив
     if (searchQuery && filteredProducts.length === 0) {
       return [];
     }
     
-    // Если активная категория 'all' - показываем все товары
     if (activeCategory === 'all') {
       return products;
     }
-    
-    // Иначе показываем продукты по активной категории
     return products.filter(product => product.category === activeCategory);
   }, [products, filteredProducts, searchQuery, activeCategory]);
 

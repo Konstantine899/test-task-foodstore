@@ -1,7 +1,6 @@
 // src/entities/product/data/products.ts
 import { Product, ProductBadge } from '../model/types/productSchema';
 
-// Массив описаний для рандомного выбора
 const descriptions = [
   'Лосось, рис, лава соус, огурец, зеленый лук',
   'Запечённый лосось, сыр Филадельфия, жареный лук',
@@ -172,19 +171,16 @@ const badges = [
   { type: 'TOP' as const }
 ];
 
-// Функция для получения рандомного элемента из массива
 const getRandomElement = <T>(array: T[]): T => {
   return array[Math.floor(Math.random() * array.length)];
 };
 
-// Функция для получения рандомных бейджей
 const getRandomBadges = () => {
-  const numBadges = Math.floor(Math.random() * 3) + 1; // 1-3 бейджа
+  const numBadges = Math.floor(Math.random() * 3) + 1;
   const shuffled = [...badges].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, numBadges);
 };
 
-// Функция для получения переведенных названий категорий
 const getCategoryLabel = (category: string, t: (key: string) => string) => {
   const categoryMap: Record<string, string> = {
     'baked-rolls': t('navigation.bakedRolls'),
@@ -196,24 +192,21 @@ const getCategoryLabel = (category: string, t: (key: string) => string) => {
   return categoryMap[category] || category;
 };
 
-// Функция для получения переведенных бейджей
 const getTranslatedBadges = (badges: ProductBadge[], t: (key: string) => string): ProductBadge[] => {
   return badges.map(badge => ({
     ...badge,
   }));
 };
 
-// Создаем 100 товаров с группировкой по названиям и описаниям
 const generatedProducts = Array.from({ length: 100 }, (_, index) => {
-  // Определяем группу (0-9) для одинакового названия и описания
   const groupIndex = Math.floor(index / 10);
-  const name = productNames[groupIndex]; // Используем groupIndex напрямую, без модуля
+  const name = productNames[groupIndex];
   const description = descriptions[groupIndex % descriptions.length];
   
   return {
     id: `${index + 1}`,
-    name: name, // Одинаковое название для группы из 10 товаров
-    description: description, // Одинаковое описание для группы из 10 товаров
+    name: name,
+    description: description,
     price: getRandomElement(prices),
     image: `/images/product-${index + 1}.jpg`,
     badges: getRandomBadges(),
@@ -221,17 +214,26 @@ const generatedProducts = Array.from({ length: 100 }, (_, index) => {
   };
 });
 
-// Перемешиваем товары рандомно
 const shuffledProducts = generatedProducts.sort(() => Math.random() - 0.5);
 
-// Экспортируем функцию для создания продуктов с переводами
+const getTranslatedProductName = (product: Product, t: (key: string) => string) => {
+  const groupIndex = (parseInt(product.id) - 1) % 10;
+  return t(`productNames.${groupIndex}`) || product.name;
+};
+
+const getTranslatedProductDescription = (product: Product, t: (key: string) => string) => {
+  const groupIndex = (parseInt(product.id) - 1) % 10;
+  return t(`productDescriptions.${groupIndex}`) || product.description;
+};
+
 export const createProducts = (t: (key: string) => string): Product[] => {
   return shuffledProducts.map(product => ({
     ...product,
+    name: getTranslatedProductName(product, t),
+    description: getTranslatedProductDescription(product, t),
     category: getCategoryLabel(product.category, t),
     badges: getTranslatedBadges(product.badges, t)
   }));
 };
 
-// Экспортируем базовые продукты без переводов (для совместимости)
 export const products: Product[] = shuffledProducts;

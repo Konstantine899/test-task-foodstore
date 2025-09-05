@@ -17,12 +17,9 @@ export const categorySlice = createSlice({
     initialState,
     reducers: {
       setActiveCategory: (state, action: PayloadAction<string>) => {
-        // Сбрасываем активность всех категорий
         state.categories.forEach(category => {
             category.isActive = false;
         });
-        
-        // Устанавливаем активную категорию
         const category = state.categories.find(cat => cat.id === action.payload);
         if (category) {
             category.isActive = true;

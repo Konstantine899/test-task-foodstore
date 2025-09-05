@@ -39,5 +39,29 @@
     "new": "NEW",
     "hit": "HIT",
     "top": "TOP"
+  },
+  "productNames": {
+    "0": "Geisha's Kiss",
+    "1": "Baked Philadelphia",
+    "2": "Baked Canada",
+    "3": "Baked Alaska with Chicken",
+    "4": "Classic Philadelphia",
+    "5": "Philadelphia with Eel",
+    "6": "Philadelphia with Shrimp",
+    "7": "Philadelphia with Salmon",
+    "8": "California",
+    "9": "Dragon"
+  },
+  "productDescriptions": {
+    "0": "Salmon, rice, lava sauce, cucumber, green onion",
+    "1": "Baked salmon, Philadelphia cheese, fried onion",
+    "2": "Eel, cucumber, Philadelphia cheese, lava sauce",
+    "3": "Chicken, cucumber, lava sauce, unagi sauce, sesame",
+    "4": "Salmon, Philadelphia cheese, cucumber, nori",
+    "5": "Eel, Philadelphia cheese, cucumber, unagi sauce",
+    "6": "Shrimp, Philadelphia cheese, avocado, cucumber",
+    "7": "Fresh salmon, Philadelphia cheese, cucumber, sesame",
+    "8": "Crab, avocado, cucumber, tobiko roe, sesame",
+    "9": "Eel, cucumber, avocado, unagi sauce, sesame"
   }
 }

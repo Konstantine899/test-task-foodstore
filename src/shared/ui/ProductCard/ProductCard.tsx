@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from 'react';
 import * as styles from './ProductCard.module.scss';
 import { Badge } from '../Badge';
 import type { Product, ProductBadge } from '@/entities/product';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import { classNames, useTranslation, useTranslatedProducts } from '@/shared/lib';
 
 interface ProductCardProps {
   product: Product;
@@ -15,6 +15,13 @@ export const ProductCard = memo<ProductCardProps>(({
   onAddToCart, 
   className = '' 
 }) => {
+  const { t } = useTranslation();
+  const translatedProducts = useTranslatedProducts();
+  
+  const translatedProduct = useMemo(() => {
+    return translatedProducts.find((p: Product) => p.id === product.id) || product;
+  }, [translatedProducts, product]);
+
   const handleAddToCart = useCallback(() => {
     onAddToCart?.(product.id);
   }, [onAddToCart, product.id]);
@@ -28,7 +35,7 @@ export const ProductCard = memo<ProductCardProps>(({
       <div className={styles.imageContainer}>
         <img 
           src={product.image} 
-          alt={product.name}
+          alt={translatedProduct.name}
           className={styles.image}
         />
         {product.badges && (
@@ -45,14 +52,14 @@ export const ProductCard = memo<ProductCardProps>(({
       </div>
       
       <div className={styles.content}>
-        <h3 className={styles.title}>{product.name}</h3>
-        <p className={styles.description}>{product.description}</p>
+        <h3 className={styles.title}>{translatedProduct.name}</h3>
+        <p className={styles.description}>{translatedProduct.description}</p>
         <div className={styles.footer}>
           <span className={styles.price}>{formattedPrice}</span>
           <button 
             className={styles.addButton}
             onClick={handleAddToCart}
-            aria-label={`Добавить ${product.name} в корзину`}
+            aria-label={t('common.addToCart')}
           >
             +
           </button>

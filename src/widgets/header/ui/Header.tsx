@@ -52,7 +52,6 @@ export const Header = memo(() => {
 
   const handleSearchSelect = useCallback((item: any) => {
     if (item) {
-      // Используем новый редьюсер для поиска по тексту
       dispatch(productActions.searchByText({ query: item.name }));
       setShowSearch(false);
     }

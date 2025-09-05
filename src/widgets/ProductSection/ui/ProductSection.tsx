@@ -19,19 +19,14 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
   const { t } = useTranslation();
 
 
-  // Получаем название активной категории
   const sectionTitle = useMemo(() => {
-    // Если есть поисковый запрос
     if (searchQuery) {
       return `${t('products.searchResults')}: "${searchQuery}"`;
     }
     
-    // Если активная категория 'all'
     if (activeCategory === 'all') {
       return t('products.title');
     }
-    
-    // Иначе переводим название категории
     const category = categories.find(cat => cat.id === activeCategory);
     if (category) {
       return t(`navigation.${category.label}`);

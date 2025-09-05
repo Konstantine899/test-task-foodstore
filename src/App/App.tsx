@@ -16,13 +16,10 @@ const AppContent = memo(() => {
   const dispatch = useAppDispatch();
   const isCartOpen = useAppSelector((state) => state.cart.isOpen);
 
-  // Анимированный счетчик для цены корзины
   const { currentValue: animatedTotal } = useAnimatedCounter(14500, {
-    duration: 2000, // 2 секунды анимации
-    easing: (t) => t * t * (3 - 2 * t), // smoothstep easing
+    duration: 2000,
+    easing: (t) => t * t * (3 - 2 * t),
   });
-
-  // Обновляем Redux store с анимированным значением
   useEffect(() => {
     dispatch(cartActions.setTotal(animatedTotal));
   }, [dispatch, animatedTotal]);
