@@ -1,1 +1,1 @@
-export { ProductSection } from './ui/ProductSection';
+export { ProductSectionAsync as ProductSection } from './ui/ProductSection.async';
