@@ -39,7 +39,7 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
     dispatch(productActions.clearSearch());
   }, [dispatch]);
 
-  const mods = { [styles.cartOpen]: isCartOpen }
+  const mods = { [styles['cart-open']]: isCartOpen }
   
   return (
     <section className={styles.section}>
@@ -52,7 +52,7 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
         
         {searchQuery && !isLoading && (
           <button 
-            className={styles.clearSearch}
+            className={styles['clear-search']}
             onClick={handleClearSearch}
           >
             {t('products.clearSearch')}
@@ -61,7 +61,7 @@ export const ProductSection = memo<ProductSectionProps>(({ isCartOpen }) => {
         
         {searchQuery && isLoading && (
           <ActionButtonSkeleton 
-            className={styles.clearSearchSkeleton}
+            className={styles['clear-search-skeleton']}
             hasText
           />
         )}

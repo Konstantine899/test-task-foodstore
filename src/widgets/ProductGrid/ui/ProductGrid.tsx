@@ -42,7 +42,7 @@ export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
     }
   }, [dispatch, products]);
 
-  const mods = { [styles.cartOpen]: isCartOpen }
+  const mods = { [styles['cart-open']]: isCartOpen }
 
   const skeletonItems = useMemo(() => 
     Array.from({ length: 8 }, (_, index) => (

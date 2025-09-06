@@ -9,7 +9,9 @@
     "start:dev": "webpack --env mode=development",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
-    "generate:slice": "node ./scripts/createSlice/index.js"
+    "generate:slice": "node ./scripts/createSlice/index.js",
+    "predeploy": "npm run build:prod",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -43,6 +45,7 @@
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-react": "^7.37.4",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "gh-pages": "^6.3.0",
     "globals": "^15.15.0",
     "mini-css-extract-plugin": "^2.9.2",
     "sass": "^1.85.0",

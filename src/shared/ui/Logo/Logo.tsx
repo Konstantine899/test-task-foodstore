@@ -11,7 +11,7 @@ interface LogoProps {
 export const Logo: React.FC<LogoProps> = ({ src, alt, className = '' }) => {
   return (
     <div className={classNames(styles.logo, {}, [className])}>
-      <img src={src} alt={alt} className={styles.logoImage} />
+      <img src={src} alt={alt} className={styles['logo-image']} />
     </div>
   );
 };

@@ -1,9 +1,8 @@
-// src/shared/ui/SearchDropdown/SearchDropdown.tsx
-import React, { memo, useState, useCallback, useMemo } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { Combobox } from '@headlessui/react';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import * as styles from './SearchDropdown.module.scss';
-import { Icon } from '@/shared/ui';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Icon } from '@/shared/ui/Icon/Icon';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 
 export enum SearchDirection {
@@ -16,42 +15,43 @@ export enum SearchDirection {
 export interface SearchItem {
   id: string;
   name: string;
-  category: string;
-  price: number;
+  category?: string;
+  price?: number;
+  image?: string;
 }
 
 interface SearchDropdownProps {
   items: SearchItem[];
   onSelect?: (item: SearchItem) => void;
   placeholder?: string;
-  className?: string;
   direction?: SearchDirection;
+  className?: string;
+  disabled?: boolean;
 }
 
 export const SearchDropdown = memo<SearchDropdownProps>(({
   items,
   onSelect,
-  placeholder = "Поиск товаров...",
+  placeholder = 'Поиск товаров...',
+  direction = SearchDirection.DOWN,
   className = '',
-  direction = SearchDirection.DOWN
-}: SearchDropdownProps) => {
-  const [query, setQuery] = useState<string>('');
+  disabled = false,
+}) => {
+  const [query, setQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<SearchItem | null>(null);
 
-
   const filteredItems = useMemo(() => {
-    if (!query) return items.slice(0, 5);
+    if (!query) return items;
     
-    return items.filter((item) =>
-      item.name?.toLowerCase().includes(query.toLowerCase()) ||
-      item.category.toLowerCase().includes(query.toLowerCase())
-    ).slice(0, 10);
+    return items.filter(item => 
+      item.name.toLowerCase().includes(query.toLowerCase()) ||
+      (item.category && item.category.toLowerCase().includes(query.toLowerCase()))
+    );
   }, [items, query]);
 
-  const handleSelect = useCallback((item: SearchItem | null) => {
-    if (!item) return;
+  const handleSelect = useCallback((item: SearchItem) => {
     setSelectedItem(item);
-    setQuery(item.name || '');
+    setQuery(item.name);
     onSelect?.(item);
   }, [onSelect]);
 
@@ -74,10 +74,10 @@ export const SearchDropdown = memo<SearchDropdownProps>(({
   
 
   return (
-    <div className={classNames(styles.searchContainer, {}, [className])}>
+    <div className={classNames(styles['search-container'], {}, [className])}>
       <Combobox value={selectedItem} onChange={handleSelect} as="div">
-        <div className={styles.comboboxContainer}>
-          <div className={styles.inputWrapper}>
+        <div className={styles['combobox-container']}>
+          <div className={styles['input-wrapper']}>
             <Combobox.Input
               className={styles.input}
               displayValue={(item: SearchItem) => item?.name || ''}
@@ -97,11 +97,11 @@ export const SearchDropdown = memo<SearchDropdownProps>(({
             as="div"
           >
             {filteredItems.length === 0 && query !== '' ? (
-              <div className={styles.noResults}>
-                <div className={styles.noResultsText}>
+              <div className={styles['no-results']}>
+                <div className={styles['no-results-text']}>
                   Товар "{query}" не найден
                 </div>
-                <div className={styles.noResultsSubtext}>
+                <div className={styles['no-results-subtext']}>
                   Попробуйте изменить запрос
                 </div>
               </div>
@@ -110,25 +110,29 @@ export const SearchDropdown = memo<SearchDropdownProps>(({
                 <Combobox.Option
                   key={item.id}
                   value={item}
-                  className={({ active }) =>
-                    classNames(styles.option, { [styles.active]: active })
+                  className={({ active }) => 
+                    classNames(styles.option, { [styles.active]: active }, [])
                   }
                 >
                   {({ selected }) => (
-                    <div className={styles.optionContent}>
-                      <div className={styles.optionMain}>
-                        <div className={styles.optionName}>
-                          {item.name || 'Без названия'}
+                    <div className={styles['option-content']}>
+                      <div className={styles['option-main']}>
+                        <div className={styles['option-name']}>
+                          {item.name}
                         </div>
-                        <div className={styles.optionCategory}>
-                          {item.category}
+                        {item.category && (
+                          <div className={styles['option-category']}>
+                            {item.category}
+                          </div>
+                        )}
+                      </div>
+                      {item.price && (
+                        <div className={styles['option-price']}>
+                          {item.price} ₸
                         </div>
-                      </div>
-                      <div className={styles.optionPrice}>
-                        {item.price} ₸
-                      </div>
+                      )}
                       {selected && (
-                        <div className={styles.checkIcon}>
+                        <div className={styles['check-icon']}>
                           ✓
                         </div>
                       )}
@@ -136,8 +140,8 @@ export const SearchDropdown = memo<SearchDropdownProps>(({
                   )}
                 </Combobox.Option>
               ))
-                          )}
-            </Combobox.Options>
+            )}
+          </Combobox.Options>
         </div>
       </Combobox>
     </div>

@@ -49,14 +49,14 @@ export const ProductCard = memo<ProductCardProps>(({
   const translatedProducts = useTranslatedProducts();
 
   const ImageLoader = useMemo(() => (
-    <div className={styles.imageLoader}>
+    <div className={styles['image-loader']}>
       <div className={styles.spinner} />
     </div>
   ), []);
 
   const ImageError = useMemo(() => (
     <ImageErrorFallback 
-      className={styles.imageError}
+      className={styles['image-error']}
       text=""
       imageSrc="/images/no-image.jpg"
     />
@@ -76,7 +76,7 @@ export const ProductCard = memo<ProductCardProps>(({
 
   return (
     <article className={cardClasses}>
-      <div className={styles.imageContainer}>
+      <div className={styles['image-container']}>
         <AppImage
           src={product.image}
           alt={translatedProduct.name}
@@ -104,7 +104,7 @@ export const ProductCard = memo<ProductCardProps>(({
         <div className={styles.footer}>
           <span className={styles.price}>{formattedPrice}</span>
           <button 
-            className={styles.addButton}
+            className={styles['add-button']}
             onClick={handleAddToCart}
             aria-label={t('common.addToCart')}
           >

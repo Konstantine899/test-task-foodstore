@@ -1,25 +1,25 @@
-// src/shared/ui/Badge/Badge.module.scss
+/* src/shared/ui/Badge/Badge.module.scss */
 .badge {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    line-height: 1;
-  }
-  
-  .NEW {
-    background: #10b981;
-    color: white;
-  }
-  
-  .TOP {
-    background: #f59e0b;
-    color: white;
-  }
-  
-  .HIT {
-    background: #ef4444;
-    color: white;
-  }
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.new {
+  background: #10b981;
+  color: white;
+}
+
+.top {
+  background: #f59e0b;
+  color: white;
+}
+
+.hit {
+  background: #ef4444;
+  color: white;
+}

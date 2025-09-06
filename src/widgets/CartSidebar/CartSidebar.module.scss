@@ -1,339 +1,339 @@
-// src/widgets/CartSidebar/ui/CartSidebar.module.scss
+/* src/widgets/CartSidebar/ui/CartSidebar.module.scss */
   
-  .sidebar {
-    position: fixed;
-    top: 85px; // Начинается после header
-    right: -375px; // Спрятан за правым краем
-    width: 375px;
-    height: calc(100vh - 85px); // Высота экрана минус header
-    background: #ffffff;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
-    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-left: 1px solid #e5e7eb;
-  }
+.sidebar {
+  position: fixed;
+  top: 85px;
+  width: 400px;
+  height: calc(100vh - 85px); /* Высота экрана минус header */
+  background: #fff;
+  box-shadow: -4px 0 20px rgb(0 0 0 / 15%);
+  z-index: 9999;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-left: 1px solid #e5e7eb;
+}
+
+.sidebar.open {
+  right: 0; /* Прижат к правому краю экрана */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f0f0f;
+  line-height: 1.2;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   
-  .sidebar.open {
-    right: 0; // Прижат к правому краю экрана
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 20px;
-    border-bottom: 1px solid #e5e7eb;
-    background: #ffffff;
-    flex-shrink: 0;
-  }
-  
-  .title {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
+  &:hover {
     color: #0f0f0f;
-    line-height: 1.2;
+    background: #f3f4f6;
   }
   
-  .closeButton {
-    background: none;
-    border: none;
-    font-size: 28px;
-    cursor: pointer;
-    color: #6b7280;
-    padding: 4px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    
-    &:hover {
-      color: #0f0f0f;
-      background: #f3f4f6;
-    }
-    
-    &:active {
-      background: #e5e7eb;
-    }
-    
-    span {
-      line-height: 1;
-    }
+  &:active {
+    background: #e5e7eb;
   }
   
-  .content {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  span {
+    line-height: 1;
+  }
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.delivery-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &.active {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
   }
   
-  .deliveryTabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 8px;
+  &:hover:not(.active) {
+    background: #f9fafb;
   }
+}
+
+.address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.location-icon {
+  font-size: 16px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.item-info {
+  flex: 1;
   
-  .tab {
-    flex: 1;
-    padding: 8px 16px;
-    border: 1px solid #e5e7eb;
-    background: #ffffff;
-    color: #6b7280;
+  h4 {
+    margin: 0 0 4px;
     font-size: 14px;
     font-weight: 500;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    
-    &.active {
-      background: #3b82f6;
-      color: #ffffff;
-      border-color: #3b82f6;
-    }
-    
-    &:hover:not(.active) {
-      background: #f9fafb;
-    }
+    color: #0f0f0f;
   }
+}
+
+.item-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f0f0f;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quantity-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #6b7280;
   
-  .address {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px;
+  &:hover {
     background: #f9fafb;
-    border-radius: 8px;
+  }
+}
+
+.quantity {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f0f0f;
+  min-width: 20px;
+  text-align: center;
+}
+
+.promo-code {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+  label {
     font-size: 14px;
+    font-weight: 500;
     color: #374151;
   }
   
-  .locationIcon {
-    font-size: 16px;
-  }
-  
-  .items {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    background: #ffffff;
+  input {
+    padding: 8px 12px;
     border: 1px solid #e5e7eb;
-    border-radius: 8px;
-  }
-  
-  .itemInfo {
-    flex: 1;
+    border-radius: 6px;
+    font-size: 14px;
     
-    h4 {
-      margin: 0 0 4px 0;
-      font-size: 14px;
-      font-weight: 500;
-      color: #0f0f0f;
+    &::placeholder {
+      color: #9ca3af;
+    }
+    
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgb(59 130 246 / 10%);
     }
   }
+}
+
+.footer {
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.order-details {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #374151;
   
-  .itemPrice {
-    font-size: 16px;
-    font-weight: 600;
-    color: #0f0f0f;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f9fafb;
+}
+
+.total-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.total-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f0f0f;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (width <= 480px) {
+  .sidebar {
+    width: 100vw;
+    right: -100vw;
   }
   
-  .quantityControls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .sidebar.open {
+    right: 0;
   }
   
-  .quantityBtn {
-    width: 24px;
-    height: 24px;
-    border: 1px solid #e5e7eb;
-    background: #ffffff;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    color: #6b7280;
+  .header {
+    padding: 20px 16px;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .total {
+    padding: 16px;
+  }
+}
+
+/* Дополнительные стили для темной темы (если потребуется) */
+@media (prefers-color-scheme: dark) {
+  .sidebar {
+    background: #1f2937;
+    border-left: 1px solid #374151;
+  }
+  
+  .header {
+    background: #1f2937;
+    border-bottom-color: #374151;
+  }
+  
+  .title {
+    color: #f9fafb;
+  }
+  
+  .close-button {
+    color: #9ca3af;
     
     &:hover {
-      background: #f9fafb;
-    }
-  }
-  
-  .quantity {
-    font-size: 14px;
-    font-weight: 500;
-    color: #0f0f0f;
-    min-width: 20px;
-    text-align: center;
-  }
-  
-  .promoCode {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    
-    label {
-      font-size: 14px;
-      font-weight: 500;
-      color: #374151;
-    }
-    
-    input {
-      padding: 8px 12px;
-      border: 1px solid #e5e7eb;
-      border-radius: 6px;
-      font-size: 14px;
-      
-      &::placeholder {
-        color: #9ca3af;
-      }
-      
-      &:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-      }
+      color: #f9fafb;
+      background: #374151;
     }
   }
   
   .footer {
-    border-top: 1px solid #e5e7eb;
-    background: #ffffff;
-    flex-shrink: 0;
-  }
-  
-  .orderDetails {
-    padding: 16px 20px;
-    border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .detailRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #374151;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
+    background: #1f2937;
+    border-top-color: #374151;
   }
   
   .total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: #f9fafb;
+    background: #111827;
   }
   
-  .totalLabel {
-    font-size: 16px;
-    font-weight: 500;
-    color: #374151;
+  .total-label {
+    color: #d1d5db;
   }
   
-  .totalPrice {
-    font-size: 20px;
-    font-weight: 700;
-    color: #0f0f0f;
+  .total-price {
+    color: #f9fafb;
   }
   
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .empty-state p {
+    color: #9ca3af;
   }
-  
-  // Адаптивность для мобильных устройств
-  @media (max-width: 480px) {
-    .sidebar {
-      width: 100vw;
-      right: -100vw;
-    }
-    
-    .sidebar.open {
-      right: 0;
-    }
-    
-    .header {
-      padding: 20px 16px;
-    }
-    
-    .content {
-      padding: 16px;
-    }
-    
-    .total {
-      padding: 16px;
-    }
-  }
-  
-  // Дополнительные стили для темной темы (если потребуется)
-  @media (prefers-color-scheme: dark) {
-    .sidebar {
-      background: #1f2937;
-      border-left: 1px solid #374151;
-    }
-    
-    .header {
-      background: #1f2937;
-      border-bottom-color: #374151;
-    }
-    
-    .title {
-      color: #f9fafb;
-    }
-    
-    .closeButton {
-      color: #9ca3af;
-      
-      &:hover {
-        color: #f9fafb;
-        background: #374151;
-      }
-    }
-    
-    .footer {
-      background: #1f2937;
-      border-top-color: #374151;
-    }
-    
-    .total {
-      background: #111827;
-    }
-    
-    .totalLabel {
-      color: #d1d5db;
-    }
-    
-    .totalPrice {
-      color: #f9fafb;
-    }
-    
-    .emptyState p {
-      color: #9ca3af;
-    }
-  }
+}

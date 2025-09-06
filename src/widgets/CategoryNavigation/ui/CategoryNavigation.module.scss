@@ -13,16 +13,16 @@
     transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     max-width: 100%;
     
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       gap: 16px;
       grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
     }
   }
   
-  .list.cartOpen {
+  .list.cart-open {
     max-width: calc(100% - 375px);
     
-    @media (max-width: 480px) {
+    @media (width <= 480px) {
       max-width: 0;
     }
   }
@@ -50,6 +50,6 @@
     
     &.active {
       background: #0f0f0f;
-      color: #ffffff;
+      color: #fff;
     }
   }
