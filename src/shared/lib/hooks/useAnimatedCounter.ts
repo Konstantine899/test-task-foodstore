@@ -14,14 +14,14 @@ interface UseAnimatedCounterOptions {
 
 /**
  * Хук для создания анимированного счетчика
- * 
+ *
  * Плавно анимирует значение от 0 до targetValue с настраиваемой длительностью и easing функцией.
  * Предотвращает повторный запуск анимации до завершения текущей.
- * 
+ *
  * @param targetValue - Целевое значение для анимации
  * @param options - Опции анимации
  * @returns Объект с текущим значением, состоянием анимации и функцией запуска
- * 
+ *
  * @example
  * ```tsx
  * const { currentValue, isAnimating } = useAnimatedCounter(100, {
@@ -33,7 +33,7 @@ interface UseAnimatedCounterOptions {
  */
 export function useAnimatedCounter(
   targetValue: number,
-  options: UseAnimatedCounterOptions = {}
+  options: UseAnimatedCounterOptions = {},
 ) {
   const { duration = 1000, easing = (t) => t, onComplete } = options;
   const [currentValue, setCurrentValue] = useState(0);
@@ -59,8 +59,10 @@ export function useAnimatedCounter(
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easedProgress = easing(progress);
-      
-      const newValue = Math.round(startValue + (targetValue - startValue) * easedProgress);
+
+      const newValue = Math.round(
+        startValue + (targetValue - startValue) * easedProgress,
+      );
       setCurrentValue(newValue);
 
       if (progress < 1) {

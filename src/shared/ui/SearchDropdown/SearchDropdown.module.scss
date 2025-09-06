@@ -23,13 +23,13 @@
   font-size: 14px;
   background: #fff;
   transition: all 0.2s ease;
-  
+
   &:focus {
     outline: none;
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgb(59 130 246 / 10%);
   }
-  
+
   &::placeholder {
     color: #9ca3af;
   }
@@ -58,21 +58,21 @@
   margin-top: 4px;
   max-height: 300px;
   overflow-y: auto;
-  
+
   /* Скрытие скроллбара для WebKit браузеров */
   &::-webkit-scrollbar {
     width: 6px;
   }
-  
+
   &::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 3px;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background: #c1c1c1;
     border-radius: 3px;
-    
+
     &:hover {
       background: #a8a8a8;
     }
@@ -87,11 +87,11 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
   border-bottom: 1px solid #f3f4f6;
-  
+
   &:hover {
     background: #f9fafb;
   }
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -162,7 +162,7 @@
   cursor: pointer;
   padding: 8px;
   color: #6b7280;
-  
+
   &:hover {
     color: #374151;
   }
@@ -188,11 +188,11 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
   border-bottom: 1px solid #f3f4f6;
-  
+
   &:hover {
     background: #f9fafb;
   }
-  
+
   &:last-child {
     border-bottom: none;
   }

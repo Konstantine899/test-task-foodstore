@@ -26,14 +26,14 @@ interface ActionButtonProps {
 
 /**
  * Универсальная кнопка действия с поддержкой иконок, текста и бейджей
- * 
+ *
  * Используется в хедере для различных действий (меню, поиск, корзина).
  * Поддерживает состояния загрузки, анимации и отключения.
- * 
+ *
  * @component
  * @param props - Пропсы компонента
  * @returns JSX элемент кнопки
- * 
+ *
  * @example
  * ```tsx
  * <ActionButton
@@ -46,49 +46,55 @@ interface ActionButtonProps {
  * />
  * ```
  */
-export const ActionButton = memo<ActionButtonProps>(({
-  icon,
-  text,
-  badge,
-  onClick,
-  ariaLabel,
-  className = '',
-  isAnimating = false,
-  disabled = false,
-}) => {
-  const handleClick = useCallback(() => {
-    if (!disabled) {
-      onClick?.();
-    }
-  }, [onClick, disabled]);
+export const ActionButton = memo<ActionButtonProps>(
+  ({
+    icon,
+    text,
+    badge,
+    onClick,
+    ariaLabel,
+    className = '',
+    isAnimating = false,
+    disabled = false,
+  }) => {
+    const handleClick = useCallback(() => {
+      if (!disabled) {
+        onClick?.();
+      }
+    }, [onClick, disabled]);
 
-  const buttonClasses = useMemo(() => {
-    const mods = { 
-      [styles['cart-open']]: className === 'cartOpen',
-      [styles.disabled]: disabled
-    };
-    const extra = className && className !== 'cartOpen' ? [className] : [];
-    return classNames(styles['action-button'], mods, extra);
-  }, [className, disabled]);
+    const buttonClasses = useMemo(() => {
+      const mods = {
+        [styles['cart-open']]: className === 'cartOpen',
+        [styles.disabled]: disabled,
+      };
+      const extra = className && className !== 'cartOpen' ? [className] : [];
+      return classNames(styles['action-button'], mods, extra);
+    }, [className, disabled]);
 
-  return (
-    <button
-      className={buttonClasses}
-      onClick={handleClick}
-      aria-label={ariaLabel}
-      disabled={disabled}
-    >
-      {icon}
-      {text && (
-        <span className={classNames(styles['button-text'], { [styles.animating]: isAnimating })}>
-          {text}
-        </span>
-      )}
-      {badge !== undefined && badge > 0 && (
-        <span className={styles.badge}>{badge}</span>
-      )}
-    </button>
-  );
-});
+    return (
+      <button
+        className={buttonClasses}
+        onClick={handleClick}
+        aria-label={ariaLabel}
+        disabled={disabled}
+      >
+        {icon}
+        {text && (
+          <span
+            className={classNames(styles['button-text'], {
+              [styles.animating]: isAnimating,
+            })}
+          >
+            {text}
+          </span>
+        )}
+        {badge !== undefined && badge > 0 && (
+          <span className={styles.badge}>{badge}</span>
+        )}
+      </button>
+    );
+  },
+);
 
 ActionButton.displayName = 'ActionButton';

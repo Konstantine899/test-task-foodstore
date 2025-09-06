@@ -7,21 +7,23 @@ interface ImageErrorFallbackProps {
   imageSrc?: string;
 }
 
-export const ImageErrorFallback = memo<ImageErrorFallbackProps>(({ 
-  className = '', 
-  text = 'Нет фото',
-  imageSrc = '/images/no-image.jpg'
-}) => {
-  return (
-    <div className={`${styles['error-fallback']} ${className}`}>
-      <img 
-        src={imageSrc} 
-        alt="Изображение недоступно"
-        className={styles['error-image']}
-      />
-      <span className={styles['error-text']}>{text}</span>
-    </div>
-  );
-});
+export const ImageErrorFallback = memo<ImageErrorFallbackProps>(
+  ({
+    className = '',
+    text = 'Нет фото',
+    imageSrc = '/images/no-image.jpg',
+  }) => {
+    return (
+      <div className={`${styles['error-fallback']} ${className}`}>
+        <img
+          src={imageSrc}
+          alt="Изображение недоступно"
+          className={styles['error-image']}
+        />
+        <span className={styles['error-text']}>{text}</span>
+      </div>
+    );
+  },
+);
 
 ImageErrorFallback.displayName = 'ImageErrorFallback';

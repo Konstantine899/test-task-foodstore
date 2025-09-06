@@ -1,12 +1,12 @@
 export interface CartItem {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-  }
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+}
 
 export interface CartSchema {
-    total: number;
+  total: number;
   items: CartItem[];
   isOpen: boolean;
 }

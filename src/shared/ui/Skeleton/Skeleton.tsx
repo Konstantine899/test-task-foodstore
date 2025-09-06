@@ -1,7 +1,7 @@
 //
 import { CSSProperties, memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import * as cls  from './Skeleton.module.scss';
+import * as cls from './Skeleton.module.scss';
 
 /**
  * Пропсы для компонента Skeleton
@@ -19,14 +19,14 @@ interface SkeletonProps {
 
 /**
  * Компонент скелетона для отображения состояния загрузки
- * 
+ *
  * Используется как placeholder во время загрузки контента.
  * Поддерживает настройку размеров и формы через пропсы.
- * 
+ *
  * @component
  * @param props - Пропсы компонента
  * @returns JSX элемент скелетона
- * 
+ *
  * @example
  * ```tsx
  * <Skeleton
@@ -38,17 +38,15 @@ interface SkeletonProps {
  * ```
  */
 export const Skeleton = memo((props: SkeletonProps) => {
-  const {
-    className, height, width, border
-  } = props;
+  const { className, height, width, border } = props;
 
-  const styles: CSSProperties = {
+  const style: CSSProperties = {
     height,
     width,
     borderRadius: border,
   };
 
   return (
-    <div className={classNames(cls.skeleton, {}, [className])} />
+    <div className={classNames(cls.skeleton, {}, [className])} style={style} />
   );
 });

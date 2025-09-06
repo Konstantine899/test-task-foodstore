@@ -9,76 +9,92 @@ interface LanguageToggleProps {
   disabled?: boolean;
 }
 
-export const LanguageToggle = memo<LanguageToggleProps>(({ className, disabled = false }) => {
-  const { changeLanguage, currentLanguage, ready } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+export const LanguageToggle = memo<LanguageToggleProps>(
+  ({ className, disabled = false }) => {
+    const { changeLanguage, currentLanguage, ready } = useTranslation();
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
-  if (!ready) {
-    return <div>Loading...</div>;
-  }
+    // Закрытие выпадающего списка при клике вне его
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target as Node)
+        ) {
+          setIsOpen(false);
+        }
+      };
 
-  // Закрытие выпадающего списка при клике вне его
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+      if (isOpen) {
+        document.addEventListener('mousedown', handleClickOutside);
       }
-    };
 
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [isOpen]);
+
+    const handleLanguageChange = useCallback(
+      (lng: string) => {
+        if (!disabled) {
+          changeLanguage(lng);
+          setIsOpen(false);
+        }
+      },
+      [changeLanguage, disabled],
+    );
+
+    if (!ready) {
+      return <div>Loading...</div>;
     }
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen]);
+    const languages = [
+      { code: 'ru', label: 'RU', flag: '🇷🇺' },
+      { code: 'en', label: 'EN', flag: '🇺🇸' },
+      { code: 'kz', label: 'KZ', flag: '🇰🇿' },
+    ];
 
-  const handleLanguageChange = useCallback((lng: string) => {
-    if (!disabled) {
-      changeLanguage(lng);
-      setIsOpen(false);
-    }
-  }, [changeLanguage, disabled]);
+    const currentLang =
+      languages.find((lang) => lang.code === currentLanguage) || languages[0];
 
-  const languages = [
-    { code: 'ru', label: 'RU', flag: '🇷🇺' },
-    { code: 'en', label: 'EN', flag: '🇺🇸' },
-    { code: 'kz', label: 'KZ', flag: '🇰🇿' }
-  ];
-
-  const currentLang = languages.find(lang => lang.code === currentLanguage) || languages[0];
-
-  return (
-    <div ref={dropdownRef} className={classNames(styles['language-toggle'], {}, [className])}>
-      <button
-        className={classNames(styles['current-button'], { [styles.disabled]: disabled })}
-        onClick={() => !disabled && setIsOpen(!isOpen)}
-        disabled={disabled}
+    return (
+      <div
+        ref={dropdownRef}
+        className={classNames(styles['language-toggle'], {}, [className])}
       >
-        <span className={styles.label}>{currentLang.label}</span>
-        <span className={classNames(styles.arrow, { [styles.open]: isOpen })}>▼</span>
-      </button>
-      
-      {isOpen && !disabled && (
-        <div className={styles.dropdown}>
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              className={classNames(styles.option, { 
-                [styles.active]: currentLanguage === lang.code 
-              })}
-              onClick={() => handleLanguageChange(lang.code)}
-            >
-              <span className={styles.flag}>{lang.flag}</span>
-              <span className={styles.label}>{lang.label}</span>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-});
+        <button
+          className={classNames(styles['current-button'], {
+            [styles.disabled]: disabled,
+          })}
+          onClick={() => !disabled && setIsOpen(!isOpen)}
+          disabled={disabled}
+        >
+          <span className={styles.label}>{currentLang.label}</span>
+          <span className={classNames(styles.arrow, { [styles.open]: isOpen })}>
+            ▼
+          </span>
+        </button>
+
+        {isOpen && !disabled && (
+          <div className={styles.dropdown}>
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                className={classNames(styles.option, {
+                  [styles.active]: currentLanguage === lang.code,
+                })}
+                onClick={() => handleLanguageChange(lang.code)}
+              >
+                <span className={styles.flag}>{lang.flag}</span>
+                <span className={styles.label}>{lang.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  },
+);
 
 LanguageToggle.displayName = 'LanguageToggle';

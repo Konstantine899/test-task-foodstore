@@ -7,17 +7,16 @@ interface TitleSkeletonProps {
   width?: string | number;
 }
 
-export const TitleSkeleton = memo<TitleSkeletonProps>(({
-  className = '',
-  width = '60%',
-}) => {
-  return (
-    <Skeleton
-      height={32}
-      width={width}
-      className={`${styles['title-skeleton']} ${className}`}
-    />
-  );
-});
+export const TitleSkeleton = memo<TitleSkeletonProps>(
+  ({ className = '', width = '60%' }) => {
+    return (
+      <Skeleton
+        height={32}
+        width={width}
+        className={`${styles['title-skeleton']} ${className}`}
+      />
+    );
+  },
+);
 
 TitleSkeleton.displayName = 'TitleSkeleton';

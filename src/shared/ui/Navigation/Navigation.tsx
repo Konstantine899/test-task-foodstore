@@ -12,7 +12,10 @@ interface NavigationProps {
   className?: string;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ items, className = '' }) => {
+export const Navigation: React.FC<NavigationProps> = ({
+  items,
+  className = '',
+}) => {
   return (
     <nav className={classNames(styles.navigation, {}, [className])}>
       <ul className={styles['nav-list']}>
