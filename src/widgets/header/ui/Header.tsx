@@ -7,7 +7,7 @@ import SearchIcon from '@/shared/assets/icons/search.svg';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { cartActions } from '@/entities/cart';
 import { classNames, useTranslation } from '@/shared/lib';
-import { productActions } from '@/entities/product';
+import { productActions } from '@/entities/product/model/slices/productSlice';
 
 
 

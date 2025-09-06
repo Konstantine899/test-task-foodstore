@@ -1,9 +1,38 @@
 /* src/widgets/CartSidebar/ui/CartSidebar.module.scss */
+
+/* Стили для адаптации основного контента при открытии корзины */
+:global(.cart-open) {
+  /* Контент адаптируется к доступному пространству без сдвига */
+}
+
+/* Основной контейнер приложения */
+:global(.app) {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* При открытой корзине основной контент занимает оставшееся место */
+:global(.cart-open .app) {
+  width: calc(100% - 375px);
+  max-width: calc(100vw - 375px);
+}
+
+/* На мобильных устройствах не сдвигаем контент */
+@media (width <= 768px) {
+  :global(.cart-open) {
+    margin-right: 0;
+  }
+  
+  :global(.cart-open .app) {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
   
 .sidebar {
   position: fixed;
   top: 85px;
-  width: 400px;
+  right: -375px; /* Скрыта за правым краем экрана */
+  width: 375px; /* Фиксированная ширина 375px */
   height: calc(100vh - 85px); /* Высота экрана минус header */
   background: #fff;
   box-shadow: -4px 0 20px rgb(0 0 0 / 15%);
@@ -16,7 +45,7 @@
 }
 
 .sidebar.open {
-  right: 0; /* Прижат к правому краю экрана */
+  right: 0; /* При открытии прижата к правому краю экрана */
 }
 
 .header {
@@ -268,7 +297,7 @@
 }
 
 /* Адаптивность для мобильных устройств */
-@media (width <= 480px) {
+@media (width <= 768px) {
   .sidebar {
     width: 100vw;
     right: -100vw;

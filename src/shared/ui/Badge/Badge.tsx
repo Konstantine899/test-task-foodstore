@@ -3,6 +3,7 @@ import React, { memo } from 'react';
 import * as styles from './Badge.module.scss';
 import { useMemo } from 'react';
 import { useTranslation } from '@/shared/lib/hooks/useTranslation';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 
 interface BadgeProps {
@@ -16,10 +17,12 @@ export const Badge = memo<BadgeProps>(({ type, label, className = '', translateL
   
   const { t } = useTranslation();
 
-  const badgeClasses = useMemo(() => 
-    `${styles.badge} ${styles[type]} ${className}`, 
-    [type, className]
-  );
+  const badgeClasses = useMemo(() => {
+    const typeKey = type.toLowerCase();
+    const typeClass = styles[typeKey as keyof typeof styles];
+    console.log('Badge debug:', { type, typeKey, typeClass, styles });
+    return classNames(styles.badge, { [typeClass]: !!typeClass }, [className]);
+  }, [type, className]);
 
   const displayLabel = useMemo(() => {
     if (translateLabel) {

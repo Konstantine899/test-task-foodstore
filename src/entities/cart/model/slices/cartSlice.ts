@@ -5,7 +5,7 @@ import { CartItem } from '../types/cartSchema';
 const initialState: CartSchema = {
     total: 0,
     items: [],
-    isOpen:false
+    isOpen: false
 };
 
 export const cartSlice = createSlice({

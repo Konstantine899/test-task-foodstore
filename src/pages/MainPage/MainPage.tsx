@@ -7,7 +7,7 @@ import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
 import { ProductSection } from "@/widgets/ProductSection";
 import { cartActions } from "@/entities/cart";
 import { productActions } from "@/entities/product/model/slices/productSlice";
-import { useAnimatedCounter } from "@/shared/lib";
+import { useAnimatedCounter, classNames } from "@/shared/lib";
 
 /**
  * Главная страница приложения
@@ -56,7 +56,7 @@ const MainPage = memo(() => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className={classNames('', { 'cart-open': isCartOpen })}>
       <Header />
       <main className={styles.main}>
         <ProductSection isCartOpen={isCartOpen} />
@@ -64,7 +64,7 @@ const MainPage = memo(() => {
       <Suspense fallback={<div>Загрузка корзины...</div>}>
         <CartSidebarAsync />
       </Suspense>
-    </>
+    </div>
   );
 });
 
