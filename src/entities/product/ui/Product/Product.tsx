@@ -3,15 +3,11 @@ import * as cls from './Product.module.scss';
 import { memo } from 'react';
 
 interface ProductProps {
-    className?: string;
+  className?: string;
 }
 
 export const Product = memo((props: ProductProps) => {
-    const { className } = props;
-    
-    return (
-        <div className={classNames(cls.product, {}, [className])}>
-           
-        </div>
-    );
+  const { className } = props;
+
+  return <div className={classNames(cls.product, {}, [className])}></div>;
 });

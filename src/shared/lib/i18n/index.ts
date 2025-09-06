@@ -10,7 +10,7 @@ import kz from './resources/kz.json';
 const resources = {
   en: { translation: en },
   ru: { translation: ru },
-  kz: { translation: kz }
+  kz: { translation: kz },
 };
 
 i18n
@@ -21,12 +21,12 @@ i18n
     fallbackLng: 'ru',
     debug: true,
     interpolation: {
-      escapeValue: false
+      escapeValue: false,
     },
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
-      caches: ['localStorage']
-    }
+      caches: ['localStorage'],
+    },
   });
 
 export default i18n;

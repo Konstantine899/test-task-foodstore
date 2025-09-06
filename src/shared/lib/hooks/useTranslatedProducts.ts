@@ -5,7 +5,7 @@ import { createProducts } from '@/entities/product/data/products';
 
 export const useTranslatedProducts = () => {
   const { t } = useTranslation();
-  const { products } = useAppSelector((state) => state.product);
+  const { products: _products } = useAppSelector((state) => state.product);
 
   const translatedProducts = useMemo(() => {
     return createProducts(t);

@@ -48,7 +48,7 @@ const descriptions = [
   'Лосось, огурец, авокадо, унаги соус',
   'Креветка, огурец, авокадо, кунжут',
   'Угорь, огурец, авокадо, икра тобико',
-  'Лосось, огурец, авокадо, спайси соус'
+  'Лосось, огурец, авокадо, спайси соус',
 ];
 
 const productNames = [
@@ -153,17 +153,27 @@ const productNames = [
   'Дракон с унаги',
   'Аляска с унаги',
   'Темпура с унаги',
-  'Криспи с унаги'
+  'Криспи с унаги',
 ];
 
-const prices = [150, 170, 180, 190, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 980, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500];
+const prices = [
+  150, 170, 180, 190, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700,
+  750, 800, 850, 900, 950, 980, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350,
+  1400, 1450, 1500,
+];
 
-const categories = ['baked-rolls', 'philadelphia', 'cold-rolls', 'fried-rolls', 'sushi-gunkans'];
+const categories = [
+  'baked-rolls',
+  'philadelphia',
+  'cold-rolls',
+  'fried-rolls',
+  'sushi-gunkans',
+];
 
 const badges = [
   { type: 'NEW' as const },
   { type: 'HIT' as const },
-  { type: 'TOP' as const }
+  { type: 'TOP' as const },
 ];
 
 const getRandomElement = <T>(array: T[]): T => {
@@ -179,16 +189,19 @@ const getRandomBadges = () => {
 const getCategoryLabel = (category: string, t: (key: string) => string) => {
   const categoryMap: Record<string, string> = {
     'baked-rolls': t('navigation.bakedRolls'),
-    'philadelphia': t('navigation.philadelphia'),
+    philadelphia: t('navigation.philadelphia'),
     'cold-rolls': t('navigation.coldRolls'),
     'fried-rolls': t('navigation.friedRolls'),
-    'sushi-gunkans': t('navigation.sushiGunkans')
+    'sushi-gunkans': t('navigation.sushiGunkans'),
   };
   return categoryMap[category] || category;
 };
 
-const getTranslatedBadges = (badges: ProductBadge[], t: (key: string) => string): ProductBadge[] => {
-  return badges.map(badge => ({
+const getTranslatedBadges = (
+  badges: ProductBadge[],
+  _t: (key: string) => string,
+): ProductBadge[] => {
+  return badges.map((badge) => ({
     ...badge,
   }));
 };
@@ -203,11 +216,12 @@ const availableImages = [
   'd58d9219b83798cfe8bd8b2080adec70.jpg',
   'ec8c0bb9d64bfbb592226d6ffdb09ed70c7deb3547e6718fa624835fc7e31d5e.jpg',
   'set4-300x200.jpg',
-  'sushi-study-demian-willette-450x266.jpg'
+  'sushi-study-demian-willette-450x266.jpg',
 ];
 
 const getRandomImage = () => {
-  const imageName = Math.random() < 0.7 ? getRandomElement(availableImages) : '';
+  const imageName =
+    Math.random() < 0.7 ? getRandomElement(availableImages) : '';
   return imageName ? `/images/${imageName}` : '';
 };
 
@@ -215,7 +229,7 @@ const generatedProducts = Array.from({ length: 100 }, (_, index) => {
   const groupIndex = Math.floor(index / 10);
   const name = productNames[groupIndex];
   const description = descriptions[groupIndex % descriptions.length];
-  
+
   return {
     id: `${index + 1}`,
     name: name,
@@ -223,29 +237,35 @@ const generatedProducts = Array.from({ length: 100 }, (_, index) => {
     price: getRandomElement(prices),
     image: getRandomImage(),
     badges: getRandomBadges(),
-    category: getRandomElement(categories)
+    category: getRandomElement(categories),
   };
 });
 
 const shuffledProducts = generatedProducts.sort(() => Math.random() - 0.5);
 
-const getTranslatedProductName = (product: Product, t: (key: string) => string) => {
+const getTranslatedProductName = (
+  product: Product,
+  t: (key: string) => string,
+) => {
   const groupIndex = (parseInt(product.id) - 1) % 10;
   return t(`productNames.${groupIndex}`) || product.name;
 };
 
-const getTranslatedProductDescription = (product: Product, t: (key: string) => string) => {
+const getTranslatedProductDescription = (
+  product: Product,
+  t: (key: string) => string,
+) => {
   const groupIndex = (parseInt(product.id) - 1) % 10;
   return t(`productDescriptions.${groupIndex}`) || product.description;
 };
 
 export const createProducts = (t: (key: string) => string): Product[] => {
-  return shuffledProducts.map(product => ({
+  return shuffledProducts.map((product) => ({
     ...product,
     name: getTranslatedProductName(product, t),
     description: getTranslatedProductDescription(product, t),
     category: getCategoryLabel(product.category, t),
-    badges: getTranslatedBadges(product.badges, t)
+    badges: getTranslatedBadges(product.badges, t),
   }));
 };
 

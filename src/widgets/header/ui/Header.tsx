@@ -1,6 +1,13 @@
 import React, { memo, useCallback, useMemo, useState, useEffect } from 'react';
 import * as styles from './Header.module.scss';
-import { ActionButton, Icon, SearchDropdown, SearchDirection, LanguageToggle } from '@/shared/ui';
+import {
+  ActionButton,
+  Icon,
+  SearchDropdown,
+  SearchDirection,
+  LanguageToggle,
+  SearchItem,
+} from '@/shared/ui';
 import CartIcon from '@/shared/assets/icons/cart.svg';
 import MenuIcon from '@/shared/assets/icons/menu.svg';
 import SearchIcon from '@/shared/assets/icons/search.svg';
@@ -9,12 +16,10 @@ import { cartActions } from '@/entities/cart';
 import { classNames, useTranslation } from '@/shared/lib';
 import { productActions } from '@/entities/product/model/slices/productSlice';
 
-
-
 export const Header = memo(() => {
   const dispatch = useAppDispatch();
-  const {isOpen,total} = useAppSelector((state) => state.cart);
-  const {products, isLoading} = useAppSelector((state) => state.product);
+  const { isOpen, total } = useAppSelector((state) => state.cart);
+  const { products, isLoading } = useAppSelector((state) => state.product);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPriceAnimating, setIsPriceAnimating] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -30,8 +35,6 @@ export const Header = memo(() => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
-
   const handleSearchClick = useCallback(() => {
     setShowSearch(!showSearch);
   }, [showSearch]);
@@ -40,22 +43,26 @@ export const Header = memo(() => {
     dispatch(cartActions.toggleCart());
   }, [dispatch]);
 
-  const searchItems = useMemo(() => 
-    products.map(product => ({
-      id: product.id,
-      name: product.name,
-      category: product.category,
-      price: product.price
-    })),
-    [products]
+  const searchItems = useMemo(
+    () =>
+      products.map((product) => ({
+        id: product.id,
+        name: product.name,
+        category: product.category,
+        price: product.price,
+      })),
+    [products],
   );
 
-  const handleSearchSelect = useCallback((item: any) => {
-    if (item) {
-      dispatch(productActions.searchByText({ query: item.name }));
-      setShowSearch(false);
-    }
-  }, [dispatch]);
+  const handleSearchSelect = useCallback(
+    (item: SearchItem) => {
+      if (item) {
+        dispatch(productActions.searchByText({ query: item.name }));
+        setShowSearch(false);
+      }
+    },
+    [dispatch],
+  );
 
   const formattedTotal = useMemo(() => `${total} ₸`, [total]);
 
@@ -72,27 +79,29 @@ export const Header = memo(() => {
   const cartIcon = useMemo(() => <Icon Svg={CartIcon} />, []);
 
   return (
-    <header className={classNames(styles.header, { [styles.scrolled]: isExpanded })}>
+    <header
+      className={classNames(styles.header, { [styles.scrolled]: isExpanded })}
+    >
       <div className={styles.container}>
         <div className={styles['left-actions']}>
-          <ActionButton 
-            icon={menuIcon} 
-            ariaLabel={t('common.menu')} 
+          <ActionButton
+            icon={menuIcon}
+            ariaLabel={t('common.menu')}
             disabled={isLoading}
           />
           <LanguageToggle disabled={isLoading} />
-          <ActionButton 
-            icon={searchIcon} 
-            onClick={handleSearchClick} 
+          <ActionButton
+            icon={searchIcon}
+            onClick={handleSearchClick}
             ariaLabel={t('common.search')}
             className={showSearch ? 'active' : ''}
             disabled={isLoading}
           />
         </div>
-        
+
         {showSearch && (
           <div className={styles['search-container']}>
-            <SearchDropdown 
+            <SearchDropdown
               items={searchItems}
               onSelect={handleSearchSelect}
               direction={SearchDirection.DOWN}
@@ -100,12 +109,12 @@ export const Header = memo(() => {
             />
           </div>
         )}
-        
+
         <div className={styles['right-actions']}>
-          <ActionButton 
-            icon={cartIcon} 
-            text={formattedTotal} 
-            onClick={handleCartClick} 
+          <ActionButton
+            icon={cartIcon}
+            text={formattedTotal}
+            onClick={handleCartClick}
             ariaLabel={t('common.cart')}
             className={isOpen ? 'cartOpen' : ''}
             isAnimating={isPriceAnimating}

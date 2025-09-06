@@ -17,12 +17,8 @@ export const ProductCardSkeleton = memo(() => {
       {/* Контент без анимации */}
       <div className={styles.content}>
         {/* Название товара */}
-        <Skeleton
-          height={2}
-          width="85%"
-          className={styles['title-skeleton']}
-        />
-        
+        <Skeleton height={2} width="85%" className={styles['title-skeleton']} />
+
         {/* Описание/ингредиенты */}
         <Skeleton
           height={2}

@@ -1,22 +1,22 @@
 // src/pages/MainPage/MainPage.tsx
-import React, { memo, useEffect, Suspense, useState } from "react";
-import * as styles from "./MainPage.module.scss";
-import { Header } from "@/widgets/header";
-import { CartSidebarAsync } from "@/widgets/CartSidebar";
-import { useAppSelector, useAppDispatch } from "@/app/store/hooks";
-import { ProductSection } from "@/widgets/ProductSection";
-import { cartActions } from "@/entities/cart";
-import { productActions } from "@/entities/product/model/slices/productSlice";
-import { useAnimatedCounter, classNames } from "@/shared/lib";
+import React, { memo, useEffect, Suspense, useState } from 'react';
+import * as styles from './MainPage.module.scss';
+import { Header } from '@/widgets/header';
+import { CartSidebarAsync } from '@/widgets/CartSidebar';
+import { useAppSelector, useAppDispatch } from '@/app/store/hooks';
+import { ProductSection } from '@/widgets/ProductSection';
+import { cartActions } from '@/entities/cart';
+import { productActions } from '@/entities/product/model/slices/productSlice';
+import { useAnimatedCounter, classNames } from '@/shared/lib';
 
 /**
  * Главная страница приложения
- * 
+ *
  * Содержит основную логику приложения:
  * - Управление состоянием загрузки продуктов
  * - Анимацию счетчика корзины
  * - Инициализацию данных корзины
- * 
+ *
  * @component
  * @returns {JSX.Element} Главная страница с хедером, секцией продуктов и корзиной
  */
@@ -26,10 +26,13 @@ const MainPage = memo(() => {
   const isLoading = useAppSelector((state) => state.product.isLoading);
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  const { currentValue: animatedTotal } = useAnimatedCounter(shouldAnimate ? 14500 : 0, {
-    duration: 2000,
-    easing: (t) => t * t * (3 - 2 * t),
-  });
+  const { currentValue: animatedTotal } = useAnimatedCounter(
+    shouldAnimate ? 14500 : 0,
+    {
+      duration: 2000,
+      easing: (t) => t * t * (3 - 2 * t),
+    },
+  );
 
   useEffect(() => {
     dispatch(cartActions.setTotal(0));

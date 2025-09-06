@@ -1,4 +1,3 @@
-import webpack from "webpack";
 import CopyPlugin from "copy-webpack-plugin";
 import { BuildOptions } from "../types/config";
 

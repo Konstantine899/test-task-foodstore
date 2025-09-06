@@ -20,10 +20,10 @@
   border-radius: 0;
   height: 100%;
   width: 100%;
-  
+
   /* Анимация только для картинки */
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     left: -150px;
@@ -70,7 +70,7 @@
   border-radius: 4px;
   background: #e5e7eb;
   width: 100%;
-  
+
   &:nth-child(3) {
     width: 60%;
   }
@@ -115,19 +115,19 @@
     width: 100%;
     max-width: 285.6px;
   }
-  
+
   .image-container {
     height: 180px;
   }
-  
+
   .content {
     padding: 12px;
   }
-  
+
   .footer {
     padding: 12px;
   }
-  
+
   .button-skeleton {
     height: 32px;
     width: 80px;

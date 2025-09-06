@@ -12,50 +12,55 @@ interface ProductGridProps {
 
 export const ProductGrid = memo<ProductGridProps>(({ isCartOpen }) => {
   const dispatch = useAppDispatch();
-  const { products, filteredProducts, searchQuery, isLoading } = useAppSelector((state) => state.product);
+  const { products, filteredProducts, searchQuery, isLoading } = useAppSelector(
+    (state) => state.product,
+  );
   const { activeCategory } = useAppSelector((state) => state.category);
 
   const productsToShow = useMemo(() => {
     if (searchQuery && filteredProducts.length > 0) {
       return filteredProducts;
     }
-    
+
     if (searchQuery && filteredProducts.length === 0) {
       return [];
     }
-    
+
     if (activeCategory === 'all') {
       return products;
     }
-    return products.filter(product => product.category === activeCategory);
+    return products.filter((product) => product.category === activeCategory);
   }, [products, filteredProducts, searchQuery, activeCategory]);
 
-  const handleAddToCart = useCallback((productId: string) => {
-    const product = products.find(p => p.id === productId);
-    if (product) {
-      dispatch(cartActions.addItem({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        quantity: 1
-      }));
-    }
-  }, [dispatch, products]);
+  const handleAddToCart = useCallback(
+    (productId: string) => {
+      const product = products.find((p) => p.id === productId);
+      if (product) {
+        dispatch(
+          cartActions.addItem({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+          }),
+        );
+      }
+    },
+    [dispatch, products],
+  );
 
-  const mods = { [styles['cart-open']]: isCartOpen }
+  const mods = { [styles['cart-open']]: isCartOpen };
 
-  const skeletonItems = useMemo(() => 
-    Array.from({ length: 8 }, (_, index) => (
-      <ProductCardSkeleton key={`skeleton-${index}`} />
-    )), []
+  const skeletonItems = useMemo(
+    () =>
+      Array.from({ length: 8 }, (_, index) => (
+        <ProductCardSkeleton key={`skeleton-${index}`} />
+      )),
+    [],
   );
 
   if (isLoading) {
-    return (
-      <div className={classNames(styles.grid, mods)}>
-        {skeletonItems}
-      </div>
-    );
+    return <div className={classNames(styles.grid, mods)}>{skeletonItems}</div>;
   }
 
   return (

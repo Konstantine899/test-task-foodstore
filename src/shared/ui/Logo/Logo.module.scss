@@ -1,12 +1,12 @@
 .logo {
-    flex-shrink: 0;
+  flex-shrink: 0;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
+
+  @media (width <= 768px) {
+    height: 32px;
   }
-  
-  .logo-image {
-    height: 40px;
-    width: auto;
-    
-    @media (width <= 768px) {
-      height: 32px;
-    }
-  }
+}

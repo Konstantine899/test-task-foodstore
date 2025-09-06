@@ -1,6 +1,6 @@
-import React from "react";
-import { classNames } from "@/shared/lib/classNames/classNames";
-import * as cls from "./PageLoader.module.scss";
+import React from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import * as cls from './PageLoader.module.scss';
 /**
  * Компонент PageLoader отображает анимированный индикатор загрузки страницы.
  *
@@ -10,7 +10,7 @@ import * as cls from "./PageLoader.module.scss";
 
 const PageLoader = () => {
   return (
-    <div className={classNames(cls["lds-roller"])}>
+    <div className={classNames(cls['lds-roller'])}>
       <div></div>
       <div></div>
       <div></div>
@@ -24,6 +24,6 @@ const PageLoader = () => {
 };
 
 // Устанавливаем displayName для отладки
-PageLoader.displayName = "PageLoader";
+PageLoader.displayName = 'PageLoader';
 
 export default PageLoader;

@@ -40,6 +40,12 @@ jobs:
         echo "Security audit:"
         npm audit --audit-level=moderate || true
         
+    - name: Lint TypeScript
+      run: npm run lint:ts
+      
+    - name: Lint SCSS
+      run: npm run lint:scss
+      
     - name: Build project
       run: npm run build:prod
       

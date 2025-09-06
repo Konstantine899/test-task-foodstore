@@ -13,7 +13,8 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
 
   const setValue = (value: T | ((val: T) => T)) => {
     try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
@@ -27,7 +28,10 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
         try {
           setStoredValue(JSON.parse(e.newValue));
         } catch (error) {
-          console.error(`Error parsing localStorage value for key "${key}":`, error);
+          console.error(
+            `Error parsing localStorage value for key "${key}":`,
+            error,
+          );
         }
       }
     };

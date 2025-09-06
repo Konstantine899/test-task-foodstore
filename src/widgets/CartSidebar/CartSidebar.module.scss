@@ -21,13 +21,13 @@
   :global(.cart-open) {
     margin-right: 0;
   }
-  
+
   :global(.cart-open .app) {
     width: 100%;
     max-width: 100vw;
   }
 }
-  
+
 .sidebar {
   position: fixed;
   top: 85px;
@@ -80,16 +80,16 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  
+
   &:hover {
     color: #0f0f0f;
     background: #f3f4f6;
   }
-  
+
   &:active {
     background: #e5e7eb;
   }
-  
+
   span {
     line-height: 1;
   }
@@ -121,13 +121,13 @@
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
-  
+
   &.active {
     background: #3b82f6;
     color: #fff;
     border-color: #3b82f6;
   }
-  
+
   &:hover:not(.active) {
     background: #f9fafb;
   }
@@ -166,7 +166,7 @@
 
 .item-info {
   flex: 1;
-  
+
   h4 {
     margin: 0 0 4px;
     font-size: 14px;
@@ -199,7 +199,7 @@
   cursor: pointer;
   font-size: 16px;
   color: #6b7280;
-  
+
   &:hover {
     background: #f9fafb;
   }
@@ -217,23 +217,23 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  
+
   label {
     font-size: 14px;
     font-weight: 500;
     color: #374151;
   }
-  
+
   input {
     padding: 8px 12px;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
     font-size: 14px;
-    
+
     &::placeholder {
       color: #9ca3af;
     }
-    
+
     &:focus {
       outline: none;
       border-color: #3b82f6;
@@ -260,7 +260,7 @@
   margin-bottom: 8px;
   font-size: 14px;
   color: #374151;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -302,19 +302,19 @@
     width: 100vw;
     right: -100vw;
   }
-  
+
   .sidebar.open {
     right: 0;
   }
-  
+
   .header {
     padding: 20px 16px;
   }
-  
+
   .content {
     padding: 16px;
   }
-  
+
   .total {
     padding: 16px;
   }
@@ -326,42 +326,42 @@
     background: #1f2937;
     border-left: 1px solid #374151;
   }
-  
+
   .header {
     background: #1f2937;
     border-bottom-color: #374151;
   }
-  
+
   .title {
     color: #f9fafb;
   }
-  
+
   .close-button {
     color: #9ca3af;
-    
+
     &:hover {
       color: #f9fafb;
       background: #374151;
     }
   }
-  
+
   .footer {
     background: #1f2937;
     border-top-color: #374151;
   }
-  
+
   .total {
     background: #111827;
   }
-  
+
   .total-label {
     color: #d1d5db;
   }
-  
+
   .total-price {
     color: #f9fafb;
   }
-  
+
   .empty-state p {
     color: #9ca3af;
   }

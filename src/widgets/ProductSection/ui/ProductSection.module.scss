@@ -1,66 +1,66 @@
 .section {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    
-    @media (width <= 1200px) {
-      max-width: 1140px;
-      padding: 32px 16px;
-    }
-    
-    @media (width <= 768px) {
-      padding: 24px 12px;
-    }
-  }
-  
-  .header {
-    margin-bottom: 32px;
-  }
-  
-  .title {
-    margin: 0;
-    font-size: 32px;
-    font-weight: 700;
-    color: #0f0f0f;
-    line-height: 1.2;
-    
-    @media (width <= 768px) {
-      font-size: 28px;
-    }
-  }
-  
-  .content {
-    transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    max-width: 100%;
-  }
-  
-  .content.cart-open {
-    max-width: calc(100% - 375px);
-    
-    @media (width <= 480px) {
-      max-width: 0;
-    }
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  @media (width <= 1200px) {
+    max-width: 1140px;
+    padding: 32px 16px;
   }
 
-  .clear-search {
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-left: 16px;
-    transition: background-color 0.2s;
-  
-    &:hover {
-      background: #ff5252;
-    }
+  @media (width <= 768px) {
+    padding: 24px 12px;
   }
+}
 
-  .clear-search-skeleton {
-    margin-left: 16px;
-    background: #ff6b6b;
-    min-height: 36px;
-    min-width: 100px;
+.header {
+  margin-bottom: 32px;
+}
+
+.title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f0f0f;
+  line-height: 1.2;
+
+  @media (width <= 768px) {
+    font-size: 28px;
   }
+}
+
+.content {
+  transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 100%;
+}
+
+.content.cart-open {
+  max-width: calc(100% - 375px);
+
+  @media (width <= 480px) {
+    max-width: 0;
+  }
+}
+
+.clear-search {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 16px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: #ff5252;
+  }
+}
+
+.clear-search-skeleton {
+  margin-left: 16px;
+  background: #ff6b6b;
+  min-height: 36px;
+  min-width: 100px;
+}
