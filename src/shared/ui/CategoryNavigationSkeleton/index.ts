@@ -1,1 +1,0 @@
-export { CategoryNavigationSkeleton } from './CategoryNavigationSkeleton';
