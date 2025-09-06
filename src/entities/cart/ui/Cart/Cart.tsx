@@ -1,5 +1,5 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Cart.module.scss';
+import { Cart as cls } from './Cart.module.scss';
 import { memo } from 'react';
 
 interface CartProps {
