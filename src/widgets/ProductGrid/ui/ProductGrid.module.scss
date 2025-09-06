@@ -5,12 +5,12 @@
     gap: 24px;
     margin-top: 24px;
     
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
       gap: 16px;
     }
   }
   
-  .grid.cartOpen {
+  .grid.cart-open {
     grid-template-columns: repeat(auto-fit, 285.6px);
     justify-content: center;
     gap: 16px;

@@ -17,18 +17,18 @@
   transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 100%;
 }
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .sKFBfrHn {
     gap: 16px;
     grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
   }
 }
 
-.sKFBfrHn.wJrje6SS {
+.sKFBfrHn.OhY91s3n {
   max-width: calc(100% - 375px);
 }
-@media (max-width: 480px) {
-  .sKFBfrHn.wJrje6SS {
+@media (width <= 480px) {
+  .sKFBfrHn.OhY91s3n {
     max-width: 0;
   }
 }
@@ -55,5 +55,5 @@
 }
 ._tvRj63B.ViHMiDUh {
   background: #0f0f0f;
-  color: #ffffff;
+  color: #fff;
 }

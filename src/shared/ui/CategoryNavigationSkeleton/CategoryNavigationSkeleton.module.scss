@@ -10,7 +10,7 @@
   padding: 0;
   flex-wrap: wrap;
 
-  &.cartOpen {
+  &.cart-open {
     justify-content: center;
     gap: 8px;
   }
@@ -20,18 +20,18 @@
   flex-shrink: 0;
 }
 
-.buttonSkeleton {
+.button-skeleton {
   border-radius: 8px;
   min-width: 80px;
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .list {
     gap: 8px;
   }
 
-  .buttonSkeleton {
+  .button-skeleton {
     height: 36px;
     min-width: 70px;
   }

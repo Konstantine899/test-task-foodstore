@@ -1,4 +1,4 @@
-.actionButtonSkeleton {
+.action-button-skeleton {
   background: #f5f5f5;
   border: none;
   padding: 12px;
@@ -11,20 +11,20 @@
   min-height: 44px;
   min-width: 44px;
 
-  &.cartOpen {
+  &.cart-open {
     background: #374151;
   }
 }
 
-.iconSkeleton {
+.icon-skeleton {
   flex-shrink: 0;
 }
 
-.textSkeleton {
+.text-skeleton {
   flex-shrink: 0;
 }
 
-.badgeSkeleton {
+.badge-skeleton {
   position: absolute;
   top: 4px;
   right: 4px;
@@ -32,24 +32,24 @@
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
-  .actionButtonSkeleton {
+@media (width <= 768px) {
+  .action-button-skeleton {
     min-height: 40px;
     min-width: 40px;
     padding: 10px;
   }
 
-  .iconSkeleton {
+  .icon-skeleton {
     height: 18px;
     width: 18px;
   }
 
-  .textSkeleton {
+  .text-skeleton {
     height: 12px;
     width: 50px;
   }
 
-  .badgeSkeleton {
+  .badge-skeleton {
     height: 14px;
     width: 14px;
   }

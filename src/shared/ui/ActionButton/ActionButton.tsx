@@ -64,11 +64,11 @@ export const ActionButton = memo<ActionButtonProps>(({
 
   const buttonClasses = useMemo(() => {
     const mods = { 
-      [styles.cartOpen]: className === 'cartOpen',
+      [styles['cart-open']]: className === 'cartOpen',
       [styles.disabled]: disabled
     };
     const extra = className && className !== 'cartOpen' ? [className] : [];
-    return classNames(styles.actionButton, mods, extra);
+    return classNames(styles['action-button'], mods, extra);
   }, [className, disabled]);
 
   return (
@@ -80,7 +80,7 @@ export const ActionButton = memo<ActionButtonProps>(({
     >
       {icon}
       {text && (
-        <span className={classNames(styles.buttonText, { [styles.animating]: isAnimating })}>
+        <span className={classNames(styles['button-text'], { [styles.animating]: isAnimating })}>
           {text}
         </span>
       )}

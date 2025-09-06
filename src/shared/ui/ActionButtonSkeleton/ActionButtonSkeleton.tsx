@@ -14,13 +14,13 @@ export const ActionButtonSkeleton = memo<ActionButtonSkeletonProps>(({
   hasBadge = false,
 }) => {
   return (
-    <div className={`${styles.actionButtonSkeleton} ${className}`}>
+    <div className={`${styles['action-button-skeleton']} ${className}`}>
       {/* Иконка */}
       <Skeleton
         height={20}
         width={20}
         border="50%"
-        className={styles.iconSkeleton}
+        className={styles['icon-skeleton']}
       />
       
       {/* Текст (если есть) */}
@@ -28,7 +28,7 @@ export const ActionButtonSkeleton = memo<ActionButtonSkeletonProps>(({
         <Skeleton
           height={14}
           width={60}
-          className={styles.textSkeleton}
+          className={styles['text-skeleton']}
         />
       )}
       
@@ -38,7 +38,7 @@ export const ActionButtonSkeleton = memo<ActionButtonSkeletonProps>(({
           height={16}
           width={16}
           border="50%"
-          className={styles.badgeSkeleton}
+          className={styles['badge-skeleton']}
         />
       )}
     </div>

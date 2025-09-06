@@ -1,5 +1,5 @@
-.headerSkeleton {
-  background: #ffffff;
+.header-skeleton {
+  background: #fff;
   border-bottom: 1px solid #e5e7eb;
   position: sticky;
   top: 0;
@@ -23,61 +23,61 @@
   justify-content: space-between;
   height: 85px;
   
-  @media (max-width: 1200px) {
+  @media (width <= 1200px) {
     max-width: 1140px;
-    padding: 16px 16px;
+    padding: 16px;
   }
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     padding: 16px 12px;
     height: 70px;
   }
 }
 
-.leftActions {
+.left-actions {
   display: flex;
   align-items: center;
   gap: 20px;
   flex-shrink: 0;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     gap: 16px;
   }
 }
 
-.rightActions {
+.right-actions {
   display: flex;
   align-items: center;
   gap: 20px;
   flex-shrink: 0;
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     gap: 16px;
   }
 }
 
-.cartSkeleton {
+.cart-skeleton {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.menuButton {
+.menu-button {
   animation-delay: 0.1s;
 }
 
-.languageToggle {
+.language-toggle {
   animation-delay: 0.2s;
 }
 
-.searchButton {
+.search-button {
   animation-delay: 0.3s;
 }
 
-.cartIcon {
+.cart-icon {
   animation-delay: 0.4s;
 }
 
-.cartTotal {
+.cart-total {
   animation-delay: 0.5s;
 }

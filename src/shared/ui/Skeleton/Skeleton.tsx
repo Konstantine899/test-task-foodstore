@@ -49,6 +49,6 @@ export const Skeleton = memo((props: SkeletonProps) => {
   };
 
   return (
-    <div className={classNames(cls.Skeleton, {}, [className])} />
+    <div className={classNames(cls.skeleton, {}, [className])} />
   );
 });

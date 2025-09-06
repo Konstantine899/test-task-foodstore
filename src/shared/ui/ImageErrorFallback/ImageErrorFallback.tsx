@@ -13,13 +13,13 @@ export const ImageErrorFallback = memo<ImageErrorFallbackProps>(({
   imageSrc = '/images/no-image.jpg'
 }) => {
   return (
-    <div className={`${styles.errorFallback} ${className}`}>
+    <div className={`${styles['error-fallback']} ${className}`}>
       <img 
         src={imageSrc} 
         alt="Изображение недоступно"
-        className={styles.errorImage}
+        className={styles['error-image']}
       />
-      <span className={styles.errorText}>{text}</span>
+      <span className={styles['error-text']}>{text}</span>
     </div>
   );
 });

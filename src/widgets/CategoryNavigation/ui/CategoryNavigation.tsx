@@ -32,7 +32,7 @@ export const CategoryNavigation = memo<CategoryNavigationProps>(({ isCartOpen })
     dispatch(productActions.clearSearch());
   }, [dispatch]);
 
-  const mods = { [styles.cartOpen]: isCartOpen }
+  const mods = { [styles['cart-open']]: isCartOpen }
 
 
   return (

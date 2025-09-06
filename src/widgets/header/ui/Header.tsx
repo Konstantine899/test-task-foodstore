@@ -74,7 +74,7 @@ export const Header = memo(() => {
   return (
     <header className={classNames(styles.header, { [styles.scrolled]: isExpanded })}>
       <div className={styles.container}>
-        <div className={styles.leftActions}>
+        <div className={styles['left-actions']}>
           <ActionButton 
             icon={menuIcon} 
             ariaLabel={t('common.menu')} 
@@ -91,7 +91,7 @@ export const Header = memo(() => {
         </div>
         
         {showSearch && (
-          <div className={styles.searchContainer}>
+          <div className={styles['search-container']}>
             <SearchDropdown 
               items={searchItems}
               onSelect={handleSearchSelect}
@@ -101,7 +101,7 @@ export const Header = memo(() => {
           </div>
         )}
         
-        <div className={styles.rightActions}>
+        <div className={styles['right-actions']}>
           <ActionButton 
             icon={cartIcon} 
             text={formattedTotal} 

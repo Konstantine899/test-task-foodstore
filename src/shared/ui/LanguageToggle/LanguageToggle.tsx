@@ -51,9 +51,9 @@ export const LanguageToggle = memo<LanguageToggleProps>(({ className, disabled =
   const currentLang = languages.find(lang => lang.code === currentLanguage) || languages[0];
 
   return (
-    <div ref={dropdownRef} className={classNames(styles.languageToggle, {}, [className])}>
+    <div ref={dropdownRef} className={classNames(styles['language-toggle'], {}, [className])}>
       <button
-        className={classNames(styles.currentButton, { [styles.disabled]: disabled })}
+        className={classNames(styles['current-button'], { [styles.disabled]: disabled })}
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
       >

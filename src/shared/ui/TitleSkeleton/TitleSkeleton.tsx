@@ -15,7 +15,7 @@ export const TitleSkeleton = memo<TitleSkeletonProps>(({
     <Skeleton
       height={32}
       width={width}
-      className={`${styles.titleSkeleton} ${className}`}
+      className={`${styles['title-skeleton']} ${className}`}
     />
   );
 });

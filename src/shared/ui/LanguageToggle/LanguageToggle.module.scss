@@ -1,10 +1,10 @@
-// src/shared/ui/LanguageToggle/LanguageToggle.module.scss
-.languageToggle {
+/* src/shared/ui/LanguageToggle/LanguageToggle.module.scss */
+.language-toggle {
   position: relative;
   display: inline-block;
 }
 
-.currentButton {
+.current-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,11 +19,11 @@
   font-weight: bold;
   min-width: 50px;
   height: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
 
   &:hover:not(.disabled) {
     background: #e8e8e8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
   }
 
   &.disabled {
@@ -63,7 +63,7 @@
   background: white;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
   z-index: 1000;
   margin-top: 4px;
   overflow: hidden;
