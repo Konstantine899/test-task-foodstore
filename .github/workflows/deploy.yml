@@ -2,95 +2,51 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, dev ]
-  pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
+      - name: Checkout
+        uses: actions/checkout@v4
         
-    - name: Debug environment
-      run: |
-        echo "Node version: $(node --version)"
-        echo "NPM version: $(npm --version)"
-        echo "Current directory: $(pwd)"
-        echo "Directory contents: $(ls -la)"
-        echo "Package.json exists: $(test -f package.json && echo 'YES' || echo 'NO')"
-        echo "GitHub ref: ${{ github.ref }}"
-        echo "GitHub event: ${{ github.event_name }}"
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
         
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Debug dependencies
-      run: |
-        echo "Installed packages:"
-        npm ls --depth=0
-        echo "Security audit:"
-        npm audit --audit-level=moderate || true
+      - name: Build
+        run: npm run build:prod
         
-    - name: Lint TypeScript
-      run: npm run lint:ts
-      
-    - name: Lint SCSS
-      run: npm run lint:scss
-      
-    - name: Build project
-      run: npm run build:prod
-      
-    - name: Debug build output
-      run: |
-        echo "Build directory contents:"
-        ls -la build/ || echo "Build directory not found"
-        echo "Build directory size:"
-        du -sh build/ || echo "Cannot calculate size"
-        echo "Checking for index.html:"
-        test -f build/index.html && echo "index.html exists" || echo "index.html missing"
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
         
-    - name: Upload build artifacts (on failure)
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: build-files-${{ github.run_number }}
-        path: |
-          build/
-          package-lock.json
-          npm-debug.log*
-        retention-days: 7
-        
-    - name: Verify build directory
-      run: |
-        if [ ! -d "build" ]; then
-          echo "Build directory does not exist!"
-          exit 1
-        fi
-        if [ ! -f "build/index.html" ]; then
-          echo "index.html not found in build directory!"
-          exit 1
-        fi
-        echo "Build directory verification passed"
-        
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-        
-    - name: Health check after deploy
-      if: github.ref == 'refs/heads/main'
-      run: |
-        echo "Waiting for deployment to complete..."
-        sleep 30
-        echo "Deployment completed. Check your GitHub Pages URL."
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './build'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
