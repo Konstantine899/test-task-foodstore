@@ -63,7 +63,7 @@ export const ProductCard = memo<ProductCardProps>(
         <ImageErrorFallback
           className={styles['image-error']}
           text=""
-          imageSrc="/images/no-image.jpg"
+          imageSrc="/test-task-foodstore/images/no-image.jpg"
         />
       ),
       [],
