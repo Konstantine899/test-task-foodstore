@@ -222,7 +222,7 @@ const availableImages = [
 const getRandomImage = () => {
   const imageName =
     Math.random() < 0.7 ? getRandomElement(availableImages) : '';
-  return imageName ? `/images/${imageName}` : '';
+  return imageName ? `/test-task-foodstore/images/${imageName}` : '';
 };
 
 const generatedProducts = Array.from({ length: 100 }, (_, index) => {
