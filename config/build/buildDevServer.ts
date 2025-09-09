@@ -6,5 +6,9 @@ export function buildDevServer(options: BuildOptions): Configuration {
     port: options.port,
     open: true,
     hot: true,
+    static: {
+      directory: options.paths.public,
+      publicPath: '/',
+    },
   };
 }

@@ -11,7 +11,7 @@ export const ImageErrorFallback = memo<ImageErrorFallbackProps>(
   ({
     className = '',
     text = 'Нет фото',
-    imageSrc = '/test-task-foodstore/images/no-image.jpg',
+    imageSrc = __IS_DEV__ ? '/images/no-image.jpg' :  '/test-task-foodstore/images/no-image.jpg',
   }) => {
     return (
       <div className={`${styles['error-fallback']} ${className}`}>
