@@ -32,7 +32,7 @@
 }
 
 /* Адаптивность */
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .action-button-skeleton {
     min-height: 40px;
     min-width: 40px;

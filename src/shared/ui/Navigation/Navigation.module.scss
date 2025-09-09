@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
 
-  @media (width <= 768px) {
+  @media (max-width: 768px) {
     display: none;
   }
 }
@@ -15,7 +15,7 @@
   padding: 0;
   gap: 40px;
 
-  @media (width <= 1200px) {
+  @media (max-width: 1200px) {
     gap: 32px;
   }
 }
@@ -36,7 +36,7 @@
     color: #007bff;
   }
 
-  @media (width <= 1200px) {
+  @media (max-width: 1200px) {
     font-size: 15px;
   }
 }

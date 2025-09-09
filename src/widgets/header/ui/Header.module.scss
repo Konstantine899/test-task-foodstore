@@ -17,12 +17,12 @@
   height: 85px;
   transition: padding 0.3s ease;
 
-  @media (width <= 1200px) {
+  @media (max-width: 1200px) {
     max-width: 1140px;
     padding: 16px;
   }
 
-  @media (width <= 768px) {
+  @media (max-width: 768px) {
     padding: 16px 12px;
     height: 70px;
   }
@@ -33,11 +33,11 @@
   max-width: 100%;
   justify-content: space-between;
 
-  @media (width <= 1200px) {
+  @media (max-width: 1200px) {
     padding: 24px 16px;
   }
 
-  @media (width <= 768px) {
+  @media (max-width: 768px) {
     padding: 24px 12px;
   }
 }
@@ -48,7 +48,7 @@
   gap: 20px;
   flex-shrink: 0;
 
-  @media (width <= 768px) {
+  @media (max-width: 768px) {
     gap: 16px;
   }
 }
@@ -59,7 +59,7 @@
   gap: 20px;
   flex-shrink: 0;
 
-  @media (width <= 768px) {
+  @media (max-width: 768px) {
     gap: 16px;
   }
 }

@@ -17,7 +17,7 @@
 }
 
 /* На мобильных устройствах не сдвигаем контент */
-@media (width <= 768px) {
+@media (max-width: 768px) {
   :global(.cart-open) {
     margin-right: 0;
   }
@@ -297,7 +297,7 @@
 }
 
 /* Адаптивность для мобильных устройств */
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .sidebar {
     width: 100vw;
     right: -100vw;

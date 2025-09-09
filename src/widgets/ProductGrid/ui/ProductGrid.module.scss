@@ -5,7 +5,7 @@
   gap: 24px;
   margin-top: 24px;
 
-  @media (width <= 768px) {
+  @media (max-width: 768px) {
     gap: 16px;
   }
 }
