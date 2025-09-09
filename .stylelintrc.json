@@ -6,6 +6,7 @@
       {
         "ignorePseudoClasses": ["global"]
       }
-    ]
+    ],
+    "media-feature-range-notation": null
   }
 }
