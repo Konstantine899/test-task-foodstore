@@ -1,40 +1,65 @@
 .navigation {
   margin-top: 20px;
+  overflow: hidden;
+
+  @media (width <= 768px) {
+    margin-top: 16px;
+  }
+
+  @media (width <= 480px) {
+    margin-top: 12px;
+  }
 }
 
 .list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 20px;
-  justify-content: start;
+  gap: 12px;
+  overflow: auto hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
   transition: max-width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 100%;
+  padding-bottom: 4px; /* Space for scrollbar */
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (width <= 768px) {
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
   }
-  
+
+  @media (width <= 480px) {
+    gap: 8px;
+    padding: 0 16px 4px;
+  }
 }
 
 .list.cart-open {
   max-width: calc(100% - 375px);
 
-  @media (width <= 480px) {
-    max-width: 0;
+  @media (width <= 1024px) {
+    max-width: calc(100% - 320px);
+  }
+
+  @media (width <= 768px) {
+    max-width: calc(100% - 280px);
   }
 
   @media (width <= 480px) {
-  grid-template-columns: 1fr;
-}
+    max-width: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .item {
-  /* Убираем flex-shrink, так как используем grid */
-  display: block;
+  flex-shrink: 0; /* Предотвращаем сжатие элементов */
 }
 
 .button {
@@ -48,14 +73,42 @@
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  min-width: max-content; /* Минимальная ширина по содержимому */
+  min-height: 44px; /* Минимальная высота для touch-устройств */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Предотвращаем сжатие кнопок */
+
+  @media (width <= 768px) {
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 6px;
+    min-height: 40px;
+  }
+
+  @media (width <= 480px) {
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 4px;
+    min-height: 36px;
+  }
 
   &:hover {
     background: #e5e5e5;
     color: #0f0f0f;
   }
 
+  &:active {
+    transform: scale(0.98);
+  }
+
   &.active {
     background: #0f0f0f;
     color: #fff;
+
+    &:hover {
+      background: #333;
+    }
   }
 }
