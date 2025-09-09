@@ -1,10 +1,13 @@
 .navigation {
   margin-top: 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
@@ -15,9 +18,33 @@
 
   @media (width <= 768px) {
     gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    padding: 0 4px;
   }
-  
+
+  @media (width <= 480px) {
+    display: flex;
+    grid-template-columns: none;
+    gap: 12px;
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @media (width <= 375px) {
+    gap: 10px;
+    padding: 0 12px;
+  }
+
+  @media (width <= 320px) {
+    gap: 8px;
+    padding: 0 8px;
+  }
 }
 
 .list.cart-open {
@@ -25,16 +52,19 @@
 
   @media (width <= 480px) {
     max-width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
   }
-
-  @media (width <= 480px) {
-  grid-template-columns: 1fr;
-}
 }
 
 .item {
-  /* Убираем flex-shrink, так как используем grid */
   display: block;
+  
+  @media (width <= 480px) {
+    flex-shrink: 0;
+    min-width: fit-content;
+  }
 }
 
 .button {
@@ -48,6 +78,11 @@
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  width: 100%;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
 
   &:hover {
     background: #e5e5e5;
@@ -57,5 +92,115 @@
   &.active {
     background: #0f0f0f;
     color: #fff;
+  }
+
+  @media (width <= 768px) {
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+
+  @media (width <= 480px) {
+    padding: 8px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    min-width: max-content;
+    font-weight: 600;
+  }
+
+  @media (width <= 375px) {
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 3px;
+  }
+
+  @media (width <= 320px) {
+    padding: 5px 8px;
+    font-size: 10px;
+    border-radius: 2px;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:active {
+      background: #d5d5d5;
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+
+    &.active:active {
+      background: #333;
+      transform: scale(0.95);
+    }
+  }
+}
+
+@media (width <= 480px) {
+  .navigation {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 100%;
+      background: linear-gradient(
+        to left, 
+        rgb(255 255 255 / 90%) 0%, 
+        rgb(255 255 255 / 60%) 50%, 
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  .list {
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 16px;
+  }
+
+  .item {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    background: #2a2a2a;
+    color: #a0a0a0;
+
+    &:hover {
+      background: #3a3a3a;
+      color: #fff;
+    }
+
+    &.active {
+      background: #fff;
+      color: #000;
+    }
+
+    &:active {
+      background: #4a4a4a;
+    }
+
+    &.active:active {
+      background: #e0e0e0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .list {
+    transition: none;
+  }
+
+  .list.cart-open {
+    transition: none;
   }
 }
