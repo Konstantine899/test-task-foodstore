@@ -17,8 +17,7 @@
   margin: 0;
   padding: 0;
   gap: 12px;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto hidden;
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
@@ -37,7 +36,7 @@
 
   @media (width <= 480px) {
     gap: 8px;
-    padding: 0 16px 4px 16px;
+    padding: 0 16px 4px;
     scroll-snap-type: x mandatory;
     scroll-padding: 0 16px;
   }
@@ -170,31 +169,6 @@
       );
       pointer-events: none;
       z-index: 1;
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .button {
-    background: #2a2a2a;
-    color: #a0a0a0;
-
-    &:hover {
-      background: #3a3a3a;
-      color: #fff;
-    }
-
-    &.active {
-      background: #fff;
-      color: #000;
-    }
-
-    &:active {
-      background: #4a4a4a;
-    }
-
-    &.active:active {
-      background: #e0e0e0;
     }
   }
 }
