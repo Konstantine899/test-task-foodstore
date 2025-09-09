@@ -1,8 +1,8 @@
-import webpack from 'webpack';
 
-import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildPath } from './config/build/types/config';
 import path from 'path';
+import { buildWebpackProdConfig } from './config/build/webpack.prod.config';
+import { buildWebpackDevConfig } from './config/build/webpack.dev.config';
 
 export default (env: BuildEnv) => {
   const paths: BuildPath = {
@@ -16,20 +16,19 @@ export default (env: BuildEnv) => {
   const isDev = mode === 'development';
   const PORT = env.port || 3000;
 
-  const config: webpack.Configuration = buildWebpackConfig({
-    mode: 'development',
-    paths,
-    isDev,
-    port: PORT,
-  });
-
-  // Добавляем publicPath для GitHub Pages в production
-  if (mode === 'production') {
-    config.output = {
-      ...config.output,
-      publicPath: '/test-task-foodstore/',
-    };
+  if (isDev) {
+    return buildWebpackDevConfig({
+      mode: 'development',
+      paths,
+      isDev: true,
+      port: PORT,
+    });
   }
 
-  return config;
+  return buildWebpackProdConfig({
+    mode: 'production',
+    paths,
+    isDev: false,
+    port: PORT,
+  });
 };

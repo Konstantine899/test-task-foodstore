@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CategorySchema } from '../types/categorySchema';
+import { CategorySchema } from '@/entities/category';
 
 const getInitialState = (): CategorySchema => {
   const defaultCategories = [

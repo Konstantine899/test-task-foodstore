@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run TypeScript check
+      run: npx tsc --noEmit
+      
+    - name: Run ESLint
+      run: npm run lint:ts
+      
+    - name: Run Stylelint
+      run: npm run lint:scss
+      
+    - name: Run all linting checks
+      run: npm run lint:check
+      
+    - name: Build for development
+      run: npm run build:dev
+      
+    - name: Build for production
+      run: npm run build:prod

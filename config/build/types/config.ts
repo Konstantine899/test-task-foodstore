@@ -1,4 +1,6 @@
 export type BuildMode = "production" | "development";
+
+
 export type BuildPath = {
   entry: string;
   build: string;
