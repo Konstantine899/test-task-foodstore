@@ -29,6 +29,7 @@
 
 .item {
   /* Убираем flex-shrink, так как используем grid */
+  display: block;
 }
 
 .button {

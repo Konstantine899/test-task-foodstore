@@ -1,4 +1,6 @@
 /* src/pages/MainPage/MainPage.module.scss */
 .main {
   /* Основной контейнер без сдвига */
+  flex: 1;
+  transition: margin-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
