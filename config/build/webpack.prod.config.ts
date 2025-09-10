@@ -45,6 +45,13 @@ export function buildWebpackProdConfig(options: BuildOptions): webpack.Configura
             reuseExistingChunk: true,
             enforce: true,
           },
+          styles: {
+            name: 'styles',
+            test: /\.(css|scss|sass)$/,
+            chunks: 'all',
+            enforce: true,
+            priority: 20,
+          },
         },
       },
       usedExports: true, //  Tree shaking

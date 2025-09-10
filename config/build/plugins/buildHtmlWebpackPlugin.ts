@@ -5,5 +5,6 @@ export function buildHtmlWebpackPlugin(options: BuildOptions) {
   const { paths } = options;
   return new HTMLWebpackPlugin({
     template: paths.html,
+    chunks: 'all', // Подключаем все chunks (включая CSS)
   });
 }
